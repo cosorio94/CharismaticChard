@@ -1,4 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import axios from 'axios';
+import browserHistory from 'react-router';
 
-ReactDOM.render(<h1>Hello World from React</h1>, document.getElementById('root'));
+import Home from './components/home.js';
+import Input from './components/input.js';
+import store from './store.js';
+
+const target = document.getElementById('root');
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <div className="mainContainer">
+        <div className="headerContainer">
+          <div className="dropdown headerItem">
+            <p>Menu</p>
+            <div className="dropdown-content" alt="Menu">
+              <Link to="/">Home</Link>
+              <Link to="/input">Input</Link>
+            </div>
+          </div>
+          <div className="logo headerItem">
+            <img src="./assets/splitter-logo.png" width="200"/>
+          </div>
+          <hr/>
+        </div>
+        <div className="bodyContainer">
+          <Route exact path="/" component={() => <Home />}/>
+          <Route path="/input" component={() => <Input />}/>
+        </div>
+      </div>
+    </Router>
+  </Provider>, 
+  target
+);
