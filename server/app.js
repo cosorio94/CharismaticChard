@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+var twilioMiddleware = require('./twilio/twilio_middleware.js');
+
 
 const app = express();
 
@@ -23,5 +25,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
+app.post('/twilio', twilioMiddleware.twilioMiddleware );
+
 
 module.exports = app;
