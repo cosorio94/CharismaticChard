@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.decimal('total').notNullable();
     table.decimal('tax').nullable();
     table.decimal('tip').nullable();
+    table.integer('splitter_id').references('profiles.id');
     table.timestamps(true, true);
   });
 };
