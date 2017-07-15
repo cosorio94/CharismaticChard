@@ -18,6 +18,20 @@ module.exports = function(grunt) {
       }
     },
 
+    run: {
+      options: {
+        // Task-specific options go here.
+      },
+      test: {
+        cmd: 'jest',
+        args: [
+          'client/test/.setup.js',
+          'client/test/*.*.js',
+          '--colors'
+        ]
+      }
+    },
+
     pgcreatedb: {
       default: {
         connection: {
@@ -34,9 +48,10 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-run');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-pg');
 
   grunt.registerTask('default', ['eslint']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', ['run']); // grunt.registerTask('test', ['run', 'mochatTest']); to run serverside mocha tests also
 };
