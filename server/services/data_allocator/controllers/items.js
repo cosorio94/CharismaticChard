@@ -1,28 +1,15 @@
-const models = require('../../db/models');
+const models = require('../../../../db/models');
+const controller = require('../../../controllers');
 
 module.exports = {
 
   getAll: (req, res) => {
     models.Split.findAll()
       .then(profiles => {
-
-      })
+        return controller.controller.serveData(profiles);
+      });
   }
 
-}
 
-module.exports.sendData = (data, res) => {
-  return Promise.resolve(data)
-    .then((data) => {
-      if (!data) {
-        throw data;
-      }
-      return data;
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
-}
+
+};

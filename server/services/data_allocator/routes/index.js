@@ -3,9 +3,9 @@ const express = require('express');
 
 const router = express.Router();
 
-router.route('/')
-  // .get()
-  // .put
-  // .update
+// router.route('/')
+// .get()
+// .put
+// .update
 
 module.exports = router;
