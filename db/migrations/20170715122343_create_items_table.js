@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.decimal('price').notNullable();
     table.integer('debtor_id').references('profiles.id');
     table.integer('split_id').references('splits.id');
+    // items might not need to have timestamps
     table.timestamps(true, true);
   });
 };
