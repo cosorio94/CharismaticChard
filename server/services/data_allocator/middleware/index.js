@@ -1,0 +1,1 @@
+module.exports.deconstructData = require('./deconstructData.js');

@@ -26,7 +26,3 @@ module.exports = {
 
 
 };
-
-// save split:
-// get profile with same phone number
-// then save split
