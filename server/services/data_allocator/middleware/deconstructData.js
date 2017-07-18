@@ -1,16 +1,15 @@
 const models = require('../../../../db/models');
 
-const deconstructSplitData = (req, res, next) => {
+const deconstructSplitData = (req, res) => {
   req.split = {
     'split_name': req.body.splitName,
     'total': req.body.splitTotal,
     'tax': req.body.totalTax,
     'tip': req.body.totalTip
   };
-  // next();
 };
 
-const deconstructDebtorsData = (req, res, next) => {
+const deconstructDebtorsData = (req, res) => {
   req.debtors = req.body.debtors.map((debtor, index, debtors) => {
     var fullName = debtor.name.split(' ');
     var lastName = fullName.length > 1 ? fullName.slice(1).join(' ') : null;
@@ -21,10 +20,9 @@ const deconstructDebtorsData = (req, res, next) => {
       phone: debtor.phone
     };
   });
-  // next();
 };
 
-const deconstructDebtorsItemsData = (req, res, next) => {
+const deconstructDebtorsItemsData = (req, res) => {
   req.debtorItems = req.body.debtors.map(debtor => {
     return debtor.items.map(item => {
       return {
@@ -33,10 +31,9 @@ const deconstructDebtorsItemsData = (req, res, next) => {
       };
     });
   });
-  // next();
 };
 
-const deconstructSplitterItems = (req, res, next) => {
+const deconstructSplitterItems = (req, res) => {
   req.splitter = req.body.splitter;
   req.splitterItems = req.splitter.items.map((item) => {
     return {
@@ -44,7 +41,6 @@ const deconstructSplitterItems = (req, res, next) => {
       'price': item.itemPrice
     };
   });
-  // next();
 };
 
 module.exports = (req, res, next) => {

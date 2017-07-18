@@ -1,12 +1,11 @@
 const express = require('express');
-// const middleware = require('../middleware');
 const middleware = require('../middleware');
 
 const router = express.Router();
 
 router.route('/')
-  .post(middleware.deconstructData, middleware.saveToDatabase.saveSplitterItems)
-  .post(middleware.saveToDatabase.saveDebtorItems)
+  .post(middleware.deconstructData)
+  .post(middleware.saveToDatabase)
   .post((req, res, next) => {
     console.log(req.split);
     res.send(req.split);
