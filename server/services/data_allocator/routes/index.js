@@ -5,7 +5,8 @@ const middleware = require('../middleware');
 const router = express.Router();
 
 router.route('/')
-  .post(middleware.deconstructData, (req, res, next) => {
+  .post(middleware.deconstructData, middleware.saveToDatabase.saveSplitterItems)
+  .post((req, res, next) => {
     console.log(req.split);
     res.send(req.split);
   });
