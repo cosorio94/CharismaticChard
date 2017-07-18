@@ -1,5 +1,5 @@
-const models = require('../../../../db/models');
-const controller = require('../../../controllers');
+const models = require('../../db/models');
+const Controller = require('./controller.js');
 const Promise = require('bluebird');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
   getAll: (req, res) => {
     models.Item.findAll()
       .then(profiles => {
-        return controller.controller.serveData(profiles);
+        return Controller.serveData(profiles);
       })
       .error(err => {
         res.status(500).send(err);
