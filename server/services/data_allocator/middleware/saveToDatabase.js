@@ -1,5 +1,6 @@
 const models = require('../../../../db/models');
 const controller = require('../../../controllers');
+var Promise = require('bluebird');
 
 module.exports.saveSplitterItems = (req, res, next) => {
   return controller.Splits.saveSplit(req, res)
@@ -13,15 +14,14 @@ module.exports.saveSplitterItems = (req, res, next) => {
 };
 
 module.exports.saveDebtorItems = (req, res, next) => {
-  // return 
+  return Promise.map(req.body.debtors, (debtor, index) => {
+    // would be better to use email, but for now phone is fine
+    return models.Profile.findOrCreate(req.debtors[index])
+      .then(profile => {
+        return controller.Items.saveItems(req.debtorItems[index], req.split.id, profile.get('id'));
+      });
+  })
+    .then(() => {
+      next();
+    });
 };
-
-// save split, returns split
-// save spliter items
-// for each debtor in debtors
-// check for profiles of debtor
-// if exists, get id
-// if not, create a new one
-// return debtor id and split id
-// for each item in debtors items
-// save item with debtor id and split id

@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route('/')
   .post(middleware.deconstructData, middleware.saveToDatabase.saveSplitterItems)
+  .post(middleware.saveToDatabase.saveDebtorItems)
   .post((req, res, next) => {
     console.log(req.split);
     res.send(req.split);
