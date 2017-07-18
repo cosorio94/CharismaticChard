@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { combineForms, modelReducer } from 'react-redux-form';
 
 import numbers from './testReducer.js';
 import input from './inputReducer.js';

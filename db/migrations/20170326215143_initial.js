@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
       table.string('last', 100).nullable();
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
+      // make phone unique
       table.string('phone', 100).nullable();
       table.timestamps(true, true);
     }),
@@ -17,6 +18,7 @@ exports.up = function (knex, Promise) {
       table.string('password', 100).nullable();
       table.string('salt', 100).nullable();
       table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
+      table.timestamps(true, true);
     })
   ]);
 };
