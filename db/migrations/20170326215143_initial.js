@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
       table.string('last', 100).nullable();
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
+      // make phone unique
       table.string('phone', 100).nullable();
       table.timestamps(true, true);
     }),

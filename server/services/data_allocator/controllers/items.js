@@ -4,7 +4,7 @@ const controller = require('../../../controllers');
 module.exports = {
 
   getAll: (req, res) => {
-    models.Split.findAll()
+    models.Item.findAll()
       .then(profiles => {
         return controller.controller.serveData(profiles);
       });

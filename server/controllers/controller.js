@@ -17,7 +17,7 @@ module.exports.resolveErrors = (data, res) => {
 };
 
 module.exports.serveData = (data, res) => {
-  module.exports.resolveErrors(data, res)
+  return module.exports.resolveErrors(data, res)
     .then(data => {
       res.status(200).send(data);
     });
