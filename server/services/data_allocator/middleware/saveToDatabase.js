@@ -25,7 +25,13 @@ module.exports = (req, res, next) => {
     .then(() => {
       return saveDebtorItems(req, res);
     })
-    .then(() => {
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    })
+    .finally(() => {
       next();
     });
 };
