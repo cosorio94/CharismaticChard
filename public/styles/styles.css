@@ -1,0 +1,98 @@
+html,body{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width:100%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #b3ecff;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.headerItem {
+    flex: 1 1 auto;
+}
+
+.container {
+    width: 100%;
+    padding: 0%;
+}
+
+.mainContainer {
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.formItem {
+    padding: 10px;
+    flex: 1 1 auto;
+}
+
+.formItemBit {
+    padding: 5px;
+    margin: 5px;
+    flex: 1 1 auto;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.inputItem {
+    flex: 1 1 auto;
+    margin: 5px;
+}
+
+.inputItemBit {
+    padding: 5px;
+    margin: 5px;
+}
+
+

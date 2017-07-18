@@ -1,41 +1,113 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/lib/Navbar';
 import Button from 'react-bootstrap/lib/Button';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
 import { connect } from 'react-redux';
+import $ from 'jquery';
+
+import { setIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 
 const mapStateToProps = state => {
   return {
-    numbers: state.numbers.numbers
+    iterator: state.input.iterator,
   };
 };
-//grab user input and display to screen on submit
-//dynamically allow for addition of form fields
-const Input = ({numbers}) => {
-  return (
-    <div>
-      <h1>Hello Input</h1>
-      <p>{numbers}</p>
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <h1>Input Receipt Items</h1>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <hr/>
-        <Navbar.Collapse>
-          <Navbar.Form>
-            <FormGroup>
-              <FormControl type="text" placeholder="Item Name..." />
-              <FormControl type="number" placeholder="Price..." />
-            </FormGroup>
-            <Button type="submit">Submit</Button>
-          </Navbar.Form>
-        </Navbar.Collapse>
-      </Navbar>
-    </div>
-  );
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setIterator: (input) => dispatch(
+      setIterator(input)
+    ),
+    setItems: (input) => dispatch(
+      setItems(input)
+    ),
+    setTax: (input) => dispatch(
+      setTax(input)
+    ),
+    setTotal: (input) => dispatch(
+      setTotal(input)
+    ),
+    setTip: (input) => dispatch(
+      setTip(input)
+    ),
+  };
 };
 
-export default connect(mapStateToProps)(Input);
+class Input extends React.Component {
+  handleSubmit() {
+    var p = this.props;
+    var $items = $('.items').find('input');
+    var items = [];
+    var pair = {};
+    $items.each((index, elem) => {
+      var keys = Object.keys(pair).length;
+      if (keys === 0) {
+        pair.item = $(elem).val();
+        $(elem).val('');
+      } else if (keys === 1) {
+        pair.price = $(elem).val();
+        items.push(pair);
+        $(elem).val('');
+        pair = {};
+      }
+    });
+    p.setItems(items);
+    p.setTax($('.tax').val());
+    $('.tax').val('');
+    p.setTotal($('.total').val());
+    $('.total').val('');
+    p.setTip($('.tip').val());
+    $('.tip').val('');
+  }
+
+  addItem() {
+    var iter = this.props.iterator;
+    var next = iter[iter.length - 1] + 1;
+    this.props.setIterator(next);
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="items">
+          {
+            this.props.iterator.map((i, key) => (
+              <div className="inputContainer formItem">
+                <div className="inputItem">
+                  <label className="inputItemBit">Item</label>
+                  <input type="text" key={key} className="inputItemBit" />
+                </div>
+                <div className="inputItem">
+                  <label className="inputItemBit">Price</label>
+                  <input type="text" key={key + 1} className="inputItemBit"/>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div className="inputContainer formItem">
+          <div className="inputItem">
+            <label className="inputItemBit">Tax</label>
+            <input type="text" className="inputItemBit tax"/>
+          </div>
+          <div className="inputItem">
+            <label className="inputItemBit">Total</label>
+            <input type="text" className="inputItemBit total"/>
+          </div>
+          <div className="inputItem">
+            <label className="inputItemBit">Tip</label>
+            <input type="text" className="inputItemBit tip"/>
+          </div>
+        </div>
+        <div className="inputContainer formItem">
+          <div className="inputItem">
+            <Button onClick={this.addItem.bind(this)}>Add Items</Button>
+          </div>
+          <div className="inputItem">
+            <Button type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Input);
