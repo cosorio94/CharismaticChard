@@ -5,7 +5,11 @@ const router = express.Router();
 
 router.route('/')
   .get(middleware.auth.verify, (req, res) => {
-    res.render('index.ejs');
+    if (req.user.phone) {
+      res.render('index.ejs');
+    } else {
+      res.redirect('/update-profile');
+    }
   });
 
 router.route('/login')
@@ -30,7 +34,18 @@ router.route('/signup')
 
 router.route('/profile')
   .get(middleware.auth.verify, (req, res) => {
-    res.render('profile.ejs', {
+    if (req.user.phone) {
+      res.render('profile.ejs', {
+        user: req.user // get the user out of session and pass to template
+      });
+    } else {
+      res.redirect('/update-profile');
+    }
+  });
+
+router.route('/update-profile')
+  .get((req, res) => {
+    res.render('updateProfile.ejs', {
       user: req.user // get the user out of session and pass to template
     });
   });
