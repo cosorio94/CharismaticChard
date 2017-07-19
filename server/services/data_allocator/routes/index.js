@@ -16,8 +16,14 @@ router.route('/')
 router.route('/update-profile')
   .post(middleware.updateDatabase.updateProfileInfo)
   .post((req, res) => {
-    console.log(req.body);
     res.redirect('/profile');
+  });
+
+router.route('/delete-profile')
+  .get(middleware.deleteFromDatabase.deleteProfile)
+  .get((req, res) => {
+    console.log(req.user);
+    res.redirect('/');
   });
 
 
