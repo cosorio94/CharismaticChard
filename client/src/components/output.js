@@ -10,7 +10,7 @@ import AddFriends from './addFriends.js';
 import ItemList from './itemList.js';
 import FriendsList from './friendsList.js';
 import axios from 'axios';
-
+import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
 
 var dummyInputBillData= {
@@ -18,6 +18,24 @@ var dummyInputBillData= {
   total: "$30",
   tip: "$5", 
   tax: "$4"
+};
+
+
+
+
+const mapStateToProps = state => {
+  return {
+    debtors: state.output.debtors,
+  };
+};
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setDebtors: (input) => dispatch(
+      setDebtors(input)
+    ),
+  };
 };
 
 
@@ -55,15 +73,12 @@ class Output extends React.Component {
       }
     });
 
-    // get name, item, price, number information 
-    // set the given item and price value as itemName and price value 
     let itemAndPrice = { 
       itemName: item, 
       price: price, 
       quantity:1 
     };
-    // create debtor data structure 
-    // set the given name and number as name and number value 
+
     let debtor = {
       name: name,
       number: number,
@@ -71,38 +86,23 @@ class Output extends React.Component {
     };
 
     let debtors = this.state.debtors;
-    // initialize debtorInfo as null 
     let debtorInfo = null; 
-    // if there are no debtors, then push itemsAndPrice object into debtor items array
     if( debtors.length === 0) {
       debtor.items.push(itemAndPrice);
-      // concat debtor object to debtors(state) 
-      // reassign debtorInfo 
-      // don't PUSH, use concat to insert the object into an array
       debtorInfo = this.state.debtors.concat(debtor);
-      // change the debtors state to debtorinfo array 
       this.setState({
         debtors: debtorInfo
       }, this.helperSetState);
-      // if there are some debtors  
     } else if( debtors.length > 0){ 
-      // check global names array if given name doesn't exist in the names array  
       if ( names.indexOf(name) === -1 ){
-        // push itemAndPrice object into the debtor item array => create new debtor 
         debtor.items.push(itemAndPrice);
-        // reassign the debtorInfo concatting new debtor to store at the debtors array 
         debtorInfo = this.state.debtors.concat(debtor);
-        // change the debtors state with new debtorInfo 
         this.setState({
           debtors: debtorInfo
-          // as soon as change the state, fire helperSetState function to grab all debtor's name 
         }, this.helperSetState);
       } else {
-        // if the debtor already exists, iterate the debtors array  
         for ( let i = 0; i < debtors.length; i++) {
-          // find the debtor object 
           if( debtors[i].name === name) {
-            // push the new itemAndPrice object into the same debtor item array 
             debtors[i].items.push(itemAndPrice);
           } 
         }
@@ -113,12 +113,15 @@ class Output extends React.Component {
   helperSetState () {
     var debtors = this.state.debtors;
     for (let i = 0; i < debtors.length; i++) {
-      // if the debtor doens't exist in the names array 
       if(names.indexOf(debtors[i].name) === -1){
-        // push the new debtor's name into the names array 
         names.push(debtors[i].name); 
       }
     }
+  }
+
+
+  submitDebtors() {
+    this.props.setDebtors(this.state.debtors);
   }
 
 
@@ -135,12 +138,11 @@ class Output extends React.Component {
               <FriendsList friendsInfo={this.state.friendsInfo} />
             </Col>
             <Col xsHidden md={4} >
-              {console.log('storage:::', this.state.debtors)}
             </Col>
           </Row>
         </Grid>
         <div>
-          <Button bsStyle="primary" bsSize="small">Calculate</Button>
+          <Button onClick={this.submitDebtors.bind(this)} bsStyle="primary" bsSize="small">Calculate</Button>
         </div>
       </div>
     );
@@ -148,4 +150,4 @@ class Output extends React.Component {
 }
 
 
-export default Output;
+export default connect(mapStateToProps, mapDispatchToProps)(Output);
