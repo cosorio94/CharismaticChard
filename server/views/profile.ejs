@@ -17,10 +17,12 @@
                 <p>
                     <strong>display name</strong>: <%= user.display %><br>
                     <strong>id</strong>: <%= user.id %><br>
-                    <strong>email</strong>: <%= user.email %>
+                    <strong>email</strong>: <%= user.email %><br>
+                    <strong>phone</strong>: <%= user.phone %>
                 </p>
 
                 <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                <a href="/update-profile" class="btn btn-default">Update</a>
                 <% } else { %>
                 <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>

@@ -13,6 +13,13 @@ router.route('/')
 // .put
 // .update
 
+router.route('/update-profile')
+  .post(middleware.updateDatabase.updateProfileInfo)
+  .post((req, res) => {
+    console.log(req.body);
+    res.redirect('/profile');
+  });
+
 
 /************ TEST **********/
 // router.route('/')

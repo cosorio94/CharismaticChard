@@ -44,10 +44,6 @@ router.route('/update-profile')
     res.render('updateProfile.ejs', {
       user: req.user // get the user out of session and pass to template
     });
-  })
-  .post((req, res, next) => {
-    console.log(req.body);
-    res.send(req.body.phone);
   });
 
 router.route('/logout')
