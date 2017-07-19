@@ -12,23 +12,11 @@ import FriendsList from './friendsList.js';
 import axios from 'axios';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
-
-var dummyInputBillData= {
-  items: [{item: "pizza", price: "$10"}, {item: "salad", price: "$8"}, {item: "sushi", price: "$16"}, {item: "burger", price: "$13"},{item: "cupcake", price: "$5"}],
-  total: "$30",
-  tip: "$5", 
-  tax: "$4"
-};
-
-
-
-
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
   };
 };
-
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -38,12 +26,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 let names = []; 
-// smart container 
-// need to access redux 
-class Output extends React.Component {
 
+class Output extends React.Component {
   constructor () {
     super();
     this.state = {
@@ -56,9 +41,11 @@ class Output extends React.Component {
   friendInfo(name, number) {
     let friendInformation = {
       friendName: name,
-      friendNumber: number 
+      friendNumber: number
     };
+
     let info= this.state.friendsInfo.concat(friendInformation);
+
     this.setState({
       friendsInfo: info
     });
@@ -66,17 +53,17 @@ class Output extends React.Component {
 
   collectSplitItemInfo(name, item, price) {
     let numbers = this.state.friendsInfo;
-    let number = null; 
+    let number = null;
     numbers.forEach( (person) => {
       if( name === person.friendName) {
         number = person.friendNumber;
       }
     });
 
-    let itemAndPrice = { 
-      itemName: item, 
-      price: price, 
-      quantity:1 
+    let itemAndPrice = {
+      itemName: item,
+      price: price,
+      quantity: 1
     };
 
     let debtor = {
@@ -87,14 +74,14 @@ class Output extends React.Component {
 
     let debtors = this.state.debtors;
     let debtorInfo = null; 
-    if( debtors.length === 0) {
+    if ( debtors.length === 0) {
       debtor.items.push(itemAndPrice);
       debtorInfo = this.state.debtors.concat(debtor);
       this.setState({
         debtors: debtorInfo
       }, this.helperSetState);
     } else if( debtors.length > 0){ 
-      if ( names.indexOf(name) === -1 ){
+      if ( names.indexOf(name) === -1 ) {
         debtor.items.push(itemAndPrice);
         debtorInfo = this.state.debtors.concat(debtor);
         this.setState({
@@ -104,7 +91,7 @@ class Output extends React.Component {
         for ( let i = 0; i < debtors.length; i++) {
           if( debtors[i].name === name) {
             debtors[i].items.push(itemAndPrice);
-          } 
+          }
         }
       }
     }
@@ -119,11 +106,9 @@ class Output extends React.Component {
     }
   }
 
-
   submitDebtors() {
     this.props.setDebtors(this.state.debtors);
   }
-
 
   render() {
     return (
@@ -131,7 +116,7 @@ class Output extends React.Component {
         <Grid>
           <Row className="show-grid">
             <Col xs={10} md={5}>
-              <ItemList dummyInputBillData={dummyInputBillData} friendsInfo={this.state.friendsInfo} collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
+              <ItemList friendsInfo={this.state.friendsInfo} collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
             </Col>
             <Col xs={6} md={4}>
               <AddFriends friendInfo={this.friendInfo.bind(this)}/>
@@ -148,6 +133,5 @@ class Output extends React.Component {
     );
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Output);

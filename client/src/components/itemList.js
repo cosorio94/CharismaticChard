@@ -3,10 +3,24 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Table from 'react-bootstrap/lib/Table';
 import ItemEntry from './itemEntry.js';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+  return {
+    items: state.input.items,
+    tax: state.input.tax,
+    total: state.input.total,
+    tip: state.input.total,
+  };
+};
 
+const mapDispatchToProps = dispatch => {
+  return {
 
-const ItemList = ({dummyInputBillData, friendsInfo, collectSplitItemInfo}) => {
+  };
+};
+
+const ItemList = ({items, tax, total, tip, collectSplitItemInfo, friendsInfo}) => {
   return (
     <Table responsive>
       <thead>
@@ -17,22 +31,27 @@ const ItemList = ({dummyInputBillData, friendsInfo, collectSplitItemInfo}) => {
         </tr>
       </thead>
       <tbody>
-        { dummyInputBillData.items !== null ? dummyInputBillData.items.map( (item, index) => { return <ItemEntry collectSplitItemInfo={collectSplitItemInfo} friendsInfo={friendsInfo} key={index} item={item} />; }) : null }   
+        { items !== null ? 
+          items.map( (item, index) => { 
+            return <ItemEntry collectSplitItemInfo={collectSplitItemInfo} friendsInfo={friendsInfo} key={index} item={item} />; 
+          }) 
+          : null 
+        }   
         <tr>
           <td>tip</td>
-          <td>{dummyInputBillData.tip}</td>
+          <td>{tip}</td>
           <td></td>
         </tr>
         <tr>
           <td>tax</td>
-          <td>{dummyInputBillData.tax}</td>
+          <td>{tax}</td>
           <td></td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>total</th>
-          <th>{dummyInputBillData.total}</th>
+          <th>{total}</th>
           <td></td>
         </tr>
       </tfoot>
@@ -40,6 +59,4 @@ const ItemList = ({dummyInputBillData, friendsInfo, collectSplitItemInfo}) => {
   );
 };
 
-
-export default ItemList;
-
+export default connect(mapStateToProps, mapDispatchToProps)(ItemList);

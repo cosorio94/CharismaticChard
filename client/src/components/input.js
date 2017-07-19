@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
-import { setIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
+import { setIterator, removeIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setIterator: (input) => dispatch(
       setIterator(input)
+    ),
+    removeIterator: (input) => dispatch(
+      removeIterator(input)
     ),
     setItems: (input) => dispatch(
       setItems(input)
@@ -64,45 +67,53 @@ class Input extends React.Component {
     this.props.setIterator(next);
   }
 
+  removeItem() {
+    var last = this.props.iterator.length - 1;
+    this.props.removeIterator(last);
+  }
+
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div className="items">
           {
             this.props.iterator.map((i, key) => (
-              <div className="inputContainer formItem">
-                <div className="inputItem">
+              <div key={key} className="inputContainer row formItem">
+                <div className="inputItem col-md-6">
                   <label className="inputItemBit">Item</label>
-                  <input type="text" key={key} className="inputItemBit" />
+                  <input type="text" className="inputItemBit form-control" />
                 </div>
-                <div className="inputItem">
+                <div className="inputItem col-md-6">
                   <label className="inputItemBit">Price</label>
-                  <input type="text" key={key + 1} className="inputItemBit"/>
+                  <input type="text" className="inputItemBit form-control"/>
                 </div>
               </div>
             ))
           }
         </div>
-        <div className="inputContainer formItem">
-          <div className="inputItem">
+        <div className="inputContainer row formItem">
+          <div className="inputItem col-md-4">
             <label className="inputItemBit">Tax</label>
-            <input type="text" className="inputItemBit tax"/>
+            <input type="text" className="inputItemBit tax form-control"/>
           </div>
-          <div className="inputItem">
+          <div className="inputItem col-md-4">
             <label className="inputItemBit">Total</label>
-            <input type="text" className="inputItemBit total"/>
+            <input type="text" className="inputItemBit total form-control"/>
           </div>
-          <div className="inputItem">
+          <div className="inputItem col-md-4">
             <label className="inputItemBit">Tip</label>
-            <input type="text" className="inputItemBit tip"/>
+            <input type="text" className="inputItemBit tip form-control"/>
           </div>
         </div>
-        <div className="inputContainer formItem">
-          <div className="inputItem">
-            <Button onClick={this.addItem.bind(this)}>Add Items</Button>
+        <div className="inputContainer row formItem">
+          <div className="inputItem col-md-4">
+            <Button className="btn btn-sm btn-primary" onClick={this.addItem.bind(this)}>Add Items</Button>
           </div>
-          <div className="inputItem">
-            <Button type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+          <div className="inputItem col-md-4">
+            <Button className="btn btn-sm btn-primary" onClick={this.removeItem.bind(this)}>Remove Item</Button>
+          </div>
+          <div className="inputItem col-md-4">
+            <Button className="btn btn-sm btn-success" type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
           </div>
         </div>
       </div>

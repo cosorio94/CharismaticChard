@@ -5,6 +5,13 @@ const setIterator = (item) => {
   };
 };
 
+const removeIterator = (last) => {
+  return {
+    type: 'REMOVE_ITERATOR',
+    payload: last,
+  };
+};
+
 const setItems = (item) => {
   return {
     type: 'SET_ITEMS',
@@ -35,6 +42,7 @@ const setTip = (tip) => {
 
 export {
   setIterator,
+  removeIterator,
   setItems,
   setTax,
   setTotal,

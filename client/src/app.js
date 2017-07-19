@@ -12,6 +12,8 @@ import browserHistory from 'react-router';
 import Home from './components/home.js';
 import Input from './components/input.js';
 import Output from './components/output.js';
+import Confirmation from './components/confirmation.js';
+
 import store from './store.js';
 
 const target = document.getElementById('root');
@@ -27,6 +29,7 @@ ReactDOM.render(
               <Link to="/">Home</Link>
               <Link to="/input">Input</Link>
               <Link to="/output">Output</Link>
+              <Link to="/confirmaton">Confirmation</Link>
             </div>
           </div>
           <div className="logo headerItem">
@@ -38,6 +41,7 @@ ReactDOM.render(
           <Route exact path="/" component={() => <Home />}/>
           <Route path="/input" component={() => <Input />}/>
           <Route path="/output" component={() => <Output />}/>
+          <Route path="/confirmaton" component={() => <Confirmation />}/>
         </div>
       </div>
     </Router>

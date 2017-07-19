@@ -2,8 +2,6 @@ import React from 'react';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 
-
-
 class ItemEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +22,6 @@ class ItemEntry extends React.Component {
     this.props.collectSplitItemInfo(this.state.name, this.state.item, this.state.price);
   }
 
-
   render() {
     return (
       <tr>
@@ -32,7 +29,7 @@ class ItemEntry extends React.Component {
         <td>{this.props.item.price}</td>
         <td>
           <DropdownButton bsStyle="success" title={this.state.name} id='split-button-basic-Success'>
-            {this.props.friendsInfo.map((friendInfo, index) => {return <MenuItem key={index} onClick={this.changeTitle.bind(this)} title={friendInfo.friendName}>{friendInfo.friendName}</MenuItem>; })}
+            {this.props.friendsInfo.map((friendInfo, index) => { return <MenuItem key={index} onClick={this.changeTitle.bind(this) } title={friendInfo.friendName}>{friendInfo.friendName}</MenuItem>; })}
           </DropdownButton>
         </td>
       </tr>

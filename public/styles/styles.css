@@ -62,6 +62,11 @@ html,body{
     width: 100%;
 }
 
+.btn {
+    margin: 5px;
+    padding: 5px;
+}
+/*
 .formContainer {
     display: flex;
     flex-direction: column;
@@ -94,5 +99,5 @@ html,body{
     padding: 5px;
     margin: 5px;
 }
-
+*/
 

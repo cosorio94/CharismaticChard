@@ -1,6 +1,6 @@
 export default function reducer(state = 
   {
-    iterator: [1, 2, 3, 4],
+    iterator: [1],
     items: [],
     tax: null, 
     total: null, 
@@ -9,6 +9,9 @@ export default function reducer(state =
   switch (action.type) {
   case 'SET_ITERATOR': {
     return {...state, iterator: [...state.iterator, action.payload]};
+  }
+  case 'REMOVE_ITERATOR': {
+    return {...state, iterator: [...state.iterator.slice(0, action.payload)]};
   }
   case 'SET_ITEMS': {
     return {...state, items: action.payload};
