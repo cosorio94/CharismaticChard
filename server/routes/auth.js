@@ -30,9 +30,24 @@ router.route('/signup')
 
 router.route('/profile')
   .get(middleware.auth.verify, (req, res) => {
-    res.render('profile.ejs', {
+    if (req.user.phone) {
+      res.render('profile.ejs', {
+        user: req.user // get the user out of session and pass to template
+      });
+    } else {
+      res.redirect('/update-profile');
+    }
+  });
+
+router.route('/update-profile')
+  .get((req, res) => {
+    res.render('updateProfile.ejs', {
       user: req.user // get the user out of session and pass to template
     });
+  })
+  .post((req, res, next) => {
+    console.log(req.body);
+    res.send(req.body.phone);
   });
 
 router.route('/logout')

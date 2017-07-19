@@ -1,0 +1,27 @@
+<% include head.ejs%>
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> Update Profile</h1>
+
+        <!-- LOGIN FORM -->
+        <form action="/update-profile" method="post">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="first" value=<%= user.first %>>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="last" value=<%= user.last %>>
+            </div>
+            <div class="form-group">
+                <label>Phone Number*</label>
+                <input type="text" class="form-control" name="phone" value=<%= user.phone %>>
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg">Update</button>
+        </form>
+
+    </div>
+
+<% include foot.ejs%>
