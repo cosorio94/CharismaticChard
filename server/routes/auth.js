@@ -8,7 +8,7 @@ router.route('/')
     if (req.user.phone) {
       res.render('index.ejs');
     } else {
-      res.redirect('update-profile');
+      res.redirect('/update-profile');
     }
   });
 
