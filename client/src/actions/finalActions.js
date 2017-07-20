@@ -25,56 +25,56 @@ const fetchUserNameAndPhone = () => {
 
 const setSplitTotal = (total) => {
   return {
-    actions: 'SET_SPLIT_TOTAL',
+    type: 'SET_SPLIT_TOTAL',
     payload: total,
   };
 };
 
 const setTotalTax = (tax) => {
   return {
-    actions: 'SET_TOTAL_TAX',
+    type: 'SET_TOTAL_TAX',
     payload: tax,
   };
 };
 
 const setTotalTip = (tip) => {
   return {
-    actions: 'SET_TOTAL_TIP',
+    type: 'SET_TOTAL_TIP',
     payload: tip,
   };
 };
 
 const setSplitName = (name) => {
   return {
-    actions: 'SET_SPLIT_NAME',
+    type: 'SET_SPLIT_NAME',
     payload: name,
   };
 };
 
 const setSplitterName = (name) => {
   return {
-    actions: 'SET_SPLITTER_NAME',
+    type: 'SET_SPLITTER_NAME',
     payload: name,
   };
 };
 
 const setSplitterPhone = (phone) => {
   return {
-    actions: 'SET_SPLITTER_PHONE',
+    type: 'SET_SPLITTER_PHONE',
     payload: phone,
   };
 };
 
 const setSplitterItems = (items) => {
   return {
-    actions: 'SET_SPLITTER_ITEMS',
+    type: 'SET_SPLITTER_ITEMS',
     payload: items,
   };
 };
 
 const setDebtors = (debtors) => {
   return {
-    actions: 'SET_DEBTORS',
+    type: 'SET_DEBTORS',
     payload: debtors,
   };
 };

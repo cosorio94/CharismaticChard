@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 
 import { setIterator, removeIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
+import { setSplitName } from '../actions/finalActions.js';
 
 const mapStateToProps = state => {
   return {
@@ -31,6 +32,9 @@ const mapDispatchToProps = dispatch => {
     setTip: (input) => dispatch(
       setTip(input)
     ),
+    setSplitName: (input) => dispatch(
+      setSplitName(input)
+    ),
   };
 };
 
@@ -52,6 +56,8 @@ class Input extends React.Component {
         pair = {};
       }
     });
+    p.setSplitName($('.name').val());
+    $('.name').val('');
     p.setItems(items);
     p.setTax($('.tax').val());
     $('.tax').val('');
@@ -75,6 +81,12 @@ class Input extends React.Component {
   render() {
     return (
       <div className="container-fluid">
+        <div className="inputContainer row formItem">
+          <div className="inputItem col-md-4">
+            <label className="inputItemBit">Split Name</label>
+            <input type="text" className="inputItemBit name form-control"/>
+          </div>
+        </div>
         <div className="items">
           {
             this.props.iterator.map((i, key) => (
