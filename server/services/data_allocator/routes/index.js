@@ -8,7 +8,8 @@ router.route('/')
   .post(middleware.saveToDatabase)
   .post((req, res, next) => {
     console.log(req.split);
-    res.send(req.split);
+    // res.send(req.split);
+    res.redirect(307, '/api/send-split');
   });
 
 router.route('/update-profile')

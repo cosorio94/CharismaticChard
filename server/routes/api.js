@@ -11,4 +11,24 @@ router.route('/')
     res.status(201).send({ data: 'Posted!' });
   });
 
+router.route('/save-split')
+  .post((req, res) => {
+    res.redirect(307, '/api/data_allocator');
+  });
+
+router.route('/send-split')
+  .post((req, res) => {
+    res.redirect(307, '/api/twilio');
+  });
+
+router.route('/split-sent')
+  .post((req, res) => {
+    res.sendStatus(201);
+  });
+
+router.route('/profile-info')
+  .get((req, res) => {
+    res.redirect('/api/data_allocator/profile');
+  });
+
 module.exports = router;

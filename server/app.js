@@ -27,7 +27,7 @@ app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/api/data_allocator', dataAllocatorRoutes);
-app.post('/twilio', twilioMiddleware.twilioMiddleware );
+app.post('/api/twilio', twilioMiddleware.twilioMiddleware );
 
 
 module.exports = app;
