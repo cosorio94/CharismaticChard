@@ -10,8 +10,6 @@ router.route('/')
     console.log(req.split);
     res.send(req.split);
   });
-// .put
-// .update
 
 router.route('/update-profile')
   .post(middleware.updateDatabase.updateProfileInfo)

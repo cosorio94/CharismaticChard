@@ -8,6 +8,12 @@ module.exports = {
     models.Profile.destroy({ id: req.user.id })
       .then(() => {
         return next();
+      })
+      .error(err => {
+        res.status(500).send(err);
+      })
+      .catch(() => {
+        res.sendStatus(404);
       });
   }
 
