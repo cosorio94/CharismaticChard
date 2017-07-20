@@ -27,6 +27,11 @@ router.route('/delete-profile')
     // res.redirect('/logout');
   });
 
+router.route('/profile')
+  .get((req, res) => {
+    res.send(req.user);
+  });
+
 
 /************ TEST **********/
 // router.route('/')
