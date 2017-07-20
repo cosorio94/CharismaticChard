@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
+    tax: state.input.tax,
+    total: state.input.total,
+    tip: state.input.tip,
   };
 };
 
@@ -17,27 +20,71 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Confirmation extends React.Component {
+  calculateTax() {
+    //iterate over debtors array reducing debtor totals to get total item sum
+    //subtract sum of items from total
+    //return that number
+  }
+
+  splitTax(debtorTotal) {
+    var percent = debtorTotal / this.props.total;
+    var debtorTax = this.props.tax * percent;
+    return debtorTax;
+  }
+
+  splitTip(debtorTotal) {
+    var percent = debtorTotal / this.props.total;
+    var debtorTip = this.props.tip * percent;
+    return debtorTip;
+  }
+
   render() {
     return (
       <div>
-        <div>
+        <h1>Review Items</h1>
+        <div className="container-fluid">
           {
             this.props.debtors.map( (debtor, index) => (
               <div key={index}>
-                <p>{debtor.name}</p>
-                <p>{debtor.phone}</p>
+                <div  className="row">
+                  <label className="col-xs-6">Name: </label>
+                  <p className="col-xs-6">{debtor.name}</p>
+                </div>
+                <div  className="row">
+                  <label className="col-xs-6">Phone: </label>
+                  <p className="col-xs-6">{debtor.number}</p>
+                </div>
+                <label>Items: </label>
                 {
                   debtor.items.map( (item, index) => (
                     <div key={index}>
-                      <p>{item.itemName}</p>
-                      <p>{item.itemPrice}</p>
-                      <p>{item.quantity}</p>
+                      <div className="row">
+                        <label className="col-xs-6">Name: </label>
+                        <p className="col-xs-6">{item.itemName}</p>
+                      </div>
+                      <div className="row">
+                        <label className="col-xs-6">Price: </label>
+                        <p className="col-xs-6">{item.itemPrice}</p>
+                      </div>
+                      <div className="row">
+                        <label className="col-xs-6">Quantity: </label>
+                        <p className="col-xs-6">{item.quantity}</p>
+                      </div>
                     </div>
                   ))
                 }
-                <p>{debtor.tax}</p>
-                <p>{debtor.tip}</p>
-                <p>{debtor.debtTotal}</p>
+                <div  className="row">
+                  <label className="col-xs-6">Tax: </label>
+                  <p className="col-xs-6">{this.splitTax(debtor.debtTotal)}</p>
+                </div>
+                <div  className="row">
+                  <label className="col-xs-6">Tip: </label>
+                  <p className="col-xs-6">{this.splitTip(debtor.debtTotal)}</p>
+                </div>
+                <div  className="row">
+                  <label className="col-xs-6">Total: </label>
+                  <p className="col-xs-6">{debtor.debtTotal}</p>
+                </div>
                 <hr/>
               </div>
             ))

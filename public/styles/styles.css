@@ -31,7 +31,6 @@ html,body{
     background-color: #b3ecff;
     text-decoration: none;
     font-weight: bold;
-
 }
 
 .dropdown:hover .dropdown-content {
@@ -41,10 +40,14 @@ html,body{
 .headerContainer {
     display: flex;
     flex-direction: row;
+    width: 100;
+    height: 72px;
 }
 
-.headerItem {
-    flex: 1 1 auto;
+.headerLine {
+    width: 100;
+    padding: 1px;
+    margin: 1px;
 }
 
 .container {
