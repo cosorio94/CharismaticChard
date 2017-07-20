@@ -9,4 +9,5 @@ module.exports.twilioMiddleware = function (req, res) {
       console.log('message received');
     }); 
   }
+  res.redirect(307, '/api/split-sent');
 };
