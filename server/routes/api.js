@@ -26,4 +26,9 @@ router.route('/split-sent')
     res.sendStatus(201);
   });
 
+router.route('/profile-info')
+  .get((req, res) => {
+    res.redirect('/api/data_allocator/profile');
+  });
+
 module.exports = router;
