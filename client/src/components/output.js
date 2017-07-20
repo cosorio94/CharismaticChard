@@ -62,7 +62,7 @@ class Output extends React.Component {
     });
     let itemAndPrice = {
       itemName: item,
-      price: price,
+      itemPrice: price,
       quantity: 1
     };
 
@@ -131,6 +131,21 @@ class Output extends React.Component {
   }
 
   submitDebtors() {
+    var debtors = this.state.debtors; 
+    var debtTotal =[]; 
+    for ( var i = 0; i < debtors.length; i++) {
+      var itemPrice = []; 
+      for ( var j = 0; j < debtors[i].items.length; j++) {
+        itemPrice.push( Number(debtors[i].items[j].itemPrice) ); 
+      }
+      debtTotal.push(itemPrice);
+    }
+    for ( var x = 0; x < debtTotal.length; x ++) {
+      debtTotal[x] = debtTotal[x].reduce((a,b) => a+b); 
+    }
+    for ( var z = 0; z < debtors.length; z++) {
+      debtors[z]['debtTotal'] = debtTotal[z]; 
+    }
     this.props.setDebtors(this.state.debtors);
   }
 

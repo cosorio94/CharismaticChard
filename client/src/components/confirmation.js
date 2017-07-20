@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => {
 
 class Confirmation extends React.Component {
   render() {
-    console.log(this.props.debtors);
     return (
       <div>
         <div>
