@@ -1,6 +1,21 @@
 import React from 'react';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import { connect } from 'react-redux';
+import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+
+
+const mapStateToProps = state => {
+  return {
+    friendsInfo: state.output.friendsInfo
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+  };
+};
+
 
 class ItemEntry extends React.Component {
   constructor(props) {
@@ -37,4 +52,4 @@ class ItemEntry extends React.Component {
   }
 }
 
-export default ItemEntry;
+export default connect(mapStateToProps, mapDispatchToProps)(ItemEntry);

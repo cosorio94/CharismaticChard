@@ -7,6 +7,31 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import { connect } from 'react-redux';
+
+import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+
+
+const mapStateToProps = state => {
+  return {
+    debtors: state.output.debtors,
+    friendsInfo: state.output.friendsInfo
+  };
+};
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setDebtors: (input) => dispatch(
+      setDebtors(input)
+    ),
+    setFriendsInfo: (input) => dispatch(
+      setFriendsInfo(input)
+    ),
+  };
+};
+
+
 
 class AddFriends extends React.Component {
   constructor(props) {
@@ -20,7 +45,11 @@ class AddFriends extends React.Component {
 
   close() {
     this.setState({ showModal: false });
-    this.props.friendInfo(this.state.name, this.state.number); 
+    let friendInformation = {
+      friendName: this.state.name,
+      friendNumber: this.state.number
+    };
+    this.props.setFriendsInfo(friendInformation); 
   }
 
   open() {
@@ -83,5 +112,5 @@ class AddFriends extends React.Component {
   }
 }
 
-export default AddFriends;
 
+export default connect(mapStateToProps, mapDispatchToProps)(AddFriends);

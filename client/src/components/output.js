@@ -15,6 +15,7 @@ import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
+    friendsInfo: state.output.friendsInfo
   };
 };
 
@@ -23,17 +24,19 @@ const mapDispatchToProps = dispatch => {
     setDebtors: (input) => dispatch(
       setDebtors(input)
     ),
+    setFriendsInfo: (input) => dispatch(
+      setFriendsInfo(input)
+    ),
   };
 };
 
 let names = []; 
+let foodList = []; 
 
 class Output extends React.Component {
   constructor () {
     super();
     this.state = {
-      friendsInfo: [],
-      debtorsBasicInfo: [],
       debtors: []
     };
   }
@@ -43,23 +46,20 @@ class Output extends React.Component {
       friendName: name,
       friendNumber: number
     };
-
     let info= this.state.friendsInfo.concat(friendInformation);
-
     this.setState({
       friendsInfo: info
     });
   }
 
   collectSplitItemInfo(name, item, price) {
-    let numbers = this.state.friendsInfo;
+    let numbers = this.props.friendsInfo;
     let number = null;
     numbers.forEach( (person) => {
       if( name === person.friendName) {
         number = person.friendNumber;
       }
     });
-
     let itemAndPrice = {
       itemName: item,
       price: price,
@@ -73,25 +73,49 @@ class Output extends React.Component {
     };
 
     let debtors = this.state.debtors;
-    let debtorInfo = null; 
     if ( debtors.length === 0) {
-      debtor.items.push(itemAndPrice);
-      debtorInfo = this.state.debtors.concat(debtor);
-      this.setState({
-        debtors: debtorInfo
-      }, this.helperSetState);
+      this.addFirstDebtor(debtor, itemAndPrice);
     } else if( debtors.length > 0){ 
       if ( names.indexOf(name) === -1 ) {
-        debtor.items.push(itemAndPrice);
-        debtorInfo = this.state.debtors.concat(debtor);
-        this.setState({
-          debtors: debtorInfo
-        }, this.helperSetState);
+        this.addDebtor(debtor, itemAndPrice);
       } else {
-        for ( let i = 0; i < debtors.length; i++) {
-          if( debtors[i].name === name) {
-            debtors[i].items.push(itemAndPrice);
-          }
+        this.findDebtor(debtors, name, itemAndPrice);
+      }
+    }
+  }
+
+  addFirstDebtor(debtor, itemAndPrice) {
+    debtor.items.push(itemAndPrice);
+    foodList.push(itemAndPrice.itemName); 
+    var debtorInfo = this.state.debtors.concat(debtor);
+    this.setState({
+      debtors: debtorInfo
+    }, this.helperSetState);
+  }
+
+
+  addDebtor(debtor, itemAndPrice) {
+    debtor.items.push(itemAndPrice);
+    foodList.push(itemAndPrice.itemName); 
+    var debtorInfo = this.state.debtors.concat(debtor);
+    this.setState({
+      debtors: debtorInfo
+    }, this.helperSetState);
+  }
+
+
+  findDebtor(debtors, name, itemAndPrice) {
+    for ( let i = 0; i < debtors.length; i++) {
+      if ( debtors[i].name === name ) {
+        foodList.push(itemAndPrice.itemName); 
+        debtors[i].items.push(itemAndPrice);
+      } 
+      if ( foodList.indexOf(itemAndPrice.itemName) !== -1 && debtors[i].name !== name ) {
+        var items = debtors[i].items; 
+        for ( var j = 0; j < items.length; j++ ) {
+          if( items[j].itemName === itemAndPrice.itemName ) {
+            items.splice(j, 1);
+          } 
         }
       }
     }
@@ -116,11 +140,11 @@ class Output extends React.Component {
         <Grid>
           <Row className="show-grid">
             <Col xs={10} md={5}>
-              <ItemList friendsInfo={this.state.friendsInfo} collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
+              <ItemList collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
             </Col>
             <Col xs={6} md={4}>
-              <AddFriends friendInfo={this.friendInfo.bind(this)}/>
-              <FriendsList friendsInfo={this.state.friendsInfo} />
+              <AddFriends />
+              <FriendsList  />
             </Col>
             <Col xsHidden md={4} >
             </Col>

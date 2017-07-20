@@ -5,6 +5,15 @@ const setDebtors = (debtor) => {
   };
 };
 
+
+const setFriendsInfo = (friendsInfo) => {
+  return {
+    type: 'SET_FRIENDSINFO',
+    payload: friendsInfo,
+  };
+};
+
 export {
-  setDebtors
+  setDebtors,
+  setFriendsInfo
 };
