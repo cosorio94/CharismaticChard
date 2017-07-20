@@ -9,10 +9,13 @@ module.exports = {
     models.Profile.update(user, { id: req.user.id })
       .then(() => {
         return next();
+      })
+      .error(err => {
+        res.status(500).send(err);
+      })
+      .catch(() => {
+        res.sendStatus(404);
       });
-    // .finally((profile) => {
-    //   return controller.Controller.resolveErrors(profile, res);
-    // });
   }
 
 };

@@ -10,8 +10,6 @@ router.route('/')
     console.log(req.split);
     res.send(req.split);
   });
-// .put
-// .update
 
 router.route('/update-profile')
   .post(middleware.updateDatabase.updateProfileInfo)
@@ -25,6 +23,11 @@ router.route('/delete-profile')
     console.log(req.user);
     res.render('deletedProfile.ejs');
     // res.redirect('/logout');
+  });
+
+router.route('/profile')
+  .get((req, res) => {
+    res.send(req.user);
   });
 
 

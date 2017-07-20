@@ -9,10 +9,17 @@ const deconstructSplitData = (req, res) => {
   };
 };
 
+
 const deconstructDebtorsData = (req, res) => {
   req.debtors = req.body.debtors.map((debtor, index, debtors) => {
     var fullName = debtor.name.split(' ');
     var lastName = fullName.length > 1 ? fullName.slice(1).join(' ') : null;
+    // change the return object here to fetch users from database with different queries
+    if (debtor.email) {
+      return {
+        email: debtor.email
+      };
+    }
     return {
       first: fullName[0],
       last: lastName,
