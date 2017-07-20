@@ -23,7 +23,8 @@ router.route('/delete-profile')
   .get(middleware.deleteFromDatabase.deleteProfile)
   .get((req, res) => {
     console.log(req.user);
-    res.redirect('/logout');
+    res.render('deletedProfile.ejs');
+    // res.redirect('/logout');
   });
 
 
