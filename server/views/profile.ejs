@@ -21,7 +21,7 @@
                     <strong>phone</strong>: <%= user.phone %>
                 </p>
 
-                <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                <a href="/api/data_allocator/delete-profile" onclick="return confirm('Are you sure you want to delete your profile? \nOnce you delete it, you will not be able to recover it!');" class="btn btn-default">Delete Profile</a>
                 <a href="/update-profile" class="btn btn-default">Update</a>
                 <% } else { %>
                 <a href="/connect/local" class="btn btn-default">Connect Local</a>
