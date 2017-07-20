@@ -46,7 +46,8 @@ router.route('/profile')
 router.route('/update-profile')
   .get((req, res) => {
     res.render('updateProfile.ejs', {
-      user: req.user // get the user out of session and pass to template
+      user: req.user, // get the user out of session and pass to template
+      // message: req.flash('updateProfile')
     });
   });
 

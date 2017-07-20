@@ -34,6 +34,9 @@ passport.use('local-signup', new LocalStrategy({
 }, (req, email, password, done) => {
   var { phone, first, last } = req.body;
   var display = first + ' ' + last;
+  req.checkBody('email', 'Enter a valid email address.').notEmpty().isEmail();
+  req.checkBody('phone', 'Enter a valid US phone number.').isMobilePhone('en-US').notEmpty();
+  req.checkBody('password', 'Password must be at least 6 characters long.').isLength({ min: 6 });
   // check to see if there is any account with this email address
   return models.Profile.where({ email }).fetch()
     .then(profile => {
