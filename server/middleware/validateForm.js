@@ -14,7 +14,7 @@ const validator = (req, res, next, redirect, flash) => {
 
 module.exports = {
 
-  validateSignUp:  (req, res, next) => {
+  validateSignUp: (req, res, next) => {
     req.checkBody('email', 'Enter a valid email address.').notEmpty().isEmail();
     req.checkBody('phone', 'Enter a valid US phone number.').isMobilePhone('en-US').notEmpty();
     req.checkBody('password', 'Password must be at least 6 characters long.').isLength({ min: 6 });
