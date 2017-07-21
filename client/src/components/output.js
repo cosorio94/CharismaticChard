@@ -11,13 +11,17 @@ import ItemList from './itemList.js';
 import FriendsList from './friendsList.js';
 import axios from 'axios';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+import { setSplitterName, setSplitterPhone, setSplitterItems, setSplitterDebtTotal } from '../actions/finalActions.js';
 
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
-    friendsInfo: state.output.friendsInfo
+    friendsInfo: state.output.friendsInfo,
+    splitter: state.final.splitter, 
   };
 };
+
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -26,6 +30,18 @@ const mapDispatchToProps = dispatch => {
     ),
     setFriendsInfo: (input) => dispatch(
       setFriendsInfo(input)
+    ),
+    setSplitterName: (input) => dispatch(
+      setSplitterName(input)
+    ),
+    setSplitterPhone: (input) => dispatch(
+      setSplitterPhone(input)
+    ),
+    setSplitterItems: (input) => dispatch(
+      setSplitterItems(input)
+    ),
+    setSplitterDebtTotal: (input) => dispatch(
+      setSplitterDebtTotal(input)
     ),
   };
 };
@@ -84,10 +100,11 @@ class Output extends React.Component {
     }
   }
 
+
   addFirstDebtor(debtor, itemAndPrice) {
     debtor.items.push(itemAndPrice);
     foodList.push(itemAndPrice.itemName); 
-    var debtorInfo = this.state.debtors.concat(debtor);
+    let debtorInfo = this.state.debtors.concat(debtor);
     this.setState({
       debtors: debtorInfo
     }, this.helperSetState);
@@ -96,7 +113,7 @@ class Output extends React.Component {
   addDebtor(debtor, itemAndPrice) {
     debtor.items.push(itemAndPrice);
     foodList.push(itemAndPrice.itemName); 
-    var debtorInfo = this.state.debtors.concat(debtor);
+    let debtorInfo = this.state.debtors.concat(debtor);
     this.setState({
       debtors: debtorInfo
     }, this.helperSetState);
@@ -120,7 +137,7 @@ class Output extends React.Component {
   }
 
   helperSetState () {
-    var debtors = this.state.debtors;
+    let debtors = this.state.debtors;
     for (let i = 0; i < debtors.length; i++) {
       if (names.indexOf(debtors[i].name) === -1) {
         names.push(debtors[i].name); 
@@ -143,9 +160,20 @@ class Output extends React.Component {
     }
     for (var z = 0; z < debtors.length; z++) {
       debtors[z]['debtTotal'] = debtTotal[z]; 
+      // if( debtors[z].name === this.props.splitter.name.split(" ")[0]) {
+      //   this.splitterInfo(debtors[z]);
+      //   debtors.splice(z, 1) // slice(1);
+      // }
     }
-    this.props.setDebtors(this.state.debtors);
+    this.props.setDebtors(debtors);
   }
+
+  splitterInfo (info) {
+    console.log('splitterInfo', info); 
+    this.props.setSplitterDebtTotal(info.debtTotal);
+    this.props.setSplitterItems(info.items);
+  }
+
 
   render() {
     return (

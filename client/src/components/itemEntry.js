@@ -6,7 +6,8 @@ import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
 const mapStateToProps = state => {
   return {
-    friendsInfo: state.output.friendsInfo
+    friendsInfo: state.output.friendsInfo,
+    splitter: state.final.splitter, 
   };
 };
 
@@ -25,6 +26,7 @@ class ItemEntry extends React.Component {
     };
   }
 
+
   changeTitle (e) { 
     this.setState({
       name: e.target.title
@@ -42,6 +44,7 @@ class ItemEntry extends React.Component {
         <td>{this.props.item.price}</td>
         <td>
           <DropdownButton bsStyle="success" title={this.state.name} id='split-button-basic-Success'>
+            <MenuItem onClick={this.changeTitle.bind(this)}  title={this.props.splitter.name.split(" ")[0]} >{this.props.splitter.name.split(" ")[0]}</MenuItem>
             {this.props.friendsInfo.map((friendInfo, index) => { return <MenuItem key={index} onClick={this.changeTitle.bind(this) } title={friendInfo.friendName}>{friendInfo.friendName}</MenuItem>; })}
           </DropdownButton>
         </td>

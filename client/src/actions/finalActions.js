@@ -1,13 +1,16 @@
 import axios from 'axios';
 
 const sendStateToServer = (split) => {
-  axios.post('/api/save-split', {split})
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  console.log('split??' , split);
+  return () => { 
+    axios.post('/api/save-split', {split})
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 };
 
 const fetchUserNameAndPhone = () => {
@@ -79,6 +82,28 @@ const setDebtors = (debtors) => {
   };
 };
 
+
+const setSplitterDebtTotal = (debt) => {
+  return {
+    type: 'SET_SPLITTER_DEBTTOTAL',
+    payload: debt,
+  };
+};
+
+const setSplitterTax = (tax) => {
+  return {
+    type: 'SET_DEBTORS_TAX',
+    payload: tax,
+  };
+};
+
+const setSplitterTip = (tip) => {
+  return {
+    type: 'SET_DEBTORS_TIP',
+    payload: tip,
+  };
+};
+
 export {
   sendStateToServer,
   fetchUserNameAndPhone,
@@ -89,5 +114,8 @@ export {
   setSplitterName,
   setSplitterPhone,
   setSplitterItems,
-  setDebtors
+  setDebtors,
+  setSplitterDebtTotal,
+  setSplitterTax,
+  setSplitterTip
 };
