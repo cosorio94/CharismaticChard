@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-
+import { Link } from 'react-router-dom';
 import { setIterator, removeIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 import { setSplitName } from '../actions/finalActions.js';
 
@@ -125,7 +125,7 @@ class Input extends React.Component {
             <Button className="btn btn-sm btn-primary" onClick={this.removeItem.bind(this)}>Remove Item</Button>
           </div>
           <div className="inputItem col-md-4">
-            <Button className="btn btn-sm btn-success" type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+            <Link className="btn btn-primary" to="/output" onClick={this.handleSubmit.bind(this)}>Submit</Link>
           </div>
         </div>
       </div>

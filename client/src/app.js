@@ -23,15 +23,6 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <div className="mainContainer">
         <div className="headerContainer">
-          <div className="dropdown headerItem">
-            <p>Menu</p>
-            <div className="dropdown-content" alt="Menu">
-              <Link to="/">Home</Link>
-              <Link to="/input">Input</Link>
-              <Link to="/output">Output</Link>
-              <Link to="/confirmaton">Confirmation</Link>
-            </div>
-          </div>
           <div className="logo headerItem">
             <img src="./assets/splitter-logo.png" width="200"/>
           </div>
@@ -41,7 +32,7 @@ ReactDOM.render(
           <Route exact path="/" component={() => <Home />}/>
           <Route path="/input" component={() => <Input />}/>
           <Route path="/output" component={() => <Output />}/>
-          <Route path="/confirmaton" component={() => <Confirmation />}/>
+          <Route path="/confirmation" component={() => <Confirmation />}/>
         </div>
       </div>
     </Router>

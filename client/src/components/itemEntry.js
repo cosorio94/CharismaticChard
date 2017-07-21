@@ -43,9 +43,26 @@ class ItemEntry extends React.Component {
         <td>{this.props.item.item}</td>
         <td>{this.props.item.price}</td>
         <td>
-          <DropdownButton bsStyle="success" title={this.state.name} id='split-button-basic-Success'>
-            <MenuItem onClick={this.changeTitle.bind(this)}  title={this.props.splitter.name.split(" ")[0]} >{this.props.splitter.name.split(" ")[0]}</MenuItem>
-            {this.props.friendsInfo.map((friendInfo, index) => { return <MenuItem key={index} onClick={this.changeTitle.bind(this) } title={friendInfo.friendName}>{friendInfo.friendName}</MenuItem>; })}
+          <DropdownButton 
+            bsStyle="success" 
+            title={this.state.name} 
+            id='split-button-basic-Success'
+          >
+            <MenuItem 
+              onClick={this.changeTitle.bind(this)}
+              title={this.props.splitter.name.split(' ')[0]}
+            >
+              {this.props.splitter.name.split(' ')[0]}
+            </MenuItem>
+            {
+              this.props.friendsInfo.map((friendInfo, index) => ( 
+                <MenuItem 
+                  key={index} 
+                  onClick={this.changeTitle.bind(this)} 
+                  title={friendInfo.friendName}>{friendInfo.friendName}
+                </MenuItem>
+              ))
+            }
           </DropdownButton>
         </td>
       </tr>

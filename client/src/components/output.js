@@ -5,22 +5,31 @@ import Button from 'react-bootstrap/lib/Button';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import { connect } from 'react-redux';
-
 import AddFriends from './addFriends.js';
 import ItemList from './itemList.js';
 import FriendsList from './friendsList.js';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
-import { setSplitterName, setSplitterPhone, setSplitterItems, setSplitterDebtTotal } from '../actions/finalActions.js';
+import {
+  setSplitterItems, 
+  setSplitterDebtTotal,
+  setTotalTax,
+  setTotalTip,
+  setSplitterTax,
+  setSplitterTip,
+  setSplitTotal } from '../actions/finalActions.js';
 
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
     friendsInfo: state.output.friendsInfo,
     splitter: state.final.splitter, 
+    total: state.input.total,
+    tip: state.input.tip,
+    tax: state.input.tax
   };
 };
-
 
 
 const mapDispatchToProps = dispatch => {
@@ -31,17 +40,27 @@ const mapDispatchToProps = dispatch => {
     setFriendsInfo: (input) => dispatch(
       setFriendsInfo(input)
     ),
-    setSplitterName: (input) => dispatch(
-      setSplitterName(input)
-    ),
-    setSplitterPhone: (input) => dispatch(
-      setSplitterPhone(input)
-    ),
     setSplitterItems: (input) => dispatch(
       setSplitterItems(input)
     ),
     setSplitterDebtTotal: (input) => dispatch(
       setSplitterDebtTotal(input)
+    ),
+    setSplitTotal: (input) => dispatch(
+      setSplitTotal(input)
+    ),
+    setTotalTax: (input) => dispatch(
+      setTotalTax(input)
+    ),
+    setTotalTip: (input) => dispatch(
+      setTotalTip(input)
+    ),
+    setSplitterTip: (input) => dispatch(
+      setSplitterTip(input)
+    ),
+
+    setSplitterTax: (input) => dispatch(
+      setSplitterTax(input)
     ),
   };
 };
@@ -89,14 +108,10 @@ class Output extends React.Component {
     };
 
     let debtors = this.state.debtors;
-    if (debtors.length === 0) {
-      this.addFirstDebtor(debtor, itemAndPrice);
-    } else if (debtors.length > 0) { 
-      if (names.indexOf(name) === -1) {
-        this.addDebtor(debtor, itemAndPrice);
-      } else {
-        this.findDebtor(debtors, name, itemAndPrice);
-      }
+    if (names.indexOf(name) === -1) {
+      this.addDebtor(debtor, itemAndPrice);
+    } else {
+      this.findDebtor(debtors, name, itemAndPrice);
     }
   }
 
@@ -145,35 +160,56 @@ class Output extends React.Component {
     }
   }
 
+  splitTax(debtorTotal) {
+    let percent = debtorTotal / this.props.total;
+    let debtorTax = this.props.tax * percent;
+    debtorTax = String(debtorTax).split('').slice(0, 5).join('');
+    return Number(debtorTax);
+  }
+
+  splitTip(debtorTotal) {
+    let percent = debtorTotal / this.props.total;
+    let debtorTip = this.props.tip * percent;
+    debtorTip = String(debtorTip).split('').slice(0, 5).join('');
+    return Number(debtorTip);
+  }
+
+
   submitDebtors() {
-    var debtors = this.state.debtors; 
-    var debtTotal = []; 
-    for (var i = 0; i < debtors.length; i++) {
-      var itemPrice = []; 
-      for (var j = 0; j < debtors[i].items.length; j++) {
+    let debtors = this.state.debtors; 
+    let debtTotal = []; 
+    for (let i = 0; i < debtors.length; i++) {
+      let itemPrice = []; 
+      for (let j = 0; j < debtors[i].items.length; j++) {
         itemPrice.push( Number(debtors[i].items[j].itemPrice) ); 
       }
-      debtTotal.push(itemPrice);
+      debtTotal.push(itemPrice.reduce((a, b) => a + b) );
+      debtors[i]['debtTotal'] = debtTotal[i];
+      debtors[i]['tax'] = this.splitTax(debtors[i].debtTotal);
+      debtors[i]['tip'] = this.splitTip(debtors[i].debtTotal);
     }
-    for (var x = 0; x < debtTotal.length; x ++) {
-      debtTotal[x] = debtTotal[x].reduce((a, b) => a + b); 
+    this.props.setDebtors(debtors); 
+    this.splitterInfo(debtors);
+  }
+
+  splitterInfo (debtors) {
+    let name = this.props.splitter.name.split(' ')[0];
+    let phone = this.props.splitter.phone;
+    let splitter = null; 
+    for ( let i = 0; i < debtors.length; i++) {
+      if ( name === debtors[i].name ) {
+        splitter = debtors.splice(i, 1);
+      }
     }
-    for (var z = 0; z < debtors.length; z++) {
-      debtors[z]['debtTotal'] = debtTotal[z]; 
-      // if( debtors[z].name === this.props.splitter.name.split(" ")[0]) {
-      //   this.splitterInfo(debtors[z]);
-      //   debtors.splice(z, 1) // slice(1);
-      // }
-    }
+    this.props.setSplitTotal(this.props.total);
+    this.props.setTotalTax(this.props.tax); 
+    this.props.setTotalTip(this.props.tip);
+    this.props.setSplitterItems(splitter[0].items);
+    this.props.setSplitterDebtTotal(splitter[0].debtTotal);
+    this.props.setSplitterTax(splitter[0].tax); 
+    this.props.setSplitterTip(splitter[0].tip);
     this.props.setDebtors(debtors);
   }
-
-  splitterInfo (info) {
-    console.log('splitterInfo', info); 
-    this.props.setSplitterDebtTotal(info.debtTotal);
-    this.props.setSplitterItems(info.items);
-  }
-
 
   render() {
     return (
@@ -192,7 +228,7 @@ class Output extends React.Component {
           </Row>
         </Grid>
         <div>
-          <Button onClick={this.submitDebtors.bind(this)} bsStyle="primary" bsSize="small">Calculate</Button>
+          <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>
         </div>
       </div>
     );
