@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const middleware = require('../middleware');
 
 router.route('/')
   .get((req, res) => {
@@ -29,6 +30,12 @@ router.route('/split-sent')
 router.route('/profile-info')
   .get((req, res) => {
     res.redirect('/api/data_allocator/profile');
+  });
+
+router.route('/update-profile')
+  .post(middleware.validateForm.validateUpdate)
+  .post((req, res) => {
+    res.redirect(307, '/api/data_allocator/update-profile');
   });
 
 module.exports = router;

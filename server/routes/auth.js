@@ -26,6 +26,7 @@ router.route('/signup')
   .get((req, res) => {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   })
+  .post(middleware.validateForm.validateSignUp)
   .post(middleware.passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
@@ -46,9 +47,11 @@ router.route('/profile')
 router.route('/update-profile')
   .get((req, res) => {
     res.render('updateProfile.ejs', {
-      user: req.user // get the user out of session and pass to template
+      user: req.user, // get the user out of session and pass to template
+      message: req.flash('updateProfile')
     });
   });
+
 
 router.route('/logout')
   .get((req, res) => {
