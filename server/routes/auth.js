@@ -48,9 +48,10 @@ router.route('/update-profile')
   .get((req, res) => {
     res.render('updateProfile.ejs', {
       user: req.user, // get the user out of session and pass to template
-      // message: req.flash('updateProfile')
+      message: req.flash('updateProfile')
     });
   });
+
 
 router.route('/logout')
   .get((req, res) => {
