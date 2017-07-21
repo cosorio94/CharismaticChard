@@ -84,7 +84,7 @@ class Output extends React.Component {
 
     let debtor = {
       name: name,
-      number: number,
+      phone: number,
       items: []
     };
 

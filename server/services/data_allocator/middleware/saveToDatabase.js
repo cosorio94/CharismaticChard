@@ -21,17 +21,19 @@ const saveDebtorItems = (req, res) => {
 };
 
 module.exports = (req, res, next) => {
-  saveSplitterItems(req, res)
+  return saveSplitterItems(req, res)
     .then(() => {
+      console.log('time to save debtor items!');
       return saveDebtorItems(req, res);
+    })
+    .then(() => {
+      next();
     })
     .error(err => {
       res.status(500).send(err);
     })
     .catch(() => {
+      console.log('error here!!');
       res.sendStatus(404);
-    })
-    .finally(() => {
-      next();
     });
 };

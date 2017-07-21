@@ -3,7 +3,7 @@ import axios from 'axios';
 const sendStateToServer = (split) => {
   console.log('split??' , split);
   return () => { 
-    axios.post('/api/save-split', {split})
+    axios.post('/api/save-split', split)
       .then(res => {
         console.log(res);
       })
