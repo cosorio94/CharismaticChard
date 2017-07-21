@@ -46,7 +46,7 @@ class Output extends React.Component {
       friendName: name,
       friendNumber: number
     };
-    let info= this.state.friendsInfo.concat(friendInformation);
+    let info = this.state.friendsInfo.concat(friendInformation);
     this.setState({
       friendsInfo: info
     });
@@ -56,7 +56,7 @@ class Output extends React.Component {
     let numbers = this.props.friendsInfo;
     let number = null;
     numbers.forEach( (person) => {
-      if( name === person.friendName) {
+      if (name === person.friendName) {
         number = person.friendNumber;
       }
     });
@@ -69,14 +69,14 @@ class Output extends React.Component {
     let debtor = {
       name: name,
       number: number,
-      items:[ ]
+      items: []
     };
 
     let debtors = this.state.debtors;
-    if ( debtors.length === 0) {
+    if (debtors.length === 0) {
       this.addFirstDebtor(debtor, itemAndPrice);
-    } else if( debtors.length > 0){ 
-      if ( names.indexOf(name) === -1 ) {
+    } else if (debtors.length > 0) { 
+      if (names.indexOf(name) === -1) {
         this.addDebtor(debtor, itemAndPrice);
       } else {
         this.findDebtor(debtors, name, itemAndPrice);
@@ -93,7 +93,6 @@ class Output extends React.Component {
     }, this.helperSetState);
   }
 
-
   addDebtor(debtor, itemAndPrice) {
     debtor.items.push(itemAndPrice);
     foodList.push(itemAndPrice.itemName); 
@@ -103,17 +102,16 @@ class Output extends React.Component {
     }, this.helperSetState);
   }
 
-
   findDebtor(debtors, name, itemAndPrice) {
-    for ( let i = 0; i < debtors.length; i++) {
-      if ( debtors[i].name === name ) {
+    for (let i = 0; i < debtors.length; i++) {
+      if (debtors[i].name === name ) {
         foodList.push(itemAndPrice.itemName); 
         debtors[i].items.push(itemAndPrice);
       } 
-      if ( foodList.indexOf(itemAndPrice.itemName) !== -1 && debtors[i].name !== name ) {
+      if (foodList.indexOf(itemAndPrice.itemName) !== -1 && debtors[i].name !== name ) {
         var items = debtors[i].items; 
-        for ( var j = 0; j < items.length; j++ ) {
-          if( items[j].itemName === itemAndPrice.itemName ) {
+        for (var j = 0; j < items.length; j++ ) {
+          if (items[j].itemName === itemAndPrice.itemName ) {
             items.splice(j, 1);
           } 
         }
@@ -124,7 +122,7 @@ class Output extends React.Component {
   helperSetState () {
     var debtors = this.state.debtors;
     for (let i = 0; i < debtors.length; i++) {
-      if(names.indexOf(debtors[i].name) === -1){
+      if (names.indexOf(debtors[i].name) === -1) {
         names.push(debtors[i].name); 
       }
     }
@@ -132,18 +130,18 @@ class Output extends React.Component {
 
   submitDebtors() {
     var debtors = this.state.debtors; 
-    var debtTotal =[]; 
-    for ( var i = 0; i < debtors.length; i++) {
+    var debtTotal = []; 
+    for (var i = 0; i < debtors.length; i++) {
       var itemPrice = []; 
-      for ( var j = 0; j < debtors[i].items.length; j++) {
+      for (var j = 0; j < debtors[i].items.length; j++) {
         itemPrice.push( Number(debtors[i].items[j].itemPrice) ); 
       }
       debtTotal.push(itemPrice);
     }
-    for ( var x = 0; x < debtTotal.length; x ++) {
-      debtTotal[x] = debtTotal[x].reduce((a,b) => a+b); 
+    for (var x = 0; x < debtTotal.length; x ++) {
+      debtTotal[x] = debtTotal[x].reduce((a, b) => a + b); 
     }
-    for ( var z = 0; z < debtors.length; z++) {
+    for (var z = 0; z < debtors.length; z++) {
       debtors[z]['debtTotal'] = debtTotal[z]; 
     }
     this.props.setDebtors(this.state.debtors);
@@ -159,7 +157,7 @@ class Output extends React.Component {
             </Col>
             <Col xs={6} md={4}>
               <AddFriends />
-              <FriendsList  />
+              <FriendsList />
             </Col>
             <Col xsHidden md={4} >
             </Col>

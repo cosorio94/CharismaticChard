@@ -4,7 +4,6 @@ import MenuItem from 'react-bootstrap/lib/MenuItem';
 import { connect } from 'react-redux';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
-
 const mapStateToProps = state => {
   return {
     friendsInfo: state.output.friendsInfo
@@ -16,12 +15,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 class ItemEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "person",
+      name: 'person',
       item: this.props.item.item,
       price: this.props.item.price
     };

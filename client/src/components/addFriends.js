@@ -11,14 +11,12 @@ import { connect } from 'react-redux';
 
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
-
 const mapStateToProps = state => {
   return {
     debtors: state.output.debtors,
     friendsInfo: state.output.friendsInfo
   };
 };
-
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -31,15 +29,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
-
 class AddFriends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
       name: null,
-      number:null
+      number: null
     };
   }
 
@@ -57,24 +53,22 @@ class AddFriends extends React.Component {
 
   }
 
-  friendName(e){
+  friendName(e) {
     this.setState({
       name: e.target.value
     });
   }
 
-  friendNumber(e){
+  friendNumber(e) {
     this.setState({
       number: e.target.value
     });
   }
 
-
-
   render() {
     return (
       <div>
-        <Button bsStyle="primary" bsSize="small"  onClick={this.open.bind(this)} >
+        <Button bsStyle="primary" bsSize="small" onClick={this.open.bind(this)} >
           Add Friends
         </Button>
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
@@ -82,7 +76,6 @@ class AddFriends extends React.Component {
             <Modal.Title>Add a friend</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
             <Form horizontal>
               <FormGroup controlId="formInlineName">
                 <Col componentClass={ControlLabel} sm={2}>
@@ -92,7 +85,6 @@ class AddFriends extends React.Component {
                   <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
                 </Col>
               </FormGroup>
-
               <FormGroup controlId="formHorizontalNumber">
                 <Col componentClass={ControlLabel} sm={2}>
                   Number
@@ -111,6 +103,5 @@ class AddFriends extends React.Component {
     );
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFriends);

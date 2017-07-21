@@ -6,7 +6,6 @@ import FriendEntry from './friendEntry.js';
 import { connect } from 'react-redux';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
-
 const mapStateToProps = state => {
   return {
     friendsInfo: state.output.friendsInfo
@@ -18,7 +17,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 const FriendsList = ({friendsInfo}) => {
   return (
     <Table responsive>
@@ -29,13 +27,12 @@ const FriendsList = ({friendsInfo}) => {
         </tr>
       </thead>
       <tbody>
-        {  friendsInfo.map( (friendInfo, index) => { return <FriendEntry key={index} friendInfo={friendInfo}/>; })}
+        { friendsInfo.map( (friendInfo, index) => { return <FriendEntry key={index} friendInfo={friendInfo}/>; })}
       </tbody>
       <tfoot>
       </tfoot>
     </Table>
   );
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendsList);

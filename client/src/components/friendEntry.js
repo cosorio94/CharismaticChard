@@ -1,6 +1,5 @@
 import React from 'react';
 
-// dumb component 
 const FriendEntry = ({friendInfo}) => {
   return (
     <tr>
