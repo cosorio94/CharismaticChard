@@ -26,6 +26,7 @@ router.route('/signup')
   .get((req, res) => {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   })
+  .post(middleware.validateForm.validateSignUp)
   .post(middleware.passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
