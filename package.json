@@ -1,9 +1,11 @@
 {
   "name": "course.thesis",
   "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "heroku-postbuild": "webpack -d",
     "start": "nodemon server",
+    "startHeroku": "node server",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch"
   },
@@ -12,7 +14,11 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-core": "^6.24.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
@@ -28,9 +34,7 @@
     "express-session": "^1.15.1",
     "express-validator": "^3.2.1",
     "grunt-pg": "https://github.com/watsoncj/grunt-pg.git",
-    "grunt-run": "^0.7.0",
     "jquery": "^3.2.1",
-    "jsdom": "^11.1.0",
     "knex": "^0.12.9",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
@@ -52,17 +56,15 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "^4.3.0",
     "redux-thunk": "^2.2.0",
-    "twilio": "^3.5.0"
+    "twilio": "^3.5.0",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
   },
   "devDependencies": {
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
-    "babel-preset-latest": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
     "chai": "^3.5.0",
     "enzyme": "^2.9.1",
-    "grunt": "~0.4.5",
-    "grunt-eslint": "^19.0.0",
+    "grunt": "^1.0.1",
+    "grunt-eslint": "^20.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-run": "^0.7.0",
     "jest": "^20.0.4",
@@ -72,9 +74,7 @@
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.3.8",
-    "supertest": "^3.0.0",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "supertest": "^3.0.0"
   },
   "babel": {
     "plugins": [
