@@ -3,13 +3,17 @@
  
 // // Get an instance of `PhoneNumberUtil`. 
 // var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
-const formatPhone = require('../helperFunctions/parsePhone.js').parseAndFormatPhone;
+const phoneParser = require('../helperFunctions/parsePhone.js');
  
 module.exports = {
   
   parseUserPhoneNumber: (req, res, next) => {
-    req.body.phone = formatPhone(req.body.phone);
-    console.log('formatted: ', req.body.phone);
+    req.body.phone = phoneParser.parseAndFormatPhone(req.body.phone);
+    return next();
+  },
+
+  formatPhoneForView: (req, res, next) => {
+    req.user.phone = phoneParser.formatPhoneNational(req.user.phone);
     return next();
   }
 

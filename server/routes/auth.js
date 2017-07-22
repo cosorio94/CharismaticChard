@@ -35,7 +35,9 @@ router.route('/signup')
   }));
 
 router.route('/profile')
-  .get(middleware.auth.verify, (req, res) => {
+  .get(middleware.auth.verify)
+  .get(middleware.phoneParser.formatPhoneForView)
+  .get((req, res) => {
     if (req.user.phone) {
       res.render('profile.ejs', {
         user: req.user // get the user out of session and pass to template
