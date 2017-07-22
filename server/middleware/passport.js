@@ -111,8 +111,7 @@ passport.use('google', new GoogleStrategy({
   clientID: config.Google.clientID || process.env.Google_clientID,
   clientSecret: config.Google.clientSecret || process.env.Google_clientSecret,
   callbackURL: config.Google.callbackURL || process.env.Google_callbackURL
-},
-  (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('google', profile, done))
+}, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('google', profile, done))
 );
 
 passport.use('facebook', new FacebookStrategy({

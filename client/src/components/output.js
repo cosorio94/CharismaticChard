@@ -214,21 +214,32 @@ class Output extends React.Component {
   render() {
     return (
       <div>
-        <Grid>
-          <Row className="show-grid">
-            <Col xs={10} md={5}>
-              <ItemList collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
-            </Col>
-            <Col xs={6} md={4}>
-              <AddFriends />
-              <FriendsList />
-            </Col>
-            <Col xsHidden md={4} >
-            </Col>
-          </Row>
-        </Grid>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="logo text-center">
+              <img src="./assets/splitter-logo.png" className="mx-auto d-block" width="200"/>
+            </div>
+          </div>
+        </div>
+        <hr />
         <div>
-          <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={10} md={5}>
+                <ItemList collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
+              </Col>
+              <Col xs={6} md={4}>
+                <AddFriends />
+                <FriendsList />
+              </Col>
+              <Col xsHidden md={4} >
+              </Col>
+            </Row>
+          </Grid>
+          <footer>
+            <hr className="footerHR"/>
+            <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>
+          </footer>
         </div>
       </div>
     );

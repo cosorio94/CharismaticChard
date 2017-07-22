@@ -22,12 +22,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <div className="mainContainer">
-        <div className="headerContainer">
-          <div className="logo headerItem">
-            <img src="./assets/splitter-logo.png" width="200"/>
-          </div>
-        </div>
-        <hr />
         <div className="bodyContainer">
           <Route exact path="/" component={() => <Home />}/>
           <Route path="/input" component={() => <Input />}/>
