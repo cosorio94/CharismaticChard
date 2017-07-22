@@ -36,15 +36,12 @@ router.route('/signup')
 
 router.route('/profile')
   .get(middleware.auth.verify)
+  .get(middleware.phoneParser.checkAccountForPhone)
   .get(middleware.phoneParser.formatPhoneForView)
   .get((req, res) => {
-    if (req.user.phone) {
-      res.render('profile.ejs', {
-        user: req.user // get the user out of session and pass to template
-      });
-    } else {
-      res.redirect('/update-profile');
-    }
+    res.render('profile.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
   });
 
 router.route('/update-profile')
