@@ -1,4 +1,5 @@
 const models = require('../../../../db/models');
+const formatPhone = require('../../../helperFunctions/parsePhone.js').parseAndFormatPhone;
 
 const deconstructSplitData = (req, res) => {
   req.split = {
@@ -27,7 +28,7 @@ const deconstructDebtorsData = (req, res) => {
       first: fullName[0],
       last: lastName,
       display: debtor.name,
-      phone: debtor.phone
+      phone: formatPhone(debtor.phone)
     };
   });
   console.log('DEBOTRS??', req.debtors);

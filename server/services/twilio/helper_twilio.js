@@ -1,3 +1,5 @@
+const formatPhone = require('../../helperFunctions/parsePhone.js').parseAndFormatPhone;
+
 module.exports.generateMessage = function (data) {
   let messages = []; 
   let owner = data.splitter.name;
@@ -15,7 +17,7 @@ module.exports.generateMessage = function (data) {
 module.exports.numbersForTextMessage = function (debtors) {
   let numbers = []; 
   debtors.forEach( (debtor) => {
-    numbers.push(debtor.phone); 
+    numbers.push(formatPhone(debtor.phone)); 
   });
   return numbers; 
 };

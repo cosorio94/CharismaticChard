@@ -1,18 +1,16 @@
-// Require `PhoneNumberFormat`. 
-var PNF = require('google-libphonenumber').PhoneNumberFormat;
+// // Require `PhoneNumberFormat`. 
+// var PNF = require('google-libphonenumber').PhoneNumberFormat;
  
-// Get an instance of `PhoneNumberUtil`. 
-var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+// // Get an instance of `PhoneNumberUtil`. 
+// var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+const formatPhone = require('../helperFunctions/parsePhone.js').parseAndFormatPhone;
  
 module.exports = {
   
   parseUserPhoneNumber: (req, res, next) => {
-    // console.log('body: ', req.body);
-    var parsedPhone = phoneUtil.parse(req.body.phone, 'US');
-    // console.log('parsed: ', parsedPhone);
-    req.body.phone = phoneUtil.format(parsedPhone, PNF.E164);
+    req.body.phone = formatPhone(req.body.phone);
     console.log('formatted: ', req.body.phone);
-    next();
+    return next();
   }
 
 };
