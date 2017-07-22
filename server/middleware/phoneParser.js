@@ -15,6 +15,13 @@ module.exports = {
   formatPhoneForView: (req, res, next) => {
     req.user.phone = phoneParser.formatPhoneNational(req.user.phone);
     return next();
+  },
+
+  checkAccountForPhone: (req, res, next) => {
+    if (!req.user.phone) {
+      return res.redirect('/update-profile');
+    }
+    return next();
   }
 
 };
