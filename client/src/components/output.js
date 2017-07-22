@@ -217,7 +217,7 @@ class Output extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="logo text-center">
-              <img src="./assets/splitter-logo.png" className="mx-auto d-block" width="200"/>
+              <img src="./assets/splitter-logo-whi" className="mx-auto d-block" width="200"/>
             </div>
           </div>
         </div>

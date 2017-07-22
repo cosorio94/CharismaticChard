@@ -1,39 +1,53 @@
 <% include head.ejs%>
+<body id="body-login">
+    <div class="container">
 
-    <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-6 col-sm-offset-3" id="login">
 
-        <h1><span class="fa fa-sign-in"></span> Login</h1>
+            <% if (message.length) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
 
-        <% if (message.length) { %>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %>
-
-        <!-- LOGIN FORM -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email">
+            <div class="logoDiv">
+              <img src="./assets/splitter-logo-white.png" id="logo-white"/>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
+            <div class="signin-singup">
+                <a id="signin" href="/login">SIGN IN</a>
+                <a id="signup" href="/signup">SIGN UP</a>
             </div>
 
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
+            <form class="signin-form" action="/login" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="email">
+                </div>
+                <div class="form-group" style="margin-bottom: 30px">
+                    <input type="password" class="form-control" name="password" placeholder="password">
 
-        <hr>
-        <div>
-            Or login with any of the following services:<br />
-            <a style="margin-right:15px" href="/auth/facebook"><img src="/assets/fb-logo.png" /></a>
-            <a style="margin-left:15px;margin-right:15px" href="/auth/google"><img style="width:29px" src="/assets/google-logo.png" /></a>
-            <a style="margin-left:15px" href="/auth/twitter"><img style="width:48px" src="/assets/twitter-logo.png" /></a>
+                </div>
+        
+                <button type="submit" class="form-control" id="login-button">GO!</button>
+            </form>
+
+            <hr style="margin-bottom: 30px">
+
+            <div class="signin-form">
+                    <a class="form-control external-sign-in" id="login-button"  href="/auth/facebook" style="margin-bottom: 20px; background-color: #1398AD;">
+                        <img src="./assets/facebook-logo.png" style="width: 5.6%;"/>
+                        <label class='external-sign-in-text'>
+                            Sign in with Facebook
+                        </label>
+                    </a>
+                    <a class="form-control external-sign-in" style="background-color: #1398AD;" id="login-button" href="/auth/google">
+                        <img src="./assets/google-white.png" style="width: 5.6%;"/>
+                        <label class='external-sign-in-text'>
+                            Sign in with Google
+                        </label>
+                    </a>
+            </div>
         </div>
-        <hr>
-
-        <p>Need to sign up for an account? <a href="/signup">Signup</a></p>
-        <p><a href="/">home</a></p>
-
-    </div>
 
 <% include foot.ejs%>
+
+
+
+

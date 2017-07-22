@@ -5,12 +5,24 @@ module.exports.generateMessage = function (data) {
   let owner = data.splitter.name;
   data.debtors.forEach( (debtor) => {
     let message = `Hello ${debtor.name}, your total debt to ${owner} for ${data.splitName} is ${debtor.debtTotal}. 
-                   items: ${debtor.items[0].itemName}-${debtor.items[0].itemPrice}, 
+                   items: ${getItems(debtor.items)}
                    tax: ${debtor.tax} 
                    tip: ${debtor.tip}`;
     messages.push(message);
   });
   return messages; 
+};
+
+const getItems = function(items) {
+  let result = '';
+  items.forEach( (item, index, items) => {
+    let comma = ', ';
+    if (index === items.length - 1) {
+      comma = '';
+    }
+    result += item.itemName + '-' + item.itemPrice + comma;
+  });
+  return result;
 };
 
 

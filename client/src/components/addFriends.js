@@ -50,7 +50,6 @@ class AddFriends extends React.Component {
 
   open() {
     this.setState({ showModal: true });
-
   }
 
   friendName(e) {

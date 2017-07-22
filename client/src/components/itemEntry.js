@@ -59,7 +59,9 @@ class ItemEntry extends React.Component {
                 <MenuItem 
                   key={index} 
                   onClick={this.changeTitle.bind(this)} 
-                  title={friendInfo.friendName}>{friendInfo.friendName}
+                  title={friendInfo.friendName}
+                >
+                  {friendInfo.friendName}
                 </MenuItem>
               ))
             }
