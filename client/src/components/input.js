@@ -93,7 +93,7 @@ class Input extends React.Component {
           <div className="inputContainer row formItem">
             <div className="inputItem col-md-4">
               <label className="inputItemBit">Split Name</label>
-              <input type="text" className="inputItemBit name form-control"/>
+              <input type="text" className="inputItemBit name form-control" required/>
             </div>
           </div>
           <div className="items">
@@ -102,11 +102,11 @@ class Input extends React.Component {
                 <div key={key} className="inputContainer row formItem">
                   <div className="inputItem col-md-6">
                     <label className="inputItemBit">Item</label>
-                    <input type="text" className="inputItemBit form-control" />
+                    <input type="text" className="inputItemBit form-control" required/>
                   </div>
                   <div className="inputItem col-md-6">
                     <label className="inputItemBit">Price</label>
-                    <input type="text" className="inputItemBit form-control"/>
+                    <input type="number" className="inputItemBit form-control" required/>
                   </div>
                 </div>
               ))
@@ -115,15 +115,15 @@ class Input extends React.Component {
           <div className="inputContainer row formItem">
             <div className="inputItem col-md-4">
               <label className="inputItemBit">Tax</label>
-              <input type="text" className="inputItemBit tax form-control"/>
+              <input type="number" className="inputItemBit tax form-control" required/>
             </div>
             <div className="inputItem col-md-4">
               <label className="inputItemBit">Total</label>
-              <input type="text" className="inputItemBit total form-control"/>
+              <input type="number" className="inputItemBit total form-control" required/>
             </div>
             <div className="inputItem col-md-4">
               <label className="inputItemBit">Tip</label>
-              <input type="text" className="inputItemBit tip form-control"/>
+              <input type="number" className="inputItemBit tip form-control" required/>
             </div>
           </div>
           <div className="inputContainer row formItem">

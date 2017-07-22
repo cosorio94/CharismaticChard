@@ -1,8 +1,10 @@
 import React from 'react';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+import $ from 'jquery';
 
 const mapStateToProps = state => {
   return {
@@ -26,7 +28,6 @@ class ItemEntry extends React.Component {
     };
   }
 
-
   changeTitle (e) { 
     this.setState({
       name: e.target.title
@@ -39,16 +40,17 @@ class ItemEntry extends React.Component {
 
   render() {
     return (
-      <tr>
-        <td>{this.props.item.item}</td>
-        <td>{this.props.item.price}</td>
-        <td>
-          <DropdownButton 
-            bsStyle="success" 
-            title={this.state.name} 
-            id='split-button-basic-Success'
+      <div className="row">
+        <div className="col-xs-4">{this.props.item.item}</div>
+        <div className="col-xs-4">{this.props.item.price}</div>
+        <div className="col-xs-4">
+          <DropdownButton
+            bsStyle="success"
+            title={this.state.name}
+            id="split-button-basic-Success"
+            className="dropdownBtn"
           >
-            <MenuItem 
+            <MenuItem
               onClick={this.changeTitle.bind(this)}
               title={this.props.splitter.name.split(' ')[0]}
             >
@@ -66,8 +68,8 @@ class ItemEntry extends React.Component {
               ))
             }
           </DropdownButton>
-        </td>
-      </tr>
+        </div>
+      </div>
     );
   }
 }

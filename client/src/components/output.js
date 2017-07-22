@@ -1,9 +1,5 @@
 import React from 'react';
-import Table from 'react-bootstrap/lib/Table';
-import Grid from 'react-bootstrap/lib/Grid';
 import Button from 'react-bootstrap/lib/Button';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
 import { connect } from 'react-redux';
 import AddFriends from './addFriends.js';
 import ItemList from './itemList.js';
@@ -163,14 +159,14 @@ class Output extends React.Component {
   splitTax(debtorTotal) {
     let percent = debtorTotal / this.props.total;
     let debtorTax = this.props.tax * percent;
-    debtorTax = String(debtorTax).split('').slice(0, 5).join('');
+    debtorTax = debtorTax.toFixed(2);
     return Number(debtorTax);
   }
 
   splitTip(debtorTotal) {
     let percent = debtorTotal / this.props.total;
     let debtorTip = this.props.tip * percent;
-    debtorTip = String(debtorTip).split('').slice(0, 5).join('');
+    debtorTip = debtorTip.toFixed(2);
     return Number(debtorTip);
   }
 
@@ -217,25 +213,25 @@ class Output extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="logo text-center">
-              <img src="./assets/splitter-logo-whi" className="mx-auto d-block" width="200"/>
+              <img src="./assets/splitter-logo.png" className="mx-auto d-block" width="200"/>
             </div>
           </div>
         </div>
         <hr />
         <div>
-          <Grid>
-            <Row className="show-grid">
-              <Col xs={10} md={5}>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-xs-12">
                 <ItemList collectSplitItemInfo={this.collectSplitItemInfo.bind(this)}/>
-              </Col>
-              <Col xs={6} md={4}>
+              </div>
+              <div className="col-xs-12">
                 <AddFriends />
+              </div>
+              <div className="col-xs-12">
                 <FriendsList />
-              </Col>
-              <Col xsHidden md={4} >
-              </Col>
-            </Row>
-          </Grid>
+              </div>
+            </div>
+          </div>
           <footer>
             <hr className="footerHR"/>
             <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>

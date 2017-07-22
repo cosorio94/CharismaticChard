@@ -18,26 +18,27 @@ const mapDispatchToProps = dispatch => {
 
 const FriendsList = ({friendsInfo}) => {
   return (
-    <Table responsive>
-      <thead>
-        <tr>
-          <th>Friend</th>
-          <th>Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        { 
-          friendsInfo.map( (friendInfo, index) => ( 
-            <tr key={index}>
-              <td>{friendInfo.friendName}</td>
-              <td>{friendInfo.friendNumber}</td>
-            </tr>
-          ))
-        }
-      </tbody>
-      <tfoot>
-      </tfoot>
-    </Table>
+    <div className="row">
+      <div className="col-xs-12">
+        <div className="row">
+          <div className="col-xs-6">Friend</div>
+          <div className="col-xs-6">Number</div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="col-xs-12">
+          { 
+            friendsInfo.map( (friendInfo, index) => ( 
+              <div className="row" key={index}>
+                <div className="col-xs-6">{friendInfo.friendName}</div>
+                <div className="col-xs-6">{friendInfo.friendNumber}</div>
+              </div>
+            ))
+          }
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

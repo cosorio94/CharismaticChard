@@ -66,38 +66,47 @@ class AddFriends extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button bsStyle="primary" bsSize="small" onClick={this.open.bind(this)} >
-          Add Friends
-        </Button>
-        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add a friend</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form horizontal>
-              <FormGroup controlId="formInlineName">
-                <Col componentClass={ControlLabel} sm={2}>
-                  Name
-                </Col>
-                <Col sm={10}>
-                  <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
-                </Col>
-              </FormGroup>
-              <FormGroup controlId="formHorizontalNumber">
-                <Col componentClass={ControlLabel} sm={2}>
-                  Number
-                </Col>
-                <Col sm={10}>
-                  <FormControl type="email" placeholder="xxx-xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
-                </Col>
-              </FormGroup>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
-          </Modal.Footer>
-        </Modal>
+      <div className="row">
+        <div className="col-xs-12">
+          <div className="row">
+            <div className="col-xs-6">
+              <h4>Friends List</h4>
+            </div>
+            <div className="col-xs-6">
+              <Button bsStyle="primary" bsSize="small" onClick={this.open.bind(this)}>
+                Add Friends
+              </Button>
+            </div>
+          </div>
+          <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Add a friend</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form horizontal>
+                <FormGroup controlId="formInlineName">
+                  <Col componentClass={ControlLabel} sm={2}>
+                    Name
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
+                  </Col>
+                </FormGroup>
+                <FormGroup controlId="formHorizontalNumber">
+                  <Col componentClass={ControlLabel} sm={2}>
+                    Number
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl type="email" placeholder="xxx-xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
+                  </Col>
+                </FormGroup>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     );
   }

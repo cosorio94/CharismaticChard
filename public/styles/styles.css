@@ -8,7 +8,7 @@ html,body{
     color: black;
 }
 
-#id {
+#root {
     width: 100%;
     height: 100%;
     border: 0;
@@ -93,13 +93,13 @@ html,body{
     color: black;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
     background-color: white;
     border-color: #14a2b8;
     color: black;
 }
 
-.btn-success:hover.dropdown-toggle.btn-success {
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
     background-color: white;
     border-color: #14a2b8;
     color: black;
@@ -129,66 +129,28 @@ footer {
 }
 
 .page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -12%; 
+    min-height: 100%;
+    margin-bottom: -12%; 
 }
 
 .page-wrap:after {
-  content: "";
-  display: block;
+    content: "";
+    display: block;
 }
 
 footer, .page-wrap:after {
-  height: 12%; 
+    height: 12%; 
 }
 
-
-.inputTable > tbody > tr > td,
-.inputTable > tbody > tr > th,
-.inputTable > tfoot > tr > td,
-.inputTable > tfoot > tr > th,
-.inputTable > thead > tr > td,
-.inputTable > thead > tr > th,
-.inputTable {
-    border: none;
-}
-
-
-/*
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.formItem {
-    padding: 10px;
-    flex: 1 1 auto;
-}
-
-.formItemBit {
-    padding: 5px;
-    margin: 5px;
-    flex: 1 1 auto;
-}
-
-.inputContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.inputItem {
-    flex: 1 1 auto;
-    margin: 5px;
+.dropdownBtn {
+    width: 75px;
 }
 
 .inputItemBit {
     padding: 5px;
     margin: 5px;
 }
-*/
+
 .logoDiv {
     text-align: center;
     margin-bottom: 60px;
@@ -230,9 +192,11 @@ img.displayed {
     text-align: center;
     padding: 10px;
 }
+
 #signup{
     color: #3FC3D8;
 }
+
 #signin {
     color: white;
     margin-right: 50px;
@@ -242,19 +206,21 @@ img.displayed {
     padding: 20px;
 }
 
-
 .other-signup{
     width: 150px; 
     background-color: #1398AD;
 }
+
 .external-sign-in{
     text-align: left;
     /*background-color: #1398AD*/
 }
+
 .external-sign-in-text{
     margin-left: 20px;
     margin-top:5px;
 }
+
 ::selection {
     background-color: #edff00;
     color: #111;

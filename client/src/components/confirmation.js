@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import axios from 'axios';
+import numeral from 'numeral';
 import { Link } from 'react-router-dom';
 import { setFriendsInfo } from '../actions/outputActions.js';
 import { sendStateToServer } from '../actions/finalActions.js';
@@ -152,7 +153,7 @@ class Confirmation extends React.Component {
                   </div>
                   <div className="row">
                     <label className="col-xs-6">Total: </label>
-                    <p className="col-xs-6">{debtor.debtTotal}</p>
+                    <p className="col-xs-6">{numeral(debtor.debtTotal).format('$0,0.00')}</p>
                   </div>
                 </div>
               ))
