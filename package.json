@@ -33,6 +33,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "express-validator": "^3.2.1",
+    "google-libphonenumber": "^3.0.0",
     "grunt-pg": "https://github.com/watsoncj/grunt-pg.git",
     "jquery": "^3.2.1",
     "knex": "^0.12.9",
