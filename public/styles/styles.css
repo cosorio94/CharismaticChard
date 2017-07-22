@@ -69,6 +69,10 @@ html,body{
     margin: 5px;
     padding: 5px;
 }
+
+.asterisks {
+    color: #d64541;
+}
 /*
 .formContainer {
     display: flex;

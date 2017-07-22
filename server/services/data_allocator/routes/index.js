@@ -13,6 +13,7 @@ router.route('/')
   });
 
 router.route('/update-profile')
+  .post(middleware.phoneParser.parseUserPhoneNumber)
   .post(middleware.updateDatabase.updateProfileInfo)
   .post((req, res) => {
     res.redirect('/profile');
