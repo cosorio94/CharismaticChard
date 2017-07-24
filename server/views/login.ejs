@@ -1,48 +1,40 @@
 <% include head.ejs%>
 <body id="body-login">
     <div class="container">
-
         <div class="col-sm-6 col-sm-offset-3" id="login">
-
             <% if (message.length) { %>
             <div class="alert alert-danger"><%= message %></div>
             <% } %>
-
             <div class="logoDiv">
-              <img src="./assets/splitter-logo-white.png" id="logo-white"/>
+              <img src="./assets/splitter-logo.png" id="logo-white"/>
             </div>
             <div class="signin-singup">
                 <a id="signin" href="/login">SIGN IN</a>
                 <a id="signup" href="/signup">SIGN UP</a>
             </div>
-
             <form class="signin-form" action="/login" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name="email" placeholder="email">
                 </div>
                 <div class="form-group" style="margin-bottom: 30px">
                     <input type="password" class="form-control" name="password" placeholder="password">
-
                 </div>
-        
                 <button type="submit" class="form-control" id="login-button">GO!</button>
             </form>
-
             <hr style="margin-bottom: 30px">
-
             <div class="signin-form">
-                    <a class="form-control external-sign-in" id="login-button"  href="/auth/facebook" style="margin-bottom: 20px; background-color: #1398AD;">
-                        <img src="./assets/facebook-logo.png" style="width: 5.6%;"/>
-                        <label class='external-sign-in-text'>
-                            Sign in with Facebook
-                        </label>
-                    </a>
-                    <a class="form-control external-sign-in" style="background-color: #1398AD;" id="login-button" href="/auth/google">
-                        <img src="./assets/google-white.png" style="width: 5.6%;"/>
-                        <label class='external-sign-in-text'>
-                            Sign in with Google
-                        </label>
-                    </a>
+                <a class="form-control external-sign-in" id="login-button"  href="/auth/facebook" style="margin-bottom: 20px; background-color: #1398AD;">
+                    <img src="./assets/facebook-logo.png" style="width: 5.6%;"/>
+                    <label class='external-sign-in-text'>
+                        Sign in with Facebook
+                    </label>
+                </a>
+                <a class="form-control external-sign-in" style="background-color: #1398AD;" id="login-button" href="/auth/google">
+                    <img src="./assets/google-white.png" style="width: 5.6%;"/>
+                    <label class='external-sign-in-text'>
+                        Sign in with Google
+                    </label>
+                </a>
             </div>
         </div>
 

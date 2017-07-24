@@ -59,6 +59,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+let foodList = [];
+let names = [];
 class Output extends React.Component {
   constructor () {
     super();
@@ -67,24 +69,11 @@ class Output extends React.Component {
     };
   }
 
-  friendInfo(name, number) {
-    let friendInformation = {
-      friendName: name,
-      friendNumber: number
-    };
-    let info = this.state.friendsInfo.concat(friendInformation);
-    this.setState({
-      friendsInfo: info
-    });
-  }
-
   collectSplitItemInfo(name, item, price) {
-    let names = [];
-    let foodList = [];
     let numbers = this.props.friendsInfo;
     let number = null;
     numbers.forEach( (person) => {
-      if (name === person.friendName) {
+      if ( name === person.friendName ) {
         number = person.friendNumber;
       }
     });
@@ -101,32 +90,37 @@ class Output extends React.Component {
     };
 
     let debtors = this.state.debtors;
-    if (names.indexOf(name) === -1) {
-      this.addDebtor(debtor, itemAndPrice, names, foodList);
-    } else {
-      this.findDebtor(debtors, name, itemAndPrice, foodList);
+    if ( debtors.length === 0) {
+      this.addDebtor(debtor, itemAndPrice);
+    } else if ( debtors.length > 0 ) { 
+      if ( names.indexOf(name) === -1 ) {
+        this.addDebtor(debtor, itemAndPrice);
+      } else {
+        this.findDebtor(debtors, name, itemAndPrice);
+      }
     }
   }
 
-  addDebtor(debtor, itemAndPrice, names, foodList) {
+  addDebtor(debtor, itemAndPrice) {
     debtor.items.push(itemAndPrice);
     foodList.push(itemAndPrice.itemName); 
     let debtorInfo = this.state.debtors.concat(debtor);
     this.setState({
       debtors: debtorInfo
-    }, () => this.helperSetState(names));
+    }, this.helperSetState);
   }
 
-  findDebtor(debtors, name, itemAndPrice, foodList) {
-    for (let i = 0; i < debtors.length; i++) {
-      if (debtors[i].name === name ) {
+
+  findDebtor(debtors, name, itemAndPrice) {
+    for ( let i = 0; i < debtors.length; i++) {
+      if ( debtors[i].name === name ) {
         foodList.push(itemAndPrice.itemName); 
         debtors[i].items.push(itemAndPrice);
       } 
-      if (foodList.indexOf(itemAndPrice.itemName) !== -1 && debtors[i].name !== name ) {
-        var items = debtors[i].items; 
-        for (var j = 0; j < items.length; j++ ) {
-          if (items[j].itemName === itemAndPrice.itemName ) {
+      if ( foodList.indexOf(itemAndPrice.itemName) !== -1 && debtors[i].name !== name ) {
+        let items = debtors[i].items; 
+        for ( let j = 0; j < items.length; j++ ) {
+          if ( items[j].itemName === itemAndPrice.itemName ) {
             items.splice(j, 1);
           } 
         }
@@ -134,24 +128,25 @@ class Output extends React.Component {
     }
   }
 
-  helperSetState (names) {
+  helperSetState () {
     let debtors = this.state.debtors;
-    for (let i = 0; i < debtors.length; i++) {
-      if (names.indexOf(debtors[i].name) === -1) {
+    for ( let i = 0; i < debtors.length; i++ ) {
+      if ( names.indexOf(debtors[i].name) === -1 ) {
         names.push(debtors[i].name); 
       }
     }
   }
 
   splitTax(debtorTotal) {
-    let percent = debtorTotal / this.props.total;
+    let percent = debtorTotal / (this.props.total - this.props.tax - this.props.tip);
     let debtorTax = this.props.tax * percent;
     debtorTax = debtorTax.toFixed(2);
+    console.log('debtorTax: ', debtorTax);
     return Number(debtorTax);
   }
 
   splitTip(debtorTotal) {
-    let percent = debtorTotal / this.props.total;
+    let percent = debtorTotal / (this.props.total - this.props.tax - this.props.tip);
     let debtorTip = this.props.tip * percent;
     debtorTip = debtorTip.toFixed(2);
     return Number(debtorTip);
@@ -169,6 +164,7 @@ class Output extends React.Component {
       debtors[i]['debtTotal'] = debtTotal[i];
       debtors[i]['tax'] = this.splitTax(debtors[i].debtTotal);
       debtors[i]['tip'] = this.splitTip(debtors[i].debtTotal);
+      debtors[i]['debtTotal'] = debtTotal[i] + debtors[i]['tax'] + debtors[i]['tip'];
     }
     this.props.setDebtors(debtors); 
     this.splitterInfo(debtors);

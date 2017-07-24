@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     items: state.input.items,
     tax: state.input.tax,
     total: state.input.total,
-    tip: state.input.total,
+    tip: state.input.tip,
   };
 };
 
@@ -31,10 +31,10 @@ const ItemList = ({items, tax, total, tip, collectSplitItemInfo}) => {
         <hr />
         {
           items !== null ?
-          items.map( (item, index) => (
-            <ItemEntry collectSplitItemInfo={collectSplitItemInfo} key={index} item={item} />
-          ))
-          : null
+            items.map( (item, index) => (
+              <ItemEntry collectSplitItemInfo={collectSplitItemInfo} key={index} item={item} />
+            ))
+            : null
         }
         <hr />
         <div className="row">

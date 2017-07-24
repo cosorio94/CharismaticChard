@@ -106,7 +106,7 @@ class Confirmation extends React.Component {
             </div>
             <div className="row">
               <label className="col-xs-6">Total: </label>
-              <p className="col-xs-6">{this.props.splitter.debtTotal}</p>
+              <p className="col-xs-6">{numeral(this.props.splitter.debtTotal).format('$0,0.00')}</p>
             </div>
             <hr/>
           </div>
