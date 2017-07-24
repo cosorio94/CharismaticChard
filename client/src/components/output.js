@@ -27,7 +27,6 @@ const mapStateToProps = state => {
   };
 };
 
-
 const mapDispatchToProps = dispatch => {
   return {
     setDebtors: (input) => dispatch(
@@ -54,15 +53,11 @@ const mapDispatchToProps = dispatch => {
     setSplitterTip: (input) => dispatch(
       setSplitterTip(input)
     ),
-
     setSplitterTax: (input) => dispatch(
       setSplitterTax(input)
     ),
   };
 };
-
-let names = []; 
-let foodList = []; 
 
 class Output extends React.Component {
   constructor () {
@@ -84,6 +79,8 @@ class Output extends React.Component {
   }
 
   collectSplitItemInfo(name, item, price) {
+    let names = [];
+    let foodList = [];
     let numbers = this.props.friendsInfo;
     let number = null;
     numbers.forEach( (person) => {
@@ -105,32 +102,22 @@ class Output extends React.Component {
 
     let debtors = this.state.debtors;
     if (names.indexOf(name) === -1) {
-      this.addDebtor(debtor, itemAndPrice);
+      this.addDebtor(debtor, itemAndPrice, names, foodList);
     } else {
-      this.findDebtor(debtors, name, itemAndPrice);
+      this.findDebtor(debtors, name, itemAndPrice, foodList);
     }
   }
 
-
-  addFirstDebtor(debtor, itemAndPrice) {
+  addDebtor(debtor, itemAndPrice, names, foodList) {
     debtor.items.push(itemAndPrice);
     foodList.push(itemAndPrice.itemName); 
     let debtorInfo = this.state.debtors.concat(debtor);
     this.setState({
       debtors: debtorInfo
-    }, this.helperSetState);
+    }, () => this.helperSetState(names));
   }
 
-  addDebtor(debtor, itemAndPrice) {
-    debtor.items.push(itemAndPrice);
-    foodList.push(itemAndPrice.itemName); 
-    let debtorInfo = this.state.debtors.concat(debtor);
-    this.setState({
-      debtors: debtorInfo
-    }, this.helperSetState);
-  }
-
-  findDebtor(debtors, name, itemAndPrice) {
+  findDebtor(debtors, name, itemAndPrice, foodList) {
     for (let i = 0; i < debtors.length; i++) {
       if (debtors[i].name === name ) {
         foodList.push(itemAndPrice.itemName); 
@@ -147,7 +134,7 @@ class Output extends React.Component {
     }
   }
 
-  helperSetState () {
+  helperSetState (names) {
     let debtors = this.state.debtors;
     for (let i = 0; i < debtors.length; i++) {
       if (names.indexOf(debtors[i].name) === -1) {
@@ -169,7 +156,6 @@ class Output extends React.Component {
     debtorTip = debtorTip.toFixed(2);
     return Number(debtorTip);
   }
-
 
   submitDebtors() {
     let debtors = this.state.debtors; 
