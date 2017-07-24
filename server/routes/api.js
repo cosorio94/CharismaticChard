@@ -5,7 +5,7 @@ const middleware = require('../middleware');
 
 router.route('/')
   .get((req, res) => {
-    res.status(200).send(req.user);
+    res.status(200).send('Hello World!');
   })
   .post((req, res) => {
     console.log('in the correct route');

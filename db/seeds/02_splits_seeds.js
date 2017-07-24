@@ -2,7 +2,7 @@ const models = require('../models');
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return models.Profile.findOne({ email: 'admin@domain.com' })
+  return models.Profile.findOne({ email: 'minjilee1@hotmail.com' })
     .then((profile) => {
       if (!profile) {
         throw profile;
