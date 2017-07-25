@@ -2,7 +2,6 @@ const expect = require('chai').expect;
 const Splits = require('../../../db/models/splits.js');
 const itemController = require('../../controllers/items.js');
 const dbUtils = require('../../../db/lib/utils.js');
-// const splitData = require('../../../mockData').splitData_1;
 
 describe('Splits model tests', () => {
   // Deletes all tables, creates new tables, and seeds tables with test data

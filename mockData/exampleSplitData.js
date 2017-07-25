@@ -2,7 +2,7 @@ module.exports = {
   "splitTotal": 84.32,
   "totalTax": 7.43,
   "totalTip": 11.33,
-  "splitName": "Korean BBQ with (drunk) Joe",
+  "splitName": "Korean BBQ",
   "splitter" : {
     "name": "Minji", 
     "phone": "+15108290026",
