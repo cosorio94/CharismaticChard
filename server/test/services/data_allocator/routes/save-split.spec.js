@@ -32,6 +32,7 @@ describe('Save-split route tests', (done) => {
             expect(split.get('total')).to.equal('84.32');
             expect(split.get('tax')).to.equal('7.43');
             expect(split.get('tip')).to.equal('11.33');
+            expect(split.get('splitter_id')).to.equal(2);
             done();
           });
       })
@@ -39,4 +40,35 @@ describe('Save-split route tests', (done) => {
         done(err);
       });
   });
+
+  it('should save items on POST request', (done) => {
+    request(app)
+      .post('/api/data_allocator')
+      .send(splitData)
+      .expect(307)
+      // .end(done);
+      .then(() => {
+        return models.Item.findOne({ 'item_name': 'pizza', price: 10.23 })
+          .then(item => {
+            expect(item.get('item_name')).to.equal('pizza');
+            expect(item.get('price')).to.equal('10.23');
+            return models.Item.findOne({ 'item_name': 'tacos', price: 15.00 });
+          })
+          .then(item => {
+            expect(item.get('item_name')).to.equal('tacos');
+            expect(item.get('price')).to.equal('15.00');
+            return models.Profile.findById(item.get('debtor_id'));
+            // done();
+          })
+          .then(profile => {
+            expect(profile.get('first')).to.equal('Carlos');
+            expect(profile.get('phone')).to.equal('+14433109844');
+            done();
+          })
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
 });
