@@ -2,7 +2,6 @@ const expect = require('chai').expect;
 const Items = require('../../../db/models/items.js');
 const itemController = require('../../controllers/items.js');
 const dbUtils = require('../../../db/lib/utils.js');
-const splitData = require('../../../mockData').splitData_1;
 
 describe('Items model tests', () => {
   // Deletes all tables, creates new tables, and seeds tables with test data
@@ -24,7 +23,7 @@ describe('Items model tests', () => {
       })
       .catch(err => {
         done(err);
-      })
+      });
   });
 
   it('should be able to update an already existing record', (done) => {
@@ -53,19 +52,19 @@ describe('Items controller tests', (done) => {
   });
 
   var items = [ 
-        { "item_name" : "tacos",
-          "price" : 15.11,
-        },
-        { "item_name" : "burrito",
-          "price" : 11.00,
-        }
-      ];
+    { 'item_name': 'tacos',
+      'price': 15.11,
+    },
+    { 'item_name': 'burrito',
+      'price': 11.00,
+    }
+  ];
 
   it('should be able to save a single item', (done) => {
     var item = items[0];
     itemController.saveOneItem(item, 1, 1)
       .then(() => {
-        return Items.findOne(item)
+        return Items.findOne(item);
       })
       .then(result => {
         expect(result.get('item_name')).to.equal('tacos');
