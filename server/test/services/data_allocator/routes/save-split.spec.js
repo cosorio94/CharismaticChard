@@ -64,7 +64,7 @@ describe('Save-split route tests', (done) => {
             expect(profile.get('first')).to.equal('Carlos');
             expect(profile.get('phone')).to.equal('+14433109844');
             done();
-          })
+          });
       })
       .catch(err => {
         done(err);
