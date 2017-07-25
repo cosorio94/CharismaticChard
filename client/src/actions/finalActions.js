@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const sendStateToServer = (split) => {
-  // console.log('split??' , split);
   return () => { 
     axios.post('/api/save-split', split)
       .then(res => {
@@ -81,7 +80,6 @@ const setDebtors = (debtors) => {
     payload: debtors,
   };
 };
-
 
 const setSplitterDebtTotal = (debt) => {
   return {

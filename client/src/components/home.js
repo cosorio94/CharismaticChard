@@ -56,6 +56,9 @@ class Home extends React.Component {
         <div className="text-center">
           <Link className="homeSplitButton btn" to="/input">Split</Link>
         </div>
+        <div className="text-center">
+          <Link className="homeSplitButton btn" to="/addImage">Add Image</Link>
+        </div>
       </div>
     );
   }

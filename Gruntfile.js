@@ -28,6 +28,7 @@ module.exports = function(grunt) {
           'client/test/.setup.js',
           'client/test/*.*.js',
           '--colors',
+          '--coverage'
         ]
       }
     },

@@ -7,7 +7,8 @@
     "start": "nodemon server",
     "startHeroku": "node server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "test:watch": "jest --watch --coverage client/test/.setup.js client/test/*.*.js"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -63,6 +64,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "devDependencies": {
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "enzyme": "^2.9.1",
     "grunt": "^1.0.1",
