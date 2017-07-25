@@ -40,7 +40,7 @@ describe('Items model tests', () => {
 
 });
 
-describe('Items controller tests', (done) => {
+describe('Items controller tests', () => {
   // Deletes all tables, creates new tables, and seeds tables with test data
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);

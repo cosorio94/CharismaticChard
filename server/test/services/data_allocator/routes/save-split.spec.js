@@ -8,7 +8,7 @@ const express = require('express');
 const app = require('../../../../app.js');
 
 
-describe('Save-split route tests', (done) => {
+describe('Save-split route tests', () => {
   // Deletes all tables, creates new tables, and seeds tables with test data
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);

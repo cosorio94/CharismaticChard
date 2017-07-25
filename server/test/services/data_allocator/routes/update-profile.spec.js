@@ -6,7 +6,7 @@ const dbUtils = require('../../../../../db/lib/utils.js');
 const express = require('express');
 const app = require('../../../../app.js');
 
-describe('Update-profile route tests', (done) => {
+describe('Update-profile route tests', () => {
   // Deletes all tables, creates new tables, and seeds tables with test data
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);
