@@ -108,25 +108,25 @@ passport.use('local-login', new LocalStrategy({
 }));
 
 passport.use('google', new GoogleStrategy({
-  clientID: config.Google.clientID || process.env.Google_clientID,
-  clientSecret: config.Google.clientSecret || process.env.Google_clientSecret,
-  callbackURL: config.Google.callbackURL || process.env.Google_callbackURL
+  clientID: config.Google.clientID || process.env.Google_clientID || process.env.isTravis,
+  clientSecret: config.Google.clientSecret || process.env.Google_clientSecret || process.env.isTravis,
+  callbackURL: config.Google.callbackURL || process.env.Google_callbackURL || process.env.isTravis
 }, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('google', profile, done))
 );
 
 passport.use('facebook', new FacebookStrategy({
-  clientID: config.Facebook.clientID || process.env.FB_clientID,
-  clientSecret: config.Facebook.clientSecret || process.env.FB_clientSecret,
-  callbackURL: config.Facebook.callbackURL || process.env.FB_callbackURL,
+  clientID: config.Facebook.clientID || process.env.FB_clientID || process.env.isTravis,
+  clientSecret: config.Facebook.clientSecret || process.env.FB_clientSecret || process.env.isTravis,
+  callbackURL: config.Facebook.callbackURL || process.env.FB_callbackURL || process.env.isTravis,
   profileFields: ['id', 'emails', 'name']
 }, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
 );
 
 // REQUIRES PERMISSIONS FROM TWITTER TO OBTAIN USER EMAIL ADDRESSES
 passport.use('twitter', new TwitterStrategy({
-  consumerKey: config.Twitter.consumerKey || process.env.Twitter_consumerKey,
-  consumerSecret: config.Twitter.consumerSecret || process.env.Twitter_consumerSecret,
-  callbackURL: config.Twitter.callbackURL || process.env.Twitter_callbackURL,
+  consumerKey: config.Twitter.consumerKey || process.env.Twitter_consumerKey || process.env.isTravis,
+  consumerSecret: config.Twitter.consumerSecret || process.env.Twitter_consumerSecret || process.env.isTravis,
+  callbackURL: config.Twitter.callbackURL || process.env.Twitter_callbackURL || process.env.isTravis,
   userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
 }, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('twitter', profile, done))
 );

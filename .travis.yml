@@ -1,4 +1,9 @@
 language: node_js
 node_js:
-  - "7"
+  - '7'
+env:
+  - isTravis=true
 before_install: 'npm install -g grunt-cli'
+before_script:
+  - psql -c 'create database thesis;' -U postgres
+services: 'postgresql'
