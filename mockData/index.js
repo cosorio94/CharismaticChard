@@ -1,0 +1,1 @@
+module.exports.splitData_1 = require('./exampleSplitData.js');

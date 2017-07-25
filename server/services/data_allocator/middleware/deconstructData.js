@@ -12,9 +12,7 @@ const deconstructSplitData = (req, res) => {
 
 
 const deconstructDebtorsData = (req, res) => {
-  console.log('body: ', req.body);
-  
-
+  // console.log('body: ', req.body);
   req.debtors = req.body.debtors.map((debtor, index, debtors) => {
     var fullName = debtor.name.split(' ');
     var lastName = fullName.length > 1 ? fullName.slice(1).join(' ') : null;
@@ -31,7 +29,6 @@ const deconstructDebtorsData = (req, res) => {
       phone: formatPhone(debtor.phone)
     };
   });
-  console.log('DEBOTRS??', req.debtors);
 };
 
 const deconstructDebtorsItemsData = (req, res) => {

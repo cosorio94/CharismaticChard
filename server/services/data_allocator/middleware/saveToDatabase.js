@@ -23,7 +23,6 @@ const saveDebtorItems = (req, res) => {
 module.exports = (req, res, next) => {
   return saveSplitterItems(req, res)
     .then(() => {
-      console.log('time to save debtor items!');
       return saveDebtorItems(req, res);
     })
     .then(() => {

@@ -7,7 +7,7 @@ router.route('/')
   .post(middleware.deconstructData)
   .post(middleware.saveToDatabase)
   .post((req, res, next) => {
-    console.log(req.split);
+    // console.log(req.split);
     // res.send(req.split);
     res.redirect(307, '/api/send-split');
   });

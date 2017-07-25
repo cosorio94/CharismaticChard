@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
-const Profile = require('../../db/models/profiles.js');
-const dbUtils = require('../../db/lib/utils.js');
+const Profile = require('../../../db/models/profiles.js');
+const dbUtils = require('../../../db/lib/utils.js');
 
 describe('Profile model tests', function () {
   // Deletes all tables, creates new tables, and seeds tables with test data
@@ -16,7 +16,7 @@ describe('Profile model tests', function () {
   it('Should be able to retrieve test data', function (done) {
     Profile.forge().fetchAll()
       .then(function (results) {
-        expect(results.length).to.equal(1);
+        expect(results.length).to.equal(2);
         expect(results.at(0).get('id')).to.equal(1);
         done();
       })
