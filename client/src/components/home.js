@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Button from 'react-bootstrap/lib/Button';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
+import { Link, Redirect } from 'react-router-dom';
 import { fetchNumbers, setNumbers } from '../actions/testActions.js';
 import { fetchUserNameAndPhone } from '../actions/finalActions.js';
+
 
 const mapStateToProps = state => {
   return {
@@ -38,13 +37,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="homeLogoDiv text-center">
-              <img src="./assets/splitter-logo.png" className="homeLogo mx-auto d-block" />
-            </div>
-          </div>
-        </div>
         <br></br>
         <br></br>
         <br></br>
@@ -65,3 +57,5 @@ class Home extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+

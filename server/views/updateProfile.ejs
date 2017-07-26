@@ -3,6 +3,15 @@
         <div class="profile-page-logo">
           <img src="./assets/splitter-logo.png" id="logo2"/>
         </div>
+
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+          
+        </div>
         <h2 style="text-align: center; margin-bottom: 30px;font-family: 'Comfortaa';"><b>Update Profile</b></h2>
          <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
@@ -25,6 +34,9 @@
             </div>
             <button type="submit" class="form-control"  style="background-color: #3FC3D8; margin-top: 30px; color: white; border: 0px;">Update</button>
         </form>
+
+
+
 
     </div>
 

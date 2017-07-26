@@ -23,5 +23,4 @@ describe('A sample react component', function() {
   it('should render to static HTML', function() {
     expect(render(<SampleComponent />).text()).toEqual('Sample');
   });
-
 });
