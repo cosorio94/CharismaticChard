@@ -34,7 +34,7 @@ module.exports = {
     return models.Profile.forge().where({ id: 2/*req.user.id*/ }).fetchPage({
       page: 1,
       pageSize: 20,
-      withRelated: ['splits']
+      withRelated: ['splits', 'items']
     });
   }
 

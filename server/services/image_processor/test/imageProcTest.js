@@ -49,5 +49,5 @@ var decomposeReceipt = (img) => {
   vision.readDocument(img)
     .then(data => {
 
-    })
-}
+    });
+};
