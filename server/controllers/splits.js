@@ -1,5 +1,6 @@
 const models = require('../../db/models');
 const Controller = require('./controller.js');
+const Promise = require('bluebird');
 
 module.exports = {
 
@@ -25,17 +26,40 @@ module.exports = {
       });
   },
 
-  getUsersSplits: (req, res) => {
-    // return models.Split.forge().where({ id: 2/*req.user.id*/ }).fetchPage({
-    //   page: 1,
-    //   pageSize: 20,
-    //   withRelated: 'items'
-    // });
-    return models.Profile.forge().where({ id: 2/*req.user.id*/ }).fetchPage({
+  getSplitItems: (id) => {
+    return models.Split.findAll({ id }, { withRelated: 'items' })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  getMultipleSplitItems: (splits) => {
+    return Promise.map(splits, (split, index, splits) => {
+      return module.exports.getSplitItems(split.id)
+        .then(results => {
+          split.items = results.at(0).related('items').toJSON();
+          return split;
+        });
+    });
+  },
+
+  getUsersItems: (req, res) => {
+    // returns an object with the info for all the splits and items that belong to the user
+    return models.Profile.forge().where({ id: req.user.id }).fetchPage({
       page: 1,
       pageSize: 20,
       withRelated: ['splits', 'items']
     });
+  },
+
+  getUsersSplits: (req, res) => {
+    // returns an array of splits with all the items that belong to each split.
+    return module.exports.getUsersItems(req, res)
+      .then(result => {
+        // req.userItems = result;
+        splits = result.at(0).related('splits').toJSON();
+        return module.exports.getMultipleSplitItems(splits);
+      });
   }
 
 
