@@ -9,7 +9,7 @@ const Item = db.Model.extend({
   },
 
   profile: function () {
-    return this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'debtor_id');
   }
 });
 

@@ -23,6 +23,19 @@ module.exports = {
         req.split['splitter_id'] = profile.get('id');
         return models.Split.create(req.split);
       });
+  },
+
+  getUsersSplits: (req, res) => {
+    // return models.Split.forge().where({ id: 2/*req.user.id*/ }).fetchPage({
+    //   page: 1,
+    //   pageSize: 20,
+    //   withRelated: 'items'
+    // });
+    return models.Profile.forge().where({ id: 2/*req.user.id*/ }).fetchPage({
+      page: 1,
+      pageSize: 20,
+      withRelated: ['splits']
+    });
   }
 
 

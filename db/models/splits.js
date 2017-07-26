@@ -9,7 +9,7 @@ const Split = db.Model.extend({
   },
 
   profile: function () {
-    return this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'splitter_id');
   }
 
 

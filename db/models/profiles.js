@@ -8,11 +8,11 @@ const Profile = db.Model.extend({
   },
 
   splits: function () {
-    return this.hasMany('Split');
+    return this.hasMany('Split', 'splitter_id');
   },
 
   items: function () {
-    return this.hasMany('Item');
+    return this.hasMany('Item', 'debtor_id');
   }
 });
 
