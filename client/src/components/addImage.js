@@ -40,15 +40,50 @@ class AddImage extends React.Component {
   }
 
   render() {
-    var image = null;
+    var image = (
+      <div className="col-xs-11 previewImageContainer text-center">
+        <p>Take Picture to Continue</p>
+      </div>
+      )
+    
     var { imagePreviewURL } = this.state;
+
     if (imagePreviewURL) {
-      image = <img id="frame" src={imagePreviewURL}/>;
+      image = (
+      <div className="col-xs-11 previewImageContainer">
+        <img className="previewImage" src={imagePreviewURL}/>
+      </div>
+      );
     }
+
     return (
       <div>
-        <input type="file" accept="image/*" capture="camera" id="camera" onChange={this.handleChange} />
-        {image}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="logo text-center">
+              <img src="./assets/splitter-logo.png" className="mx-auto d-block" width="200"/>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xs-12">
+              <input className="form-control" type="file" accept="image/*" capture="camera" id="camera" placeholder="Take Picture" onChange={this.handleChange} />
+            </div>
+          </div>
+          <br></br>
+          <div className="row text-center">
+            {image}
+          </div>
+          <br></br>
+          <hr />
+          <div className="row">
+            <div className="col-xs-12 text-center">
+              <input type="submit" className="btn btn-primary" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -13,6 +13,7 @@
   "author": "Hack Reactor",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/vision": "^0.11.5",
     "axios": "^0.16.2",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.1.1",
@@ -53,12 +54,14 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-side-bar": "^0.3.5",
     "react-test-renderer": "^15.6.1",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "^4.3.0",
     "redux-thunk": "^2.2.0",
+    "sortablejs": "^1.6.0",
     "twilio": "^3.5.0",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"

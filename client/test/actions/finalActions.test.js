@@ -1,10 +1,19 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import * as actions from '../../src/actions/finalActions.js';
+import axios from 'axios';
 
 describe('axios actions', () => {
   it('should return an anon function', async () => {
     expect(actions.sendStateToServer('data')).toBeInstanceOf(Function);
+  });
+
+  it('makes a axios post when called', () => {
+    axios.post = jest.fn((url) => {
+      return Promise.resolve();
+    });
+    actions.sendStateToServer('fakeSplit')();
+    expect(axios.post).toBeCalled();
   });
 
   it('should return an anon function', () => {
