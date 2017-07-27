@@ -206,7 +206,7 @@ class Output extends React.Component {
         </div>
         <footer>
           <hr className="footerHR"/>
-          <Link className="btn btn-primary" to="/input" >Go Back to input page name should be changed</Link>
+          <Link className="btn btn-primary" to="/input" >Go Back</Link>
           <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>
         </footer>
       </div>

@@ -3,8 +3,11 @@ import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
+
+import { LinkContainer } from 'react-router-bootstrap';
 import { setIterator, removeIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 import { setSplitName } from '../actions/finalActions.js';
+import { inputLoading } from '../actions/historyAction.js';
 
 const mapStateToProps = state => {
   return {
@@ -136,4 +139,8 @@ class Input extends React.Component {
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(Input);
+     
+
+

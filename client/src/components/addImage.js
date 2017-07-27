@@ -44,28 +44,20 @@ class AddImage extends React.Component {
       <div className="col-xs-11 previewImageContainer text-center">
         <p>Take Picture to Continue</p>
       </div>
-      )
+    );
     
     var { imagePreviewURL } = this.state;
 
     if (imagePreviewURL) {
       image = (
-      <div className="col-xs-11 previewImageContainer">
-        <img className="previewImage" src={imagePreviewURL}/>
-      </div>
+        <div className="col-xs-11 previewImageContainer">
+          <img className="previewImage" src={imagePreviewURL}/>
+        </div>
       );
     }
 
     return (
       <div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="logo text-center">
-              <img src="./assets/splitter-logo.png" className="mx-auto d-block" width="200"/>
-            </div>
-          </div>
-        </div>
-        <hr />
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">

@@ -1,10 +1,30 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
-// import Sidebar from 'react-sidebar';
 import Nav from 'react-bootstrap/lib/Nav';
 import Modal from 'react-bootstrap/lib/Modal';
 import SidebarHepler from './sideBarHelper.js';
 import { LinkContainer } from 'react-router-bootstrap';
+import { history } from '../actions/historyAction.js';
+
+import { connect } from 'react-redux';
+
+
+
+
+const mapStateToProps = state => {
+  return {
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    history: (toggle) => dispatch(
+      history(toggle)
+    ),
+  };
+};
+
+
 
 class MainSidebars extends React.Component {
   constructor(props, context) {
@@ -17,6 +37,11 @@ class MainSidebars extends React.Component {
   updateModal(isVisible) {
     this.state.isVisible = isVisible;
     this.forceUpdate();
+  }
+
+  historyStateChange() {
+    this.props.history(true); 
+    this.updateModal(false);    
   }
 
   render() {
@@ -32,22 +57,31 @@ class MainSidebars extends React.Component {
         </div>
         <SidebarHepler side='left' isVisible={ this.state.isVisible } onHide={ () => this.updateModal(false)}>
           <Nav>
-            <div className="side-bar-list">
-              <a href='/profile'>profile</a>
-            </div>
 
-            <div className="side-bar-list"> 
-              <a className="side-bar-list" href='/'>HOME</a>
-            </div>
-            <div className="side-bar-list">
-              <a href='/history'>HISTORY</a><br/>
-            </div>
+            <a href='/profile' className="side-bar-list">
+              <div className="side-bar-list">
+                PROFILE
+              </div>
+            </a>
 
+            <LinkContainer to="/" className="side-bar-list" onClick={ () => this.updateModal(false)}>
+              <div className="side-bar-button">
+                HOME
+              </div>
+            </LinkContainer>
 
-            <div className="side-bar-list">
-              <a href='/login'>LOG OUT</a><br/>
-            </div>
+            <LinkContainer to="/history" className="side-bar-list" onClick={this.historyStateChange.bind(this)}>
+              <div className="side-bar-button">
+                HISTORY
+              </div>
+            </LinkContainer>
+    
 
+            <a href='/login' className="side-bar-list">
+              <div className="side-bar-list">
+                LOG OUT
+              </div>
+            </a>
           </Nav>
         </SidebarHepler>
       </div>
@@ -55,5 +89,28 @@ class MainSidebars extends React.Component {
   }
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(MainSidebars); 
 
-export default MainSidebars;
+
+
+
+
+//           <Navbar>
+//   <Navbar.Header>
+//     <Navbar.Brand>
+//       <a href="#">React-Bootstrap</a>
+//     </Navbar.Brand>
+//   </Navbar.Header>
+//   <Nav>
+//     <NavItem eventKey={1} href="#">Link</NavItem>
+//     <NavItem eventKey={2} href="#">Link</NavItem>
+//     <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+//       <MenuItem eventKey={3.1}>Action</MenuItem>
+//       <MenuItem eventKey={3.2}>Another action</MenuItem>
+//       <MenuItem eventKey={3.3}>Something else here</MenuItem>
+//       <MenuItem divider />
+//       <MenuItem eventKey={3.4}>Separated link</MenuItem>
+//     </NavDropdown>
+//   </Nav>
+// </Navbar>
+

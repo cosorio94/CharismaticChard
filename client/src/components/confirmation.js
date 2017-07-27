@@ -7,7 +7,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import axios from 'axios';
 import numeral from 'numeral';
 import { Link } from 'react-router-dom';
 import { setFriendsInfo } from '../actions/outputActions.js';
@@ -167,7 +166,7 @@ class Confirmation extends React.Component {
         <div>
           <footer>
             <hr className="footerHR"/>
-            <Link className="btn btn-primary" to="/output" >Go Back to output page name should be changed</Link>
+            <Link className="btn btn-primary" to="/output" >Go Back</Link>
             <Button onClick={this.open.bind(this)} bsStyle="primary" bsSize="small">Confirm & Send</Button>
           </footer>
         </div>
