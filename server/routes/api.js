@@ -44,6 +44,11 @@ router.route('/split-history')
     res.redirect('/api/data_allocator/split-history');
   });
 
+router.route('/item-history')
+  .get((req, res) => {
+    res.redirect('/api/data_allocator/item-history');
+  });
+
 router.route('/test')
   .get((req, res) => {
     res.redirect('/api/image_processor');

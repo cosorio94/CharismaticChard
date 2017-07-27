@@ -32,7 +32,10 @@ router.route('/profile')
   });
 
 router.route('/split-history')
-  .get(middleware.getSplitHistory);
+  .get(middleware.getSplitHistory.splitHistory);
+
+router.route('/item-history')
+  .get(middleware.getSplitHistory.itemHistory);
 
 
 
