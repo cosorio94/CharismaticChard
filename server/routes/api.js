@@ -39,4 +39,14 @@ router.route('/update-profile')
     res.redirect(307, '/api/data_allocator/update-profile');
   });
 
+router.route('/split-history')
+  .get((req, res) => {
+    res.redirect('/api/data_allocator/split-history');
+  });
+
+router.route('/test')
+  .get((req, res) => {
+    res.redirect('/api/image_processor');
+  });
+
 module.exports = router;

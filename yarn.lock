@@ -2,20 +2,6 @@
 # yarn lockfile v1
 
 
-"@google-cloud/common-grpc@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/common-grpc/-/common-grpc-0.4.0.tgz#39f3058b6c6f5f233ee7d4279e9dcb8903afbff0"
-  dependencies:
-    "@google-cloud/common" "^0.13.0"
-    dot-prop "^2.4.0"
-    duplexify "^3.5.0"
-    extend "^3.0.0"
-    grpc "^1.3.1"
-    is "^3.2.0"
-    modelo "^4.2.0"
-    retry-request "^2.0.0"
-    through2 "^2.0.3"
-
 "@google-cloud/common@^0.13.0":
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-0.13.4.tgz#75bb7f60931cfc9d94da0b5d408950d0bbf0e979"
@@ -39,22 +25,16 @@
     string-format-obj "^1.1.0"
     through2 "^2.0.3"
 
-"@google-cloud/vision@^0.11.5":
-  version "0.11.5"
-  resolved "https://registry.yarnpkg.com/@google-cloud/vision/-/vision-0.11.5.tgz#5bdb12d29b5542c5fb7dbb5e9432c39acad1f6fe"
+"@google-cloud/vision@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/vision/-/vision-0.12.0.tgz#ffab0a18e0e6ea841e6c4e81273cd46809fdf03e"
   dependencies:
     "@google-cloud/common" "^0.13.0"
-    "@google-cloud/common-grpc" "^0.4.0"
-    arrify "^1.0.0"
     async "^2.0.1"
     extend "^3.0.0"
-    google-gax "^0.13.0"
+    google-gax "^0.13.2"
     google-proto-files "^0.12.0"
     is "^3.0.1"
-    prop-assign "^1.0.0"
-    propprop "^0.3.0"
-    rgb-hex "^1.0.0"
-    string-format-obj "^1.0.0"
 
 "@types/bluebird@^3.4.0":
   version "3.5.8"
@@ -1921,12 +1901,6 @@ domutils@1.5.1, domutils@^1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
-dot-prop@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-2.4.0.tgz#848e28f7f1d50740c6747ab3cb07670462b6f89c"
-  dependencies:
-    is-obj "^1.0.0"
-
 dotenv@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
@@ -2776,7 +2750,7 @@ google-auto-auth@^0.7.1:
     google-auth-library "^0.10.0"
     request "^2.79.0"
 
-google-gax@^0.13.0:
+google-gax@^0.13.2:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/google-gax/-/google-gax-0.13.4.tgz#462d0cf654b0abeef5ee5f059d0f7b6c0d0a6121"
   dependencies:
@@ -2824,7 +2798,7 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
 
-grpc@^1.2, grpc@^1.3.1:
+grpc@^1.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.4.1.tgz#3ee4a8346a613f2823928c9f8f99081b6368ec7c"
   dependencies:
@@ -3330,10 +3304,6 @@ is-number@^3.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
   dependencies:
     kind-of "^3.0.2"
-
-is-obj@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
 
 is-path-cwd@^1.0.0:
   version "1.0.0"
@@ -5010,10 +4980,6 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-assign@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/prop-assign/-/prop-assign-1.0.0.tgz#9767a1fbfd7093908647a6e846d31b4feaa70459"
-
 prop-types-extra@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.0.1.tgz#a57bd4810e82d27a3ff4317ecc1b4ad005f79a82"
@@ -5026,10 +4992,6 @@ prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
-
-propprop@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/propprop/-/propprop-0.3.1.tgz#a049a3568b896440067d15d8ec9f33735e570178"
 
 protobufjs@^5.0.0:
   version "5.0.2"
@@ -5498,10 +5460,6 @@ retry-request@^2.0.0:
     request "^2.81.0"
     through2 "^2.0.0"
 
-rgb-hex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rgb-hex/-/rgb-hex-1.0.0.tgz#bfaf8cd9cd9164b5a26d71eb4f15a0965324b3c1"
-
 right-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"
@@ -5838,7 +5796,7 @@ stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
 
-string-format-obj@^1.0.0, string-format-obj@^1.1.0:
+string-format-obj@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/string-format-obj/-/string-format-obj-1.1.0.tgz#7635610b1ef397013e8478be98a170e04983d068"
 
