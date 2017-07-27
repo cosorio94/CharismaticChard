@@ -32,17 +32,38 @@ var vision = require('@google-cloud/vision')({
   credentials: config
 });
 
+// var vision = gcloud.vision();
+var receipt2 = {
+  source: {
+    filename: receipt2
+  }
+};
+
 module.exports = () => {
-  vision.readDocument(receipt2, {verbose: true})
+  vision.documentTextDetection(receipt2)
     .then(data => {
-      console.log('data: ', data);
-      console.log('text: ', data[1].responses[0].fullTextAnnotation.text);
-      console.log('prop: ', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
-      console.log('blocks! :', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
+      // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
+      console.log('text: ', data[0].fullTextAnnotation.pages[0]);
+      // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
+      // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
+      console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
+      console.log('!!paragraphs: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0]);
+      console.log('!!words: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]);
+      console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]))
     })
     .catch(err => {
-      console.log(err);
+      console.log('Errror: ', err);
     });
+};
+
+const getWordFromSymbols = (word) => {
+  return {
+    detectedBreak: word.property.detectedBreak,
+    bounds: word.boundingBox.vertices,
+    text: word.symbols.map(symbol => {
+      return symbol.text;
+    }).join('')
+  };
 };
 
 // var decomposeReceipt = (img) => {
