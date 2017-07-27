@@ -22,28 +22,28 @@
 //       }
 //     });
 // };
-// var receipt1 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG';
-// var receipt2 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt2.jpeg';
+var receipt1 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG';
+var receipt2 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt2.jpeg';
 
-// const config = require('config')['cloudVision'];
+const config = require('config')['cloudVision'];
 
-// var vision = require('@google-cloud/vision')({
-//   projectId: config.project_id,
-//   credentials: config
-// });
+var vision = require('@google-cloud/vision')({
+  projectId: config.project_id,
+  credentials: config
+});
 
-// module.exports = () => {
-//   vision.readDocument(receipt2, {verbose: true})
-//     .then(data => {
-//       console.log('data: ', data);
-//       console.log('text: ', data[1].responses[0].fullTextAnnotation.text);
-//       console.log('prop: ', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
-//       console.log('blocks! :', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// };
+module.exports = () => {
+  vision.readDocument(receipt2, {verbose: true})
+    .then(data => {
+      console.log('data: ', data);
+      console.log('text: ', data[1].responses[0].fullTextAnnotation.text);
+      console.log('prop: ', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
+      console.log('blocks! :', data[1].responses[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 // var decomposeReceipt = (img) => {
 //   vision.readDocument(img)

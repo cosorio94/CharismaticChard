@@ -5,6 +5,7 @@ const middleware = require('./middleware');
 const routes = require('./routes');
 const twilioMiddleware = require('./services/twilio/twilio_middleware.js');
 const dataAllocatorRoutes = require('./services/data_allocator/routes');
+const imageProcessingRoutes = require('./services/image_processor/routes');
 
 
 const app = express();
@@ -29,6 +30,7 @@ app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/api/data_allocator', dataAllocatorRoutes);
+app.use('/api/image_processor', imageProcessingRoutes);
 app.post('/api/twilio', twilioMiddleware.twilioMiddleware );
 
 
