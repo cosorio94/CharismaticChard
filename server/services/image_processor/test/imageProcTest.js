@@ -24,6 +24,9 @@
 // };
 var receipt1 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG';
 var receipt2 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt2.jpeg';
+var receipt3 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt3.jpeg';
+var receipt4 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt4.jpeg';
+var receipt5 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt5.jpeg';
 
 const config = require('config')['cloudVision'];
 
@@ -39,23 +42,36 @@ var receipt2 = {
   }
 };
 
-module.exports = () => {
-  vision.documentTextDetection(receipt2)
+var receipt = {
+  source: {
+    filename: receipt5
+  }
+};
+
+module.exports = (req, res) => {
+  return vision.documentTextDetection(receipt)
     .then(data => {
-      console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
-      // console.log('text: ', data[0].fullTextAnnotation.pages[0]);
+      // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
+      console.log('text: ', getAllText(data));
       // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
       // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
-      console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
-      console.log('!!paragraphs: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0]);
-      console.log('!!words: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]);
-      // console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]));
+      // console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
+      // console.log('!!paragraphs: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0]);
+      // console.log('!!words: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]);
+      // // console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]));
       console.log('!!!!blocks: ', getBlocksFromImage(data));
-      // console.log('!!!!words: ', getAllWords(data));
+      // console.log('!!!!words: ', getAllWordsFromImage(data));
+      return getAllWordsFromImage(data);
     })
-    .catch(err => {
-      console.log('Errror: ', err);
+    .then(data => {
+      return res.send(data);
+    })
+    .catch(() => {
+      return res.sendStatus(404);
     });
+    // .catch(err => {
+    //   console.log('Errror: ', err);
+    // });
 };
 
 const getWordFromSymbols = (word) => {
@@ -142,4 +158,8 @@ const getBlocksFromImage = (data) => {
   return getAllBlocks(data).map(block => {
     return formatBlock(block);
   });
+};
+
+const getAllText = (data) => {
+  return data[0].fullTextAnnotation.text;
 };
