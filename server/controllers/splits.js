@@ -27,7 +27,13 @@ module.exports = {
   },
 
   getSplitItems: (id) => {
-    return models.Split.findAll({ id }, { withRelated: 'items' })
+    return models.Split.forge()
+      // .orderBy('created_at', 'DESC')
+      .query(function(qb) {
+        qb.orderBy('created_at', 'DESC'); 
+      })
+      .where({ id })
+      .fetchAll({ withRelated: 'items' })
       .catch((err) => {
         console.log(err);
       });
@@ -45,11 +51,15 @@ module.exports = {
 
   getUsersItems: (req, res) => {
     // returns an object with the info for all the splits and items that belong to the user
+    // fetchPage for pagination
     return models.Profile.forge().where({ id: req.user.id }).fetchAll({
       // page: 1,
       // pageSize: 20,
       withRelated: ['splits', 'items']
-    });
+    })
+      .catch(err => {
+        console.log(err);
+      });
   },
 
   getUsersSplits: (req, res) => {
