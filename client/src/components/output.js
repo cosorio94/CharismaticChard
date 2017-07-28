@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import AddFriends from './addFriends.js';
 import ItemList from './itemList.js';
 import FriendsList from './friendsList.js';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 import {
@@ -190,7 +189,7 @@ class Output extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="head">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
@@ -205,7 +204,6 @@ class Output extends React.Component {
           </div>
         </div>
         <footer>
-          <hr className="footerHR"/>
           <Link className="btn btn-primary" to="/input" >Go Back</Link>
           <Link className="btn btn-primary" to="/confirmation" onClick={this.submitDebtors.bind(this)}>Calculate</Link>
         </footer>

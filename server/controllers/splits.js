@@ -45,9 +45,9 @@ module.exports = {
 
   getUsersItems: (req, res) => {
     // returns an object with the info for all the splits and items that belong to the user
-    return models.Profile.forge().where({ id: req.user.id }).fetchPage({
-      page: 1,
-      pageSize: 20,
+    return models.Profile.forge().where({ id: req.user.id }).fetchAll({
+      // page: 1,
+      // pageSize: 20,
       withRelated: ['splits', 'items']
     });
   },

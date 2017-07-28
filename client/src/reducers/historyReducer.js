@@ -1,7 +1,8 @@
 export default function reducer(state = 
   {
     history: false,
-    splitterHistory: null
+    splitterHistory: null,
+    splitterHistoryItem: null
   }, action) {
   switch (action.type) {
   case 'HISTORY': {
@@ -9,6 +10,9 @@ export default function reducer(state =
   }
   case 'SPLITTER-HISTORY': {
     return {...state, splitterHistory: action.payload };
+  }
+  case 'ITEM-HISTORY': {
+    return {...state, splitterHistoryItem: action.payload };
   }
   default: {
     return state;

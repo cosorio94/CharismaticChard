@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom';
 import { fetchUserNameAndPhone } from '../actions/finalActions.js';
-import { fetchSplitterHistory } from '../actions/historyAction.js';
+import { fetchSplitterHistory, fetchSplitterHistoryItem } from '../actions/historyAction.js';
+
 
 const mapStateToProps = state => {
   return {
@@ -18,6 +19,9 @@ const mapDispatchToProps = dispatch => {
     fetchSplitterHistory: () => dispatch(
       fetchSplitterHistory()
     ),
+    fetchSplitterHistoryItem: () => dispatch(
+      fetchSplitterHistoryItem()
+    ),
   };
 };
 
@@ -25,6 +29,7 @@ class Home extends React.Component {
   componentWillMount() {
     this.props.fetchUserNameAndPhone();
     this.props.fetchSplitterHistory();
+    this.props.fetchSplitterHistoryItem();
   }
 
   render() {

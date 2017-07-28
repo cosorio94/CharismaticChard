@@ -55,7 +55,7 @@ class Confirmation extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="head">
         <h3 className="homeWelcome">Review Items</h3>
         <div className="container-fluid">
           <div className="row">
@@ -165,7 +165,6 @@ class Confirmation extends React.Component {
         </div>
         <div>
           <footer>
-            <hr className="footerHR"/>
             <Link className="btn btn-primary" to="/output" >Go Back</Link>
             <Button onClick={this.open.bind(this)} bsStyle="primary" bsSize="small">Confirm & Send</Button>
           </footer>

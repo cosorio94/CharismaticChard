@@ -83,7 +83,7 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="head">
         <div className="container-fluid">
           <div className="inputContainer row formItem">
             <div className="inputItem col-md-4">
@@ -139,8 +139,4 @@ class Input extends React.Component {
   }
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(Input);
-     
-
-
