@@ -42,14 +42,16 @@ var receipt2 = {
 module.exports = () => {
   vision.documentTextDetection(receipt2)
     .then(data => {
-      // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
-      console.log('text: ', data[0].fullTextAnnotation.pages[0]);
+      console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
+      // console.log('text: ', data[0].fullTextAnnotation.pages[0]);
       // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
       // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
       console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
       console.log('!!paragraphs: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0]);
       console.log('!!words: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]);
-      console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]))
+      // console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]));
+      console.log('!!!!blocks: ', getBlocksFromImage(data));
+      // console.log('!!!!words: ', getAllWords(data));
     })
     .catch(err => {
       console.log('Errror: ', err);
@@ -65,10 +67,79 @@ const getWordFromSymbols = (word) => {
     }).join('')
   };
 };
+const getAllBlocks = (data) => {
+  return data[0].fullTextAnnotation.pages[0].blocks;
+};
 
-// var decomposeReceipt = (img) => {
-//   vision.readDocument(img)
-//     .then(data => {
+const getAllParagraphs = (data) => {
+  var paragraphData = [];
+  getAllBlocks(data).forEach(block => {
+    block.paragraphs.forEach(paragraph => {
+      paragraphData.push(paragraph);
+    });
+  });
+  return paragraphData;
+};
 
-//     });
-// };
+const getAllWordsFromImage = (data) => {
+  var wordData = [];
+  getAllParagraphs(data).forEach(paragraph => {
+    paragraph.words.forEach(word => {
+      wordData.push(getWordFromSymbols(word));
+    });
+  });
+  return wordData;
+};
+
+const getAllWordsFromParagraph = (paragraph) => {
+  return paragraph.words.map(word => {
+    return getWordFromSymbols(word);
+  });
+};
+
+const getTextFromParagraph = (paragraph) => {
+  return getAllWordsFromParagraph(paragraph).map(word => {
+    return word.text;
+  }).join(' ');
+};
+
+const getParagraphsFromImage = (data) =>{
+  return getAllParagraphs(data).map(paragraph => {
+    return formatParagraph(paragraph);
+  });
+};
+
+const formatParagraph = (paragraph) => {
+  return {
+    detectedBreak: paragraph.property.detectedBreak,
+    bounds: paragraph.boundingBox.vertices,
+    text: getTextFromParagraph(paragraph)
+  };
+};
+
+const getAllParagraphsFromBlock = (block) => {
+  return block.paragraphs.map(paragraph => {
+    return formatParagraph(paragraph);
+  });
+};
+
+const formatBlock = (block) => {
+  return {
+    bounds: block.boundingBox.vertices,
+    detectedBreak: block.property.detectedBreak,
+    blockType: block.blockType,
+    text: getAllWordsFromBlock(block)
+  };
+};
+
+const getAllWordsFromBlock = (block) => {
+  return getAllParagraphsFromBlock(block).map(paragraph => {
+    return paragraph.text;
+  }).join('\n');
+};
+
+const getBlocksFromImage = (data) => {
+  return getAllBlocks(data).map(block => {
+    return formatBlock(block);
+  });
+};

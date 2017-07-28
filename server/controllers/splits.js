@@ -28,12 +28,12 @@ module.exports = {
 
   getSplitItems: (id) => {
     return models.Split.forge()
-    // .orderBy('created_at', 'DESC')
-    .query(function(qb){
+      // .orderBy('created_at', 'DESC')
+      .query(function(qb) {
         qb.orderBy('created_at', 'DESC'); 
       })
-    .where({ id })
-    .fetchAll({ withRelated: 'items' })
+      .where({ id })
+      .fetchAll({ withRelated: 'items' })
       .catch((err) => {
         console.log(err);
       });
@@ -57,9 +57,9 @@ module.exports = {
       // pageSize: 20,
       withRelated: ['splits', 'items']
     })
-    .catch(err => {
-      console.log(err);
-    });
+      .catch(err => {
+        console.log(err);
+      });
   },
 
   getUsersSplits: (req, res) => {
