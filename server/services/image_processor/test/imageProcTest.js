@@ -69,9 +69,9 @@ module.exports = (req, res) => {
     .catch(() => {
       return res.sendStatus(404);
     });
-    // .catch(err => {
-    //   console.log('Errror: ', err);
-    // });
+  // .catch(err => {
+  //   console.log('Errror: ', err);
+  // });
 };
 
 const getWordFromSymbols = (word) => {
