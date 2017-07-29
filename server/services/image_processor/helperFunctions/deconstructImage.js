@@ -16,7 +16,7 @@ module.exports = {
 
   getAllParagraphs: (data) => {
     var paragraphData = [];
-    getAllBlocks(data).forEach(block => {
+    module.exports.getAllBlocks(data).forEach(block => {
       block.paragraphs.forEach(paragraph => {
         paragraphData.push(paragraph);
       });
@@ -26,7 +26,7 @@ module.exports = {
 
   getAllWordsFromImage: (data) => {
     var wordData = [];
-    getAllParagraphs(data).forEach(paragraph => {
+    module.exports.getAllParagraphs(data).forEach(paragraph => {
       paragraph.words.forEach(word => {
         wordData.push(getWordFromSymbols(word));
       });
@@ -36,19 +36,19 @@ module.exports = {
 
   getAllWordsFromParagraph: (paragraph) => {
     return paragraph.words.map(word => {
-      return getWordFromSymbols(word);
+      return module.exports.getWordFromSymbols(word);
     });
   },
 
   getTextFromParagraph: (paragraph) => {
-    return getAllWordsFromParagraph(paragraph).map(word => {
+    return module.exports.getAllWordsFromParagraph(paragraph).map(word => {
       return word.text;
     }).join(' ');
   },
 
   getParagraphsFromImage: (data) =>{
-    return getAllParagraphs(data).map(paragraph => {
-      return formatParagraph(paragraph);
+    return module.exports.getAllParagraphs(data).map(paragraph => {
+      return module.exports.formatParagraph(paragraph);
     });
   },
 
@@ -56,13 +56,13 @@ module.exports = {
     return {
       detectedBreak: paragraph.property.detectedBreak,
       bounds: paragraph.boundingBox.vertices,
-      text: getTextFromParagraph(paragraph)
+      text: module.exports.getTextFromParagraph(paragraph)
     };
   },
 
   getAllParagraphsFromBlock: (block) => {
     return block.paragraphs.map(paragraph => {
-      return formatParagraph(paragraph);
+      return module.exports.formatParagraph(paragraph);
     });
   },
 
@@ -71,19 +71,19 @@ module.exports = {
       bounds: block.boundingBox.vertices,
       detectedBreak: block.property.detectedBreak,
       blockType: block.blockType,
-      text: getAllWordsFromBlock(block)
+      text: module.exports.getAllWordsFromBlock(block)
     };
   },
 
   getAllWordsFromBlock: (block) => {
-    return getAllParagraphsFromBlock(block).map(paragraph => {
+    return module.exports.getAllParagraphsFromBlock(block).map(paragraph => {
       return paragraph.text;
     }).join('\n');
   },
 
   getBlocksFromImage: (data) => {
-    return getAllBlocks(data).map(block => {
-      return formatBlock(block);
+    return module.exports.getAllBlocks(data).map(block => {
+      return module.exports.formatBlock(block);
     });
   },
 
@@ -93,6 +93,21 @@ module.exports = {
 
   getImageBounds: (data) => {
     return data[0].textAnnotations[0].boundingPoly.vertices;
+  },
+
+  getTextFromWords: (words) => {
+    return words.map(word => {
+      return word.text;
+    }).join(' ');
+  },
+
+  getTextLines: (data) => {
+    return module.exports.getAllText(data).split('\n').map(line => {
+      return {
+        text: line,
+        words: line.split(' ')
+      };
+    });
   }
 
 };
