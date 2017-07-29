@@ -9,7 +9,7 @@ module.exports = {
   },
 
   getLineWithWords: (words, lines) => {
-
+    return lines[getMostSimilarLineIndex(words, lines)];
   }
 
 };
@@ -32,10 +32,31 @@ const avgPosition = (word) => {
 };
 
 const getLineCountForWords = (words, line) => {
-  var counter = 0;
-  // return words.reduce((acc, word) => {
-  //   if () {}
-  // })
+  return words.reduce((acc, word) => {
+    // if (line.words.includes(word.text)) {
+    // return ++acc;
+    // }
+    return line.words.includes(word.text) ? ++acc : acc;
+  }, 0);
+};
+
+const getLinesWordSimilarityCount = (words, lines) => {
+  return lines.map(line => {
+    return getLineCountForWords(words, line);
+  });
+};
+
+// const getMostSimilarLineIndex = (words, lines) => {
+//   return getLinesWordSimilarityCount(words, lines).reduce((acc, lineCount, index) => {
+//     return lineCount > acc[1] ? [index, lineCount] : acc;
+//   });
+// };
+
+const getMostSimilarLineIndex = (words, lines) => {
+  return lines.reduce((acc, line, index) => {
+    var lineCount = getLineCountForWords(line);
+    return lineCount > acc[1] ? [index, lineCount] : acc;
+  });
 };
 
 
