@@ -6,9 +6,11 @@ module.exports = {
     return words.filter(word => {
       return isWithinBounds(word, bounds);
     });
-  }
+  },
 
-  
+  getLineWithWords: (words, lines) => {
+
+  }
 
 };
 
@@ -27,6 +29,13 @@ const avgPosition = (word) => {
   avg.x = avg.x / 4;
   avg.y = avg.y / 4;
   return avg;
+};
+
+const getLineCountForWords = (words, line) => {
+  var counter = 0;
+  // return words.reduce((acc, word) => {
+  //   if () {}
+  // })
 };
 
 
@@ -59,24 +68,24 @@ const avgPosition = (word) => {
 //   return closestToOrigin;
 // };
 
-var bounds = [
-  {
-    "x": 2425,
-    "y": 647
-  },
-  {
-    "x": 2447,
-    "y": 647
-  },
-  {
-    "x": 2447,
-    "y": 723
-  },
-  {
-    "x": 2425,
-    "y": 723
-  }
-];
+// var bounds = [
+//   {
+//     "x": 2425,
+//     "y": 647
+//   },
+//   {
+//     "x": 2447,
+//     "y": 647
+//   },
+//   {
+//     "x": 2447,
+//     "y": 723
+//   },
+//   {
+//     "x": 2425,
+//     "y": 723
+//   }
+// ];
 
 // const findOppositeVertex = (firstVertexIndex, word) => {
 //   var oppositeVertex = {};

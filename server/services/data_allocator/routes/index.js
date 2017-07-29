@@ -37,6 +37,9 @@ router.route('/split-history')
 router.route('/item-history')
   .get(middleware.getSplitHistory.itemHistory);
 
+router.route('/check-user/:email')
+  .get(middleware.checkUser);
+
 
 
 
