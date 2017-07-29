@@ -13,12 +13,12 @@ import browserHistory from 'react-router';
 import store from './store.js';
 import Home from './components/home.js';
 import Input from './components/input.js';
-import Output from './components/output.js';
 import Confirmation from './components/confirmation.js';
 import AddImage from './components/addImage.js';
 import History from './components/history.js';
 import HistoryItem from './components/historyItem.js';
 import Footer from './components/footer.js';
+import DragAndDrop from './components/dragAndDrop.js';
 
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
@@ -29,7 +29,6 @@ import MainSidebars from './components/mainSideBar.js';
 
 import { connect } from 'react-redux';
 // import { history } from '../actions/historyActions.js';
-
 
 const mapStateToProps = state => {
   return {
@@ -57,6 +56,7 @@ class App extends React.Component {
             <Route path="/history" render= {() => this.props.history ? <History /> : <Redirect to='/'/> } />
             <Route path="/item" component={() => <HistoryItem />} />
             <Route path="/addImage" component={() => <AddImage />} />
+            <Route path="/dragAndDrop" component={() => <DragAndDrop />} />
             <Route path="/input" component={() => <Input />} />
             <Route path="/output" component={() => <Output />} />
             <Route path="/confirmation" component={() => <Confirmation />} />

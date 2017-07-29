@@ -1,14 +1,14 @@
-html,body{
+html, body {
     border: 0;
     margin: 0;
     padding: 0;
     height:100%;
-    width:100%;
     font-family: 'Comfortaa';
     color: black;
+    min-height: 100%;
 }
 
-h2{
+h2 {
   font-family: 'Comfortaa';  
 }
 
@@ -152,6 +152,59 @@ footer {
     padding: 2.5%;
     margin-left: 15px;
     margin-right: 15px;
+}
+
+.sortableList {
+    margin: 0;
+    border: 2px solid #14a2b8;
+    min-height: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.sortableListItem {
+    text-align: center;
+    border: 2px solid #19cae6;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+.sortable-chosen {
+    background-color: #14a2b8;
+}
+
+.boldItemsHeaders {
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+.containerDivPadding {
+    margin-bottom: 5px;
+}
+
+.container-fluid {
+    margin-left: 25px;
+}
+
+.list-group-item {
+    text-align: center;
+}
+
+.containerTitle {
+    background-color: #cccccc;
+    text-align: center;
+}
+
+.list-group-item > p {
+    margin: 0 0 0px;
+}
+
+.itemsList {
+    min-height: 250px;
+}
+
+.boldP {
+    font-weight: bold;
 }
 
 #body-login {

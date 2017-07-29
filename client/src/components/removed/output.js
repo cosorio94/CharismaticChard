@@ -5,7 +5,7 @@ import AddFriends from './addFriends.js';
 import ItemList from './itemList.js';
 import FriendsList from './friendsList.js';
 import { Link } from 'react-router-dom';
-import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+import { setDebtors } from '../actions/outputActions.js';
 import {
   setSplitterItems, 
   setSplitterDebtTotal,
@@ -30,9 +30,6 @@ const mapDispatchToProps = dispatch => {
   return {
     setDebtors: (input) => dispatch(
       setDebtors(input)
-    ),
-    setFriendsInfo: (input) => dispatch(
-      setFriendsInfo(input)
     ),
     setSplitterItems: (input) => dispatch(
       setSplitterItems(input)
@@ -68,14 +65,17 @@ class Output extends React.Component {
     };
   }
 
+  //move to item list component
   collectSplitItemInfo(name, item, price) {
     let numbers = this.props.friendsInfo;
     let number = null;
+
     numbers.forEach( (person) => {
       if ( name === person.friendName ) {
         number = person.friendNumber;
       }
     });
+
     let itemAndPrice = {
       itemName: item,
       itemPrice: price,
@@ -89,10 +89,10 @@ class Output extends React.Component {
     };
 
     let debtors = this.state.debtors;
-    if ( debtors.length === 0) {
+    if (debtors.length === 0) {
       this.addDebtor(debtor, itemAndPrice);
-    } else if ( debtors.length > 0 ) { 
-      if ( names.indexOf(name) === -1 ) {
+    } else if (debtors.length > 0 ) { 
+      if (names.indexOf(name) === -1 ) {
         this.addDebtor(debtor, itemAndPrice);
       } else {
         this.findDebtor(debtors, name, itemAndPrice);
@@ -109,7 +109,6 @@ class Output extends React.Component {
     }, this.helperSetState);
   }
 
-
   findDebtor(debtors, name, itemAndPrice) {
     for ( let i = 0; i < debtors.length; i++) {
       if ( debtors[i].name === name ) {
@@ -121,13 +120,13 @@ class Output extends React.Component {
         for ( let j = 0; j < items.length; j++ ) {
           if ( items[j].itemName === itemAndPrice.itemName ) {
             items.splice(j, 1);
-          } 
+          }
         }
       }
     }
   }
 
-  helperSetState () {
+  helperSetState() {
     let debtors = this.state.debtors;
     for ( let i = 0; i < debtors.length; i++ ) {
       if ( names.indexOf(debtors[i].name) === -1 ) {
@@ -168,12 +167,12 @@ class Output extends React.Component {
     this.splitterInfo(debtors);
   }
 
-  splitterInfo (debtors) {
+  splitterInfo(debtors) {
     let name = this.props.splitter.name.split(' ')[0];
     let phone = this.props.splitter.phone;
     let splitter = null; 
-    for ( let i = 0; i < debtors.length; i++) {
-      if ( name === debtors[i].name ) {
+    for (let i = 0; i < debtors.length; i++) {
+      if (name === debtors[i].name) {
         splitter = debtors.splice(i, 1);
       }
     }

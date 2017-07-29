@@ -122,4 +122,13 @@ describe('actions', () => {
     expect(actions.setSplitterTip(tip)).toEqual(expectedAction);
   });
 
+  it('should create an action to send splitter', () => {
+    const splitter = {test: 'test'};
+    const expectedAction = {
+      type: 'SET_SPLITTER',
+      payload: splitter
+    };
+    expect(actions.setSplitter(splitter)).toEqual(expectedAction);
+  });
+
 });

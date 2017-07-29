@@ -7,24 +7,18 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-
-
-
 import { connect } from 'react-redux';
+
 import { setFriendsInfo } from '../actions/outputActions.js';
 
 const mapStateToProps = state => {
   return {
-    debtors: state.output.debtors,
     friendsInfo: state.output.friendsInfo
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    // setDebtors: (input) => dispatch(
-    //   setDebtors(input)
-    // ),
     setFriendsInfo: (input) => dispatch(
       setFriendsInfo(input)
     ),
@@ -74,7 +68,6 @@ export class AddFriends extends React.Component {
         <div className="col-xs-12">
           <div className="row">
             <div className="col-xs-6">
-              <h4>Friends List</h4>
             </div>
             <div className="col-xs-6">
               <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.open.bind(this)}>

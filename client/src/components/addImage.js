@@ -69,12 +69,10 @@ class AddImage extends React.Component {
             {image}
           </div>
           <br></br>
-          <hr />
-          <div className="row">
-            <div className="col-xs-12 text-center">
-              <input type="submit" className="btn btn-primary" />
-            </div>
-          </div>
+          <footer>
+            <hr className="footerHR"/>
+            <input type="submit" className="btn btn-primary" />
+          </footer>
         </div>
       </div>
     );

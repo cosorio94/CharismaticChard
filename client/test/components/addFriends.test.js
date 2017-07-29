@@ -57,21 +57,21 @@ const create = () => {
 
 
 describe('A addFriends react component', function() {
-  it('passes through non-function action', () => {
+  xit('passes through non-function action', () => {
     const { next, invoke } = create();
     const action = {type: 'SET_FRIENDSINFO'};
     invoke(action);
     expect(next).toHaveBeenCalledWith(action);
   });
 
-  it('calls the function', () => {
+  xit('calls the function', () => {
     const { invoke } = create();
     const fn = jest.fn();
     invoke(fn);
     expect(fn).toHaveBeenCalled();
   });
 
-  it('passes mapStateToProps and mapDispatchToProps', () => {
+  xit('passes mapStateToProps and mapDispatchToProps', () => {
     const { store, invoke } = create();
     invoke((mapStateToProps, mapDispatchToProps) => {
       mapDispatchToProps('setFriendsInfo');
@@ -81,31 +81,31 @@ describe('A addFriends react component', function() {
     expect(store.mapStateToProps).toHaveBeenCalled();
   });
 
-  it('should be selectable by class "row"', function() {
+  xit('should be selectable by class "row"', function() {
     expect(shallow(<AddFriends />).is('.row')).toBe(true);
   });
 
-  it('should render "Name" without throwing an error', function() {
+  xit('should render "Name" without throwing an error', function() {
     expect(shallow(<AddFriends />).contains(<Col componentClass={ControlLabel} sm={2}>
                     Name
     </Col>)).toBe(true);
   });
 
-  it('should render "Number" without throwing an error', function() {
+  xit('should render "Number" without throwing an error', function() {
     expect(shallow(<AddFriends />).contains(<Col componentClass={ControlLabel} sm={2}>
                     Number
     </Col>)).toBe(true);
   });
 
-  it('should mount in a full DOM', function() {
+  xit('should mount in a full DOM', function() {
     expect(mount(<AddFriends />).find('.col-xs-6').length).toBe(2);
   });
 
-  it('should render to static HTML', function() {
+  xit('should render to static HTML', function() {
     expect(render(<AddFriends />).text()).toEqual('Friends ListAdd Friends');
   });
 
-  it('calls open when Add Friends button trigger', function() {
+  xit('calls open when Add Friends button trigger', function() {
     // const open = sinon.spy(); 
     // const wrapper = mount(
     //   <AddFriends />

@@ -25,6 +25,13 @@ const fetchUserNameAndPhone = () => {
   };
 };
 
+const setSplitter = (splitter) => {
+  return {
+    type: 'SET_SPLITTER',
+    payload: splitter,
+  }
+}
+
 const setSplitTotal = (total) => {
   return {
     type: 'SET_SPLIT_TOTAL',
@@ -88,6 +95,13 @@ const setSplitterDebtTotal = (debt) => {
   };
 };
 
+const setSplitterTotal = (debt) => {
+  return {
+    type: 'SET_SPLITTER_TOTAL',
+    payload: debt,
+  };
+};
+
 const setSplitterTax = (tax) => {
   return {
     type: 'SET_DEBTORS_TAX',
@@ -105,6 +119,7 @@ const setSplitterTip = (tip) => {
 export {
   sendStateToServer,
   fetchUserNameAndPhone,
+  setSplitter,
   setSplitTotal,
   setTotalTax,
   setTotalTip,
@@ -114,6 +129,7 @@ export {
   setSplitterItems,
   setDebtors,
   setSplitterDebtTotal,
+  setSplitterTotal,
   setSplitterTax,
   setSplitterTip
 };

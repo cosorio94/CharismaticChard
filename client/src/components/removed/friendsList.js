@@ -28,7 +28,7 @@ export const FriendsList = ({friendsInfo}) => {
         <div className="row">
           <div className="col-xs-12">
             { 
-              friendsInfo.map( (friendInfo, index) => ( 
+              friendsInfo.map((friendInfo, index) => ( 
                 <div className="row" key={index}>
                   <div className="col-xs-6">{friendInfo.friendName}</div>
                   <div className="col-xs-6">{friendInfo.friendNumber}</div>

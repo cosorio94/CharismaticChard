@@ -14,7 +14,8 @@ describe('actions', () => {
       items: null,
       debtTotal: null,
       tax: null,
-      tip: null
+      tip: null,
+      total: null,
     },
     debtors: []
   };
@@ -40,7 +41,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -64,7 +66,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -88,7 +91,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -112,7 +116,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -136,7 +141,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -160,7 +166,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -184,7 +191,8 @@ describe('actions', () => {
             items: [{test: 'item'}],
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -208,7 +216,8 @@ describe('actions', () => {
             items: null,
             debtTotal: 15,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -232,7 +241,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: 15,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: []
         }
@@ -256,7 +266,8 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: 15
+            tip: 15,
+            total: null,
           },
           debtors: []
         }
@@ -280,11 +291,45 @@ describe('actions', () => {
             items: null,
             debtTotal: null,
             tax: null,
-            tip: null
+            tip: null,
+            total: null,
           },
           debtors: [{debtor: 'test'}]
         }
       );
   });
 
+  it('should update the splitter', () => {
+    expect(
+      reducer(
+        intialState,
+        {type: 'SET_SPLITTER', payload: {
+            name: 'test',
+            phone: 'test',
+            items: null,
+            debtTotal: null,
+            tax: null,
+            tip: null,
+            total: null,
+          }
+        }
+      )).toEqual(
+        {
+          splitTotal: 0,
+          totalTax: 0,
+          totalTip: 0,
+          splitName: null,
+          splitter: {
+            name: 'test',
+            phone: 'test',
+            items: null,
+            debtTotal: null,
+            tax: null,
+            tip: null,
+            total: null,
+          },
+          debtors: []
+        }
+      );
+  });
 });
