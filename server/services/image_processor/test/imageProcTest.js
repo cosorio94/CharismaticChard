@@ -53,6 +53,7 @@ module.exports = (req, res) => {
     .then(data => {
       // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
       console.log('text: ', getAllText(data));
+      console.log('bounds!: ', data[0].textAnnotations[0].boundingPoly.vertices);
       // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
       // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
       // console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);

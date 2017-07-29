@@ -1,6 +1,5 @@
 module.exports = {
 
-
   getWordFromSymbols: (word) => {
     return {
       detectedBreak: word.property.detectedBreak,
@@ -90,6 +89,10 @@ module.exports = {
 
   getAllText: (data) => {
     return data[0].fullTextAnnotation.text;
+  },
+
+  getImageBounds: (data) => {
+    return data[0].textAnnotations[0].boundingPoly.vertices;
   }
 
 };
