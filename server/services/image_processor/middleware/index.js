@@ -1,0 +1,1 @@
+module.exports.deconstructImage = require('./deconstructImageResponse.js');

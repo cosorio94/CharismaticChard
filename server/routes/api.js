@@ -54,4 +54,9 @@ router.route('/test')
     res.redirect('/api/image_processor');
   });
 
+router.route('/check-user/:email')
+  .get((req, res) => {
+    res.redirect(`/api/data_allocator/check-user/${req.params.email}`);
+  });
+
 module.exports = router;

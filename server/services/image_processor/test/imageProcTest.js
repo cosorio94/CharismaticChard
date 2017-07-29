@@ -1,27 +1,7 @@
-// var gm = require('gm');
- 
-// customPreprocessor = function(file_or_stream, outfile, cb) {
-//   gm(file_or_stream)
-//     .resize(400, 200)
-//     .in('-level', '25%,75%')
-//     .write(outfile, function(error) {
-//       cb(error, outfile);
-//     });
-// };
+var filterImage = require('../helperFunctions/filterImageResponse.js');
+var deconstructImage = require('../helperFunctions/deconstructImage.js');
 
-// const scanner = require('receipt-scanner');
- 
-// module.exports = () => {
-//   scanner('/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG')
-//     .imagePreprocessor(['opencv', { verbose: true, removeNoise: true }])
-//     .parse(function(err, results) {
-//       if (err) {
-//         return console.error(err);
-//       } else {
-//         console.log(results);
-//       }
-//     });
-// };
+
 var receipt1 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG';
 var receipt2 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt2.jpeg';
 var receipt3 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt3.jpeg';
@@ -48,11 +28,23 @@ var receipt = {
   }
 };
 
+var bounds = {
+  topLeft: {
+    x: 1600,
+    y: 0
+  },
+  bottomRight: {
+    x: 2000,
+    y: 3100
+  }
+};
+
 module.exports = (req, res) => {
   return vision.documentTextDetection(receipt)
     .then(data => {
       // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
       console.log('text: ', getAllText(data));
+      console.log('bounds!: ', data[0].textAnnotations[0].boundingPoly.vertices);
       // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
       // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
       // console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
@@ -61,7 +53,9 @@ module.exports = (req, res) => {
       // // console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]));
       console.log('!!!!blocks: ', getBlocksFromImage(data));
       // console.log('!!!!words: ', getAllWordsFromImage(data));
-      return getAllWordsFromImage(data);
+      // return getAllWordsFromImage(data);
+      // return getTextFromWords(filterImage.filterWordsWithinBounds(getAllWordsFromImage(data), bounds));
+      return deconstructImage.getTextLines(data);
     })
     .then(data => {
       return res.send(data);
@@ -158,6 +152,12 @@ const getBlocksFromImage = (data) => {
   return getAllBlocks(data).map(block => {
     return formatBlock(block);
   });
+};
+
+const getTextFromWords = (words) => {
+  return words.map(word => {
+    return word.text;
+  }).join(' ');
 };
 
 const getAllText = (data) => {
