@@ -9,6 +9,8 @@ module.exports = {
   },
 
   getLineWithWords: (words, lines) => {
+    console.log('lines: ', lines);
+    console.log('getMostSimilarLineIndex: ', getMostSimilarLineIndex(words, lines));
     return lines[getMostSimilarLineIndex(words, lines)];
   }
 
@@ -33,9 +35,6 @@ const avgPosition = (word) => {
 
 const getLineCountForWords = (words, line) => {
   return words.reduce((acc, word) => {
-    // if (line.words.includes(word.text)) {
-    // return ++acc;
-    // }
     return line.words.includes(word.text) ? ++acc : acc;
   }, 0);
 };
@@ -54,9 +53,9 @@ const getLinesWordSimilarityCount = (words, lines) => {
 
 const getMostSimilarLineIndex = (words, lines) => {
   return lines.reduce((acc, line, index) => {
-    var lineCount = getLineCountForWords(line);
+    var lineCount = getLineCountForWords(words, line);
     return lineCount > acc[1] ? [index, lineCount] : acc;
-  });
+  }, [0, 0])[0];
 };
 
 
@@ -107,6 +106,8 @@ const getMostSimilarLineIndex = (words, lines) => {
 //     "y": 723
 //   }
 // ];
+
+
 
 // const findOppositeVertex = (firstVertexIndex, word) => {
 //   var oppositeVertex = {};
