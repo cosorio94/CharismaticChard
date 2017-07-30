@@ -51,6 +51,11 @@ router.route('/item-history')
 
 router.route('/test')
   .get((req, res) => {
+    res.redirect('/api/image_processor/test');
+  });
+
+router.route('/analyze-image')
+  .get((req, res) => {
     res.redirect('/api/image_processor');
   });
 

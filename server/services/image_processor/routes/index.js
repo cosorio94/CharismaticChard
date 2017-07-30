@@ -5,6 +5,8 @@ const scanner = require('../test/imageProcTest.js');
 const router = express.Router();
 
 router.route('/')
+
+router.route('/test')
   .get(scanner);
 // .get((req, res) => {
 //   scanner()
