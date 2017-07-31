@@ -7,6 +7,10 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import AddFriendsByUserButton from './addFriendsByUser.js';
+
+
+
 import { connect } from 'react-redux';
 
 import { setFriendsInfo } from '../actions/outputActions.js';
@@ -43,7 +47,7 @@ export class AddFriends extends React.Component {
       friendName: this.state.name,
       friendNumber: this.state.number
     };
-    this.props.setFriendsInfo(friendInformation); 
+    this.props.setFriendsInfo(friendInformation);
   }
 
   open() {
@@ -103,6 +107,7 @@ export class AddFriends extends React.Component {
               <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
             </Modal.Footer>
           </Modal>
+          <AddFriendsByUserButton />
         </div>
       </div>
     );

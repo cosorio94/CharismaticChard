@@ -3,7 +3,8 @@ import { shallow, mount, render } from 'enzyme';
 import reducer from '../../src/reducers/outputReducer.js';
 
 describe('actions', () => {
-  const intialState =  {
+  const intialState = {
+    checkUser: {},
     debtors: null,
     friendsInfo: []
   };
@@ -17,12 +18,11 @@ describe('actions', () => {
       reducer(
         intialState,
         {type: 'SET_DEBTORS', payload: [{debtor: 'test'}]}
-      )).toEqual(
-        {
-          debtors: [{debtor: 'test'}],
-          friendsInfo: []
-        }
-      );
+      )).toEqual({
+      checkUser: {},
+      debtors: [{debtor: 'test'}],
+      friendsInfo: []
+    });
   });
 
   it('should update friends info array', () => {
@@ -30,11 +30,10 @@ describe('actions', () => {
       reducer(
         intialState,
         {type: 'SET_FRIENDSINFO', payload: {debtor: 'test'}}
-      )).toEqual(
-        {
-          debtors: null,
-          friendsInfo: [{debtor: 'test'}]
-        }
-      );
+      )).toEqual({
+      checkUser: {},
+      debtors: null,
+      friendsInfo: [{debtor: 'test'}]
+    });
   });
 });

@@ -9,7 +9,7 @@ html, body {
 }
 
 h2 {
-  font-family: 'Comfortaa';  
+  font-family: 'Comfortaa';
 }
 
 #root {
@@ -91,6 +91,7 @@ h2 {
     background-color: transparent;
     font-family: 'Comfortaa';
     color: black;
+    margin-bottom: 0;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
@@ -111,7 +112,7 @@ h2 {
 
 .footerHR {
     margin: 0;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
 
 .homeWelcome {
@@ -230,7 +231,7 @@ footer {
 img.displayed {
     display: block;
     margin-left: auto;
-    margin-right: auto 
+    margin-right: auto
 }
 
 .login-email-info {
@@ -264,7 +265,7 @@ img.displayed {
 }
 
 .other-signup{
-    width: 150px; 
+    width: 150px;
     background-color: #1398AD;
 }
 
@@ -303,7 +304,7 @@ img.displayed {
 }
 
 .profile-line{
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     width: 90%;
 }
 
@@ -436,4 +437,3 @@ footer {
 .uploaded-image{
     margin-bottom: 30px;
 }
-

@@ -4,8 +4,8 @@ import Sortable from 'sortablejs';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import AddFriends from './addFriends.js';
-import { 
-  setDebtors, 
+import {
+  setDebtors,
   setSplitter,
   setSplitTotal,
   setTotalTax,
@@ -60,14 +60,14 @@ class DragAndDrop extends React.Component {
     let debtorTax = this.props.tax * percent;
     debtorTax = Number(debtorTax.toFixed(2));
     return debtorTax;
-  };
-  
+  }
+
   splitTip(debtorTotal) {
     let percent = debtorTotal / (this.props.total - this.props.tax);
     let debtorTip = this.props.tip * percent;
     debtorTip = Number(debtorTip.toFixed(2));
     return debtorTip;
-  };
+  }
 
   calculateTotal(items) {
     let total = 0;
@@ -75,15 +75,16 @@ class DragAndDrop extends React.Component {
       total += Number(item.price);
     });
     return total;
-  };
+  }
 
   grabListData() {
     var debtors = [];
     $('.completedList').each((index, list) => {
       var debtor = {};
       var nameAndPhone = list.id.split(' ');
-      debtor.name = nameAndPhone[0];
-      debtor.phone = nameAndPhone[1];
+      debtor.name = this.props.friendsInfo[index].friendName;
+      debtor.phone = this.props.friendsInfo[index].friendNumber;
+      debtor.email = this.props.friendsInfo[index].friendEmail || null;
       debtor.items = [];
       if (list.children.length > 0) {
         $.each(list.children, (name, obj) => {
