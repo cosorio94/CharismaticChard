@@ -5,6 +5,9 @@ const scanner = require('../test/imageProcTest.js');
 const router = express.Router();
 
 router.route('/')
+  .post(middleware.deconstructImage)
+  .post(middleware.filterImageResponse)
+  .post(middleware.deconstructLines);
 
 router.route('/test')
   .get(scanner);

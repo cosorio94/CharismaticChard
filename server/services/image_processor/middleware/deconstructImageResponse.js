@@ -6,18 +6,30 @@ const vision = require('@google-cloud/vision')({
   credentials: config
 });
 
+var receipt1 = '/Users/carlososoriov/Documents/Hack\ Reactor/thesis/CharismaticChard/server/services/image_processor/test/receipt1.JPG';
+var receipt = {
+  source: {
+    filename: receipt1
+  }
+};
+
 module.exports = (req, res, next) => {
-  return vision.documentTextDetection(req.body.img)
+  return vision.documentTextDetection(formatImage(req.body.imageDataInfo))
     .then(data => {
+      console.log('data: ',  data);
       req.words = helperFunctions.deconstructImage.getAllWordsFromImage(data);
       req.lines = helperFunctions.deconstructImage.getTextLines(data);
       return next();
+      // return res.send(req.lines);
     })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
+    .catch((err) => {
+      console.log('Error: ', err);
+      return res.status(500).send(err);
     });
-}
+};
 
+const formatImage = (imageDataInfo) => {
+  return {
+    content: imageDataInfo
+  };
+};

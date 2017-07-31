@@ -55,8 +55,8 @@ router.route('/test')
   });
 
 router.route('/analyze-image')
-  .get((req, res) => {
-    res.redirect('/api/image_processor');
+  .post((req, res) => {
+    res.redirect(307, '/api/image_processor');
   });
 
 router.route('/check-user/:email')

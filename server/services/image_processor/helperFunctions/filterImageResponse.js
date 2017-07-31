@@ -1,24 +1,25 @@
 const deconstructImage = require('./deconstructImage.js');
 
-module.exports = {
+module.exports = (words, bounds, lines) => {
+  var filteredWords = filterWordsWithinBounds(words, bounds);
+  return getLineWithWords(filteredWords, lines);
+};
 
-  filterWordsWithinBounds: (words, bounds) => {
-    return words.filter(word => {
-      return isWithinBounds(word, bounds);
-    });
-  },
+const filterWordsWithinBounds = (words, bounds) => {
+  return words.filter(word => {
+    return isWithinBounds(word, bounds);
+  });
+};
 
-  getLineWithWords: (words, lines) => {
-    console.log('lines: ', lines);
-    console.log('getMostSimilarLineIndex: ', getMostSimilarLineIndex(words, lines));
-    return lines[getMostSimilarLineIndex(words, lines)];
-  }
-
+const getLineWithWords = (words, lines) => {
+  // console.log('lines: ', lines);
+  // console.log('getMostSimilarLineIndex: ', getMostSimilarLineIndex(words, lines));
+  return lines[getMostSimilarLineIndex(words, lines)];
 };
 
 const isWithinBounds = (word, bounds) => {
   var avg = avgPosition(word);
-  return (avg.x <= bounds.bottomRight.x && avg.x >= bounds.topLeft.x && avg.y <= bounds.bottomRight.y && avg.y >= bounds.topLeft.y);
+  return (avg.x <= bounds.bottomRight.bottomX && avg.x >= bounds.topLeft.topX && avg.y <= bounds.bottomRight.bottomY && avg.y >= bounds.topLeft.topY);
 };
 
 const avgPosition = (word) => {
