@@ -16,11 +16,9 @@ var receipt = {
 module.exports = (req, res, next) => {
   return vision.documentTextDetection(formatImage(req.body.imageDataInfo))
     .then(data => {
-      console.log('data: ',  data);
       req.words = helperFunctions.deconstructImage.getAllWordsFromImage(data);
       req.lines = helperFunctions.deconstructImage.getTextLines(data);
       return next();
-      // return res.send(req.lines);
     })
     .catch((err) => {
       console.log('Error: ', err);

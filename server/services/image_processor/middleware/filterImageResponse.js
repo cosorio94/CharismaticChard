@@ -5,5 +5,4 @@ module.exports = (req, res, next) => {
     return helperFunctions.filterImageResponse(req.words, itemBounds, req.lines);
   });
   return next();
-  // return res.send(req.itemLines);
 };

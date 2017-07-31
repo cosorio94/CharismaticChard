@@ -5,6 +5,7 @@ config/staging.json
 config/test.json
 server/services/twilio/config.js
 .env
+server/services/image_processor/test
 
 # OS X
 .DS_Store

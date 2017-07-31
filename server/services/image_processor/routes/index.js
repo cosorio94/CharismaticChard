@@ -9,21 +9,4 @@ router.route('/')
   .post(middleware.filterImageResponse)
   .post(middleware.deconstructLines);
 
-router.route('/test')
-  .get(scanner);
-// .get((req, res) => {
-//   scanner()
-//     .then(data => {
-//       console.log('hey')
-//       res.send(data);
-//     })
-//     .error(err => {
-//       console.log('ohhh')
-//       res.status(500).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// });
-
 module.exports = router;

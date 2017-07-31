@@ -34,7 +34,6 @@ router.route('/profile-info')
 
 router.route('/update-profile')
   .post(middleware.validateForm.validateUpdate)
-  // .post(middleware.phoneParser.parseUserPhoneNumber)
   .post((req, res) => {
     res.redirect(307, '/api/data_allocator/update-profile');
   });
