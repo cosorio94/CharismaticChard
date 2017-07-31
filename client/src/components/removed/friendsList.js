@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
 import Table from 'react-bootstrap/lib/Table';
 import { connect } from 'react-redux';
-import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
+// import { setFriendsInfo, setDebtors } from '../actions/outputActions.js';
 
 const mapStateToProps = state => {
   return {
