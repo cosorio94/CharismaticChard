@@ -34,7 +34,6 @@ router.route('/profile-info')
 
 router.route('/update-profile')
   .post(middleware.validateForm.validateUpdate)
-  // .post(middleware.phoneParser.parseUserPhoneNumber)
   .post((req, res) => {
     res.redirect(307, '/api/data_allocator/update-profile');
   });
@@ -51,7 +50,12 @@ router.route('/item-history')
 
 router.route('/test')
   .get((req, res) => {
-    res.redirect('/api/image_processor');
+    res.redirect('/api/image_processor/test');
+  });
+
+router.route('/analyze-image')
+  .post((req, res) => {
+    res.redirect(307, '/api/image_processor');
   });
 
 router.route('/check-user/:email')

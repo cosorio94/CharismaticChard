@@ -12,8 +12,8 @@ const app = express();
 
 app.use(middleware.morgan('dev'));
 app.use(middleware.cookieParser());
-app.use(middleware.bodyParser.urlencoded({extended: false}));
-app.use(middleware.bodyParser.json());
+app.use(middleware.bodyParser.json({limit: '500mb'}));
+app.use(middleware.bodyParser.urlencoded({limit: '500mb', extended: false}));
 app.use(middleware.expressValidator());
 
 app.set('views', path.join(__dirname, 'views'));

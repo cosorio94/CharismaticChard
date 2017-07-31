@@ -98,8 +98,8 @@ class AddImage extends React.Component {
 
 
   imageOnLoad ({ target: img }) {
-    let imageData = this.getBase64Image(img); 
-    this.props.imageDataInfo(imageData);
+    // let imageData = this.getBase64Image(img); 
+    this.props.imageDataInfo(img.src.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''));
     this.setState({
       dimensions: {
         height: img.offsetHeight,

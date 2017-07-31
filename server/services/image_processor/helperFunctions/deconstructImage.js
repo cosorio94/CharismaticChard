@@ -28,7 +28,7 @@ module.exports = {
     var wordData = [];
     module.exports.getAllParagraphs(data).forEach(paragraph => {
       paragraph.words.forEach(word => {
-        wordData.push(getWordFromSymbols(word));
+        wordData.push(module.exports.getWordFromSymbols(word));
       });
     });
     return wordData;

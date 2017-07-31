@@ -39,23 +39,51 @@ var bounds = {
   }
 };
 
+var words = [
+  {
+    text: '1'
+  },
+  {
+    text: '2'
+  },
+  {
+    text: 'pcs'
+  },
+  {
+    text: 'Spring'
+  },
+  {
+    text: 'Roll'
+  },
+  {
+    text: '5'
+  },
+  {
+    text: '75',
+  },
+  {
+    text: 'Mango'
+  },
+];
+
 module.exports = (req, res) => {
   return vision.documentTextDetection(receipt)
     .then(data => {
       // console.log('data: ', data[0].textAnnotations[1].boundingPoly.vertices);
-      console.log('text: ', getAllText(data));
-      console.log('bounds!: ', data[0].textAnnotations[0].boundingPoly.vertices);
+      // console.log('text: ', getAllText(data));
+      // console.log('bounds!: ', data[0].textAnnotations[0].boundingPoly.vertices);
       // console.log('prop: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4]);
       // console.log('blocks! :', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[4].symbols[0].text);
       // console.log('!!blocks: ', data[0].fullTextAnnotation.pages[0].blocks[4]);
       // console.log('!!paragraphs: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0]);
       // console.log('!!words: ', data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]);
       // // console.log('!!!!word: ', getWordFromSymbols(data[0].fullTextAnnotation.pages[0].blocks[4].paragraphs[0].words[5]));
-      console.log('!!!!blocks: ', getBlocksFromImage(data));
+      // console.log('!!!!blocks: ', getBlocksFromImage(data));
       // console.log('!!!!words: ', getAllWordsFromImage(data));
       // return getAllWordsFromImage(data);
       // return getTextFromWords(filterImage.filterWordsWithinBounds(getAllWordsFromImage(data), bounds));
-      return deconstructImage.getTextLines(data);
+      // return deconstructImage.getTextLines(data);
+      return filterImage.getLineWithWords(words, deconstructImage.getTextLines(data));
     })
     .then(data => {
       return res.send(data);
