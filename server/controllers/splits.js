@@ -17,9 +17,7 @@ module.exports = {
 
   saveSplit: (req, res) => {
     // find with first name as well (or with user id)
-    // return models.Profile.findOne({ phone: req.body.splitter.phone })
     return models.Profile.findOne({ id: req.user.id })
-      // .then(Controller.resolveErrors)
       .then(profile => {
         req.split['splitter_id'] = profile.get('id');
         return models.Split.create(req.split);
@@ -37,6 +35,17 @@ module.exports = {
       .catch((err) => {
         console.log(err);
       });
+  },
+
+
+
+  getMultipleSplits: (splitIds) => {
+    return Promise.map(splitIds, (id) => {
+      return module.exports.getSplitItems(id)
+        .then(result => {
+          return result.at(0).toJSON();
+        });
+    });
   },
 
   getMultipleSplitItems: (splits) => {
@@ -62,16 +71,29 @@ module.exports = {
       });
   },
 
-  getUsersSplits: (req, res) => {
+  getUsersOwnedSplits: (req, res) => {
     // returns an array of splits with all the items that belong to each split.
     return module.exports.getUsersItems(req, res)
       .then(result => {
-        // req.userItems = result;
-        splits = result.at(0).related('splits').toJSON();
+        var splits = result.at(0).related('splits').toJSON();
         return module.exports.getMultipleSplitItems(splits);
       });
+  },
+
+  getUsersParticipatedSplits: (req, res) => {
+    return module.exports.getUsersItems(req, res)
+      .then(result => {
+        var items = result.at(0).related('items').toJSON();
+        var splitIds = items.map((item, index, splitIds) => {
+          if (!splitIds.includes(item['split_id'])) {
+            return item['split_id'];
+          }
+        });
+        return module.exports.getMultipleSplits(splitIds);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
-
-
 
 };

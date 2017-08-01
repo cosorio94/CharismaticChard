@@ -4,8 +4,9 @@ const Promise = require('bluebird');
 
 module.exports = {
   splitHistory: (req, res, next) => {
-    return controller.Splits.getUsersSplits(req, res)
+    return controller.Splits.getUsersParticipatedSplits(req, res)
       .then(splits => {
+        console.log('results: ', splits);
         res.send(splits);
       })
       .error(err => {
