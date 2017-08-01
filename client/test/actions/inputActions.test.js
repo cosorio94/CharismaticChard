@@ -3,23 +3,6 @@ import { shallow, mount, render } from 'enzyme';
 import * as actions from '../../src/actions/inputActions.js';
 
 describe('actions', () => {
-  it('should create an action to send iterator', () => {
-    const item = {food: 'tuna'};
-    const expectedAction = {
-      type: 'SET_ITERATOR',
-      payload: item
-    };
-    expect(actions.setIterator(item)).toEqual(expectedAction);
-  });
-
-  it('should create an action to send last iterator', () => {
-    const last = [1, 2, 3];
-    const expectedAction = {
-      type: 'REMOVE_ITERATOR',
-      payload: last
-    };
-    expect(actions.removeIterator(last)).toEqual(expectedAction);
-  });
 
   it('should create an action to send items', () => {
     const items = {test: 'item'};

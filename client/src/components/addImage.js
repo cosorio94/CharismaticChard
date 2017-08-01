@@ -5,9 +5,9 @@ import Button from 'react-bootstrap/lib/Button';
 import Rnd from 'react-rnd';
 import { imageDataInfo, 
   imageItems, 
-  sendItemImageToServer, 
   imageTax,
   imageTotal } from '../actions/imageAction.js';
+import { sendItemImageToServer } from '../actions/inputActions.js';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -60,9 +60,9 @@ class AddImage extends React.Component {
     this.selectItemBox = this.selectItemBox.bind(this);
     this.selectTaxBox = this.selectTaxBox.bind(this);
     this.selectTotalBox = this.selectTotalBox.bind(this);
-    this.setImageItemPositionsToRedux = this.setImageItemPositionsToRedux.bind(this);
-    this.setImageTaxPositionsToRedux = this.setImageTaxPositionsToRedux.bind(this);
-    this.setImageTotalPositionsToRedux = this.setImageTotalPositionsToRedux.bind(this);
+    this.setImagePositionsToRedux = this.setImagePositionsToRedux.bind(this);
+    // this.setImageTaxPositionsToRedux = this.setImageTaxPositionsToRedux.bind(this);
+    // this.setImageTotalPositionsToRedux = this.setImageTotalPositionsToRedux.bind(this);
     this.imagePosition = this.imagePosition.bind(this);
   }
 
@@ -173,29 +173,36 @@ class AddImage extends React.Component {
     });
   }
 
-  setImageItemPositionsToRedux () {
-    this.props.imageItems(this.state.itemPosition); 
-    this.setState({
-      isSelectItemButtonClick: true
-    });
+  setImagePositionsToRedux () {
+    if (this.state.selectBox === 'select-itemBox') {
+      this.props.imageItems(this.state.itemPosition); 
+      this.setState({
+        isSelectItemButtonClick: true
+      });
+    } else if (this.state.selectBox === 'select-taxBox') {
+      this.props.imageTax(this.state.taxPosition); 
+      this.setState({
+        isSelectTaxButtonClick: true,
+      });
+    } else if (this.state.selectBox === 'select-totalBox') {
+      this.props.imageTotal(this.state.totalPosition);
+      this.setState({
+        isSelectTotalButtonClick: true,
+      });
+    }
   }
 
-  setImageTaxPositionsToRedux () {
-    this.props.imageTax(this.state.taxPosition);
-    this.setState({
-      isSelectTaxButtonClick: true,
-    });
-  }
+  // setImageTaxPositionsToRedux () {
+  //   this.props.imageTax(this.state.taxPosition);
+ 
+  // }
 
-  setImageTotalPositionsToRedux () {
-    this.props.imageTotal(this.state.totalPosition);
-    this.setState({
-      isSelectTotalButtonClick: true,
-    });
-  }
+  // setImageTotalPositionsToRedux () {
+  //   this.props.imageTotal(this.state.totalPosition);
+ 
+  // }
 
   sendImageDataToServer () {
-    console.log('thisimageDATAAA', this.props.imageData);
     this.props.sendItemImageToServer(this.props.imageData);
   }
 
@@ -250,14 +257,8 @@ class AddImage extends React.Component {
           </div>
           <div className="select-imageSaved" > 
             <div className="select-divBox text-center">
-              <Button onClick={this.setImageItemPositionsToRedux}> 
-                Save Item
-              </Button>
-              <Button onClick={this.setImageTaxPositionsToRedux}>
-                Save Tax
-              </Button>
-              <Button onClick={this.setImageTotalPositionsToRedux}>
-                Save Total
+              <Button onClick={this.setImagePositionsToRedux}> 
+                Save
               </Button>
             </div>
             { this.state.isSelectItemButtonClick ? <div>{this.props.savedImages.length} items have been saved!</div> : null }
@@ -283,7 +284,7 @@ class AddImage extends React.Component {
           <br></br>
           <footer>
             <hr className="footerHR"/>
-            <Link className="btn btn-primary" to="/imageResults" onClick={this.sendImageDataToServer}>Submit</Link>
+            <Link className="btn btn-primary" to="/input" onClick={this.sendImageDataToServer}>Submit</Link>
           </footer>
         </div>
       </div>

@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    items: state.input.items,
-    tax: state.input.tax,
-    total: state.input.total,
-    tip: state.input.tip,
+    // items: state.input.items,
+    // tax: state.input.tax,
+    // total: state.input.total,
+    // tip: state.input.tip,
   };
 };
 
@@ -20,35 +20,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ImageItemList = ({items, tax, total, tip, collectSplitItemInfo}) => {
+const ImageItemList = () => {
   return (
     <div className="row">
-      <div className="col-xs-12">
-        <div className="row">
-          <div className="col-xs-4">Item</div>
-          <div className="col-xs-4">Price</div>
-          <div className="col-xs-4">Person</div>
-        </div>
-        <hr />
-    
-        <hr />
-        <div className="row">
-          <div className="col-xs-4">tip</div>
-          <div className="col-xs-4">{tip}</div>
-          <div className="col-xs-4"></div>
-        </div>
-        <div className="row">
-          <div className="col-xs-4">tax</div>
-          <div className="col-xs-4">{tax}</div>
-          <div className="col-xs-4"></div>
-        </div>
-        <div className="row">
-          <div className="col-xs-4">total</div>
-          <div className="col-xs-4">{total}</div>
-          <div className="col-xs-4"></div>
-        </div>
-        <hr />
-      </div>
+
     </div>
   );
 };

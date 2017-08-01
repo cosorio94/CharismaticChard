@@ -1,16 +1,19 @@
-const setIterator = (item) => {
-  return {
-    type: 'SET_ITERATOR',
-    payload: item,
+import axios from 'axios';
+
+const sendItemImageToServer = (items) => {
+  return (dispatch) => { 
+    axios.post('/api/analyze-image', items)
+      .then(res => {
+        dispatch({type: 'SET_ITEMS', payload: res.data.items});
+        dispatch({type: 'SET_TAX', payload: res.data.tax.price});
+        dispatch({type: 'SET_TOTAL', payload: res.data.total.price});
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 };
 
-const removeIterator = (last) => {
-  return {
-    type: 'REMOVE_ITERATOR',
-    payload: last,
-  };
-};
 
 const setItems = (item) => {
   return {
@@ -41,10 +44,9 @@ const setTip = (tip) => {
 };
 
 export {
-  setIterator,
-  removeIterator,
   setItems,
   setTax,
   setTotal,
-  setTip
+  setTip,
+  sendItemImageToServer
 };
