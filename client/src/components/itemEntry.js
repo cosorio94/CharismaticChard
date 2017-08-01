@@ -41,8 +41,6 @@ class ItemEntry extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-xs-4">{this.props.item.item}</div>
-        <div className="col-xs-4">{this.props.item.price}</div>
         <div className="col-xs-4">
           <DropdownButton
             bsStyle="success"
@@ -50,23 +48,7 @@ class ItemEntry extends React.Component {
             id="split-button-basic-Success"
             className="dropdownBtn"
           >
-            <MenuItem
-              onClick={this.changeTitle.bind(this)}
-              title={this.props.splitter.name.split(' ')[0]}
-            >
-              {this.props.splitter.name.split(' ')[0]}
-            </MenuItem>
-            {
-              this.props.friendsInfo.map((friendInfo, index) => ( 
-                <MenuItem 
-                  key={index} 
-                  onClick={this.changeTitle.bind(this)} 
-                  title={friendInfo.friendName}
-                >
-                  {friendInfo.friendName}
-                </MenuItem>
-              ))
-            }
+            
           </DropdownButton>
         </div>
       </div>
@@ -75,3 +57,23 @@ class ItemEntry extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemEntry);
+
+
+
+// <MenuItem
+//               onClick={this.changeTitle.bind(this)}
+//               title={this.props.splitter.name.split(' ')[0]}
+//             >
+//               {this.props.splitter.name.split(' ')[0]}
+//             </MenuItem>
+//             {
+//               this.props.friendsInfo.map((friendInfo, index) => ( 
+//                 <MenuItem 
+//                   key={index} 
+//                   onClick={this.changeTitle.bind(this)} 
+//                   title={friendInfo.friendName}
+//                 >
+//                   {friendInfo.friendName}
+//                 </MenuItem>
+//               ))
+//             }

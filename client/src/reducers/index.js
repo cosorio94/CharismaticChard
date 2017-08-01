@@ -6,6 +6,7 @@ import final from './finalReducer.js';
 import history from './historyReducer.js';
 import image from './imageReducer.js';
 
+
 const reducer = combineReducers({
   input,
   output,

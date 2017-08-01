@@ -48,7 +48,6 @@ const splitterItemHistory = (input) => {
 };
 
 
-
 export {
   history,
   fetchSplitterHistory,

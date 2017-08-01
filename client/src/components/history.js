@@ -12,6 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchSplitterHistory: (input) => dispatch(
+      fetchSplitterHistory(input)
+    ),
   };
 };
 

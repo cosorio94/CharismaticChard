@@ -19,6 +19,7 @@ import History from './components/history.js';
 import HistoryItem from './components/historyItem.js';
 import Footer from './components/footer.js';
 import DragAndDrop from './components/dragAndDrop.js';
+import ImageResults from './components/imageResults.js';
 
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
@@ -26,9 +27,7 @@ import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import MainSidebars from './components/mainSideBar.js';
-
 import { connect } from 'react-redux';
-// import { history } from '../actions/historyActions.js';
 
 const mapStateToProps = state => {
   return {
@@ -58,7 +57,7 @@ class App extends React.Component {
             <Route path="/addImage" component={() => <AddImage />} />
             <Route path="/dragAndDrop" component={() => <DragAndDrop />} />
             <Route path="/input" component={() => <Input />} />
-            <Route path="/output" component={() => <Output />} />
+            <Route path="/imageResults" component={() => <ImageResults />} />
             <Route path="/confirmation" component={() => <Confirmation />} />
           </Switch>
           <Footer /> 
@@ -71,5 +70,3 @@ class App extends React.Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-
- 
