@@ -5,24 +5,23 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
 import { LinkContainer } from 'react-router-bootstrap';
-import { setIterator, removeIterator, setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
+import { setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 import { setSplitName } from '../actions/finalActions.js';
 import { inputLoading } from '../actions/historyAction.js';
+import ItemInputList from './itemInputList.js';
+import ItemEditList from './itemEditList.js';
 
 const mapStateToProps = state => {
   return {
-    iterator: state.input.iterator,
+    items: state.input.items,
+    tax: state.input.tax,
+    total: state.input.total,
+    tip: state.input.tip,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setIterator: (input) => dispatch(
-      setIterator(input)
-    ),
-    removeIterator: (input) => dispatch(
-      removeIterator(input)
-    ),
     setItems: (input) => dispatch(
       setItems(input)
     ),
@@ -42,6 +41,25 @@ const mapDispatchToProps = dispatch => {
 };
 
 class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: 1,
+    };
+  }
+
+  addItem() {
+    this.setState({
+      items: this.state.items + 1
+    });
+  }
+
+  removeItem() {
+    this.setState({
+      items: this.state.items - 1
+    });
+  }
+
   handleSubmit() {
     var p = this.props;
     var $items = $('.items').find('input');
@@ -71,57 +89,13 @@ class Input extends React.Component {
     $('.tip').val('');
   }
 
-  addItem() {
-    var iter = this.props.iterator;
-    var next = iter[iter.length - 1] + 1;
-    this.props.setIterator(next);
-  }
-
-  removeItem() {
-    var last = this.props.iterator.length - 1;
-    this.props.removeIterator(last);
-  }
-
   render() {
+    var itemList = (this.props.items.length === 0) ? <ItemInputList items={this.state.items}/> : <ItemEditList />;
+
     return (
       <div className="head">
         <div className="container-fluid">
-          <div className="inputContainer row formItem">
-            <div className="inputItem col-md-4">
-              <label className="inputItemBit">Split Name</label>
-              <input type="text" className="inputItemBit name form-control" required/>
-            </div>
-          </div>
-          <div className="items">
-            {
-              this.props.iterator.map((i, key) => (
-                <div key={key} className="inputContainer row formItem">
-                  <div className="inputItem col-md-6">
-                    <label className="inputItemBit">Item</label>
-                    <input type="text" className="inputItemBit form-control" required/>
-                  </div>
-                  <div className="inputItem col-md-6">
-                    <label className="inputItemBit">Price</label>
-                    <input type="number" className="inputItemBit form-control" required/>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-          <div className="inputContainer row formItem">
-            <div className="inputItem col-md-4">
-              <label className="inputItemBit">Tax</label>
-              <input type="number" className="inputItemBit tax form-control" required/>
-            </div>
-            <div className="inputItem col-md-4">
-              <label className="inputItemBit">Total</label>
-              <input type="number" className="inputItemBit total form-control" required/>
-            </div>
-            <div className="inputItem col-md-4">
-              <label className="inputItemBit">Tip</label>
-              <input type="number" className="inputItemBit tip form-control" required/>
-            </div>
-          </div>
+          {itemList}
           <div className="inputContainer row formItem">
             <div className="inputItem col-md-4">
               <Button className="btn btn-sm btn-primary" onClick={this.addItem.bind(this)}>Add Items</Button>

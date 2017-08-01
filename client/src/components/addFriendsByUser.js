@@ -73,7 +73,7 @@ export class AddFriendsByUser extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-offset-6">
+      <div className="row">
         <Button id="add-friends-by-user" bsStyle="primary" bsSize="small" onClick={this.toggle.bind(this)}>
           Add Friends By Username
         </Button>

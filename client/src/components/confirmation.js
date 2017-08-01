@@ -11,14 +11,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { setFriendsInfo } from '../actions/outputActions.js';
 import { sendStateToServer } from '../actions/finalActions.js';
+import DebtorConfirmation from './debtorConfirmation.js';
+import SplitterConfirmation from './splitterConfirmation.js'
 
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    debtors: state.final.debtors,
     final: state.final,
-    splitter: state.final.splitter,
   };
 };
 
@@ -52,98 +52,8 @@ class Confirmation extends React.Component {
       <div>
         <div>
           <h3 className="homeWelcome">Review Items</h3>
-          <div className="container-fluid">
-            <div className="row">
-              <label className="col-xs-6">Name: </label>
-              <p className="col-xs-6">{this.props.splitter.name}</p>
-            </div>
-            <div className="row">
-              <label className="col-xs-6">Phone: </label>
-              <p className="col-xs-6">{this.props.splitter.phone}</p>
-            </div>
-            <p className="boldP">Items</p>
-            {
-              this.props.splitter.items.map((item, index) => (
-                <div key={index}>
-                  <div className="row">
-                    <label className="col-xs-6">Name: </label>
-                    <p className="col-xs-6">{item.name}</p>
-                  </div>
-                  <div className="row">
-                    <label className="col-xs-6">Price: </label>
-                    <p className="col-xs-6">{item.price}</p>
-                  </div>
-                </div>
-              ))
-            }
-            <div className="row">
-              <label className="col-xs-6">Items Total: </label>
-              <p className="col-xs-6">{this.props.splitter.total}</p>
-            </div>
-            <div className="row">
-              <label className="col-xs-6">Tax: </label>
-              <p className="col-xs-6">{this.props.splitter.tax}</p>
-            </div>
-            <div className="row">
-              <label className="col-xs-6">Tip: </label>
-              <p className="col-xs-6">{this.props.splitter.tip}</p>
-            </div>
-            <div className="row">
-              <label className="col-xs-6">Final Total: </label>
-              <p className="col-xs-6">{this.props.splitter.debtTotal}</p>
-            </div>
-            <hr/>
-          </div>
-          <div className="container-fluid">
-            <hr />
-            {
-              this.props.debtors !== null ? this.props.debtors.map((debtor, index) => (
-                <div key={index}>
-                  <div className="row">
-                    <label className="col-xs-6">Name: </label>
-                    <p className="col-xs-6">{debtor.name}</p>
-                  </div>
-                  <div className="row">
-                    <label className="col-xs-6">Phone: </label>
-                    <p className="col-xs-6">{debtor.phone}</p>
-                  </div>
-                  <p className="boldP">Items</p>
-                  {
-                    debtor.items.map((item, index) => (
-                      <div key={index}>
-                        <div className="row">
-                          <label className="col-xs-6">Name: </label>
-                          <p className="col-xs-6">{item.name}</p>
-                        </div>
-                        <div className="row">
-                          <label className="col-xs-6">Price: </label>
-                          <p className="col-xs-6">{item.price}</p>
-                        </div>
-                      </div>
-                    ))
-                  }
-                  <div className="row">
-                    <label className="col-xs-6">Items Total: </label>
-                    <p className="col-xs-6">{debtor.total}</p>
-                  </div>
-                  <div className="row">
-                    <label className="col-xs-6">Tax: </label>
-                    <p className="col-xs-6">{debtor.tax}</p>
-                  </div>
-                  <div className="row">
-                    <label className="col-xs-6">Tip: </label>
-                    <p className="col-xs-6">{debtor.tip}</p>
-                  </div>
-                  <div className="row">
-                    <label className="col-xs-6">Final Total: </label>
-                    <p className="col-xs-6">{debtor.debtTotal}</p>
-                  </div>
-                <hr />
-                </div>
-              ))
-                : null
-            }
-          </div>
+          <SplitterConfirmation />
+          <DebtorConfirmation />
           <hr />
           <div className="container-fluid">
             <div className="row">

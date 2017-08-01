@@ -9,8 +9,6 @@ import Col from 'react-bootstrap/lib/Col';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import AddFriendsByUserButton from './addFriendsByUser.js';
 
-
-
 import { connect } from 'react-redux';
 
 import { setFriendsInfo } from '../actions/outputActions.js';
@@ -28,8 +26,6 @@ const mapDispatchToProps = dispatch => {
     ),
   };
 };
-
-
 
 export class AddFriends extends React.Component {
   constructor(props) {
@@ -68,46 +64,44 @@ export class AddFriends extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row text-center">
         <div className="col-xs-12">
           <div className="row">
-            <div className="col-xs-6">
-            </div>
-            <div className="col-xs-6">
-              <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.open.bind(this)}>
-                Add Friends
-              </Button>
-            </div>
+            <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.open.bind(this)}>
+              Add Friends
+            </Button>
           </div>
-          <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Add a friend</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form horizontal>
-                <FormGroup controlId="formInlineName">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Name
-                  </Col>
-                  <Col sm={10}>
-                    <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
-                  </Col>
-                </FormGroup>
-                <FormGroup controlId="formHorizontalNumber">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Number
-                  </Col>
-                  <Col sm={10}>
-                    <FormControl type="email" placeholder="xxx-xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
-                  </Col>
-                </FormGroup>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
-            </Modal.Footer>
-          </Modal>
           <AddFriendsByUserButton />
+          <div className="row">
+            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add a friend</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form horizontal>
+                  <FormGroup controlId="formInlineName">
+                    <Col componentClass={ControlLabel} sm={2}>
+                      Name
+                    </Col>
+                    <Col sm={10}>
+                      <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
+                    </Col>
+                  </FormGroup>
+                  <FormGroup controlId="formHorizontalNumber">
+                    <Col componentClass={ControlLabel} sm={2}>
+                      Number
+                    </Col>
+                    <Col sm={10}>
+                      <FormControl type="email" placeholder="xxx-xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
+                    </Col>
+                  </FormGroup>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </div>
       </div>
     );
