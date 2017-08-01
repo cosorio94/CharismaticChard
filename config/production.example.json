@@ -28,5 +28,21 @@
       "consumerSecret": "FILL_ME_IN",
       "callbackURL": "http://FILL_ME_IN/auth/twitter/callback"
     }
+  },
+
+  "cloudVision": {
+    "type": "FILL_ME_IN",
+    "project_id": "FILL_ME_IN",
+    "private_key_id": "FILL_ME_IN",
+    "private_key": "FILL_ME_IN",
+    "auth_uri": "FILL_ME_IN",
+    "token_uri": "FILL_ME_IN",
+    "auth_provider_x509_cert_url": "FILL_ME_IN",
+    "client_x509_cert_url": "FILL_ME_IN"
+  },
+
+  "twilio": {
+    "accountSid": "FILL_ME_IN",
+    "authToken": "FILL_ME_IN"
   }
 }
