@@ -104,10 +104,19 @@ module.exports = {
   getTextLines: (data) => {
     return module.exports.getAllText(data).split('\n').map(line => {
       return {
-        text: line,
+        text: joinNumbersAroundPeriod(line),
         words: line.split(' ')
       };
     });
   }
 
 };
+
+const joinNumbersAroundPeriod = (textLine) => {
+  var regExp = /(\d+)\s*(\.)\s*(\d+)/;
+  return textLine.replace(regExp, (...args) => {
+    return args.slice(1, 4).join('');
+  });
+};
+
+

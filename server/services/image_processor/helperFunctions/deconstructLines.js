@@ -4,6 +4,7 @@ const itemExp = /(\d+\.\d+)*\s*(\d*)+\s*([^]*)\s(?:\$*)(\d+\.\d+)/;
 const itemExpWithTextAfterPrice = /(\d+\.\d+)*\s*(\d*)+\s*([^]*)\s(?:\$*)(\d+\.\d+)*/;
 const totalExp = /(?:[^]*)(?:\bTotal)+(?:[^]*)\s(?:\$*)(\d+\.\d+)*/i;
 const taxExp = /(?:[^]*)(?:\btax)+(?:[^]*)\s(?:\$*)(\d+\.\d+)*/i;
+const priceExp = /(\d+\.\d+)/;
 
 module.exports = {
   
@@ -27,6 +28,11 @@ const deconstructLine = (line) => {
   var match = line.text.match(itemExp);
   if (match === null || match[4] === undefined) {
     match = line.text.match(itemExpWithTextAfterPrice);
+  }
+  if (match[4] === undefined) {
+    var price = line.text.match(priceExp);
+    console.log('price: ', price);
+    match[4] = !!price ? price[1] : undefined;
   }
   console.log('match: ', match);
   return match !== null ? {

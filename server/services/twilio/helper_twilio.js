@@ -21,7 +21,7 @@ const getItems = function(items) {
     if (index === items.length - 1) {
       comma = '';
     }
-    result += item.itemName + '-' + item.itemPrice + comma;
+    result += item.name + '-' + item.price + comma;
   });
   return result;
 };
