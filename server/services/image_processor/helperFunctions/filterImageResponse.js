@@ -1,11 +1,11 @@
 const deconstructImage = require('./deconstructImage.js');
 
 module.exports = (words, bounds, lines) => {
-  console.log('words: ', words);
-  console.log('lines: ', lines);
-  console.log('bound: ', bounds);
+  // console.log('words: ', words);
+  // console.log('lines: ', lines);
+  // console.log('bound: ', bounds);
   var filteredWords = filterWordsWithinBounds(words, bounds);
-  console.log('filteredWords: ', filteredWords);
+  // console.log('filteredWords: ', filteredWords);
   return getLineWithWords(filteredWords, lines);
 };
 

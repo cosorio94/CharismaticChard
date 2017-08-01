@@ -13,6 +13,7 @@ const saveSplitterItems = (req, res) => {
 const saveDebtorItems = (req, res) => {
   return Promise.map(req.body.debtors, (debtor, index) => {
     // would be better to use email, but for now phone is fine
+    console.log(req.debtors[index]);
     return models.Profile.findOrCreate(req.debtors[index])
       .then(profile => {
         return controller.Items.saveItems(req.debtorItems[index], req.split.id, profile.get('id'));
