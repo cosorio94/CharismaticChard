@@ -118,7 +118,7 @@ passport.use('facebook', new FacebookStrategy({
   clientID: config.Facebook.clientID || process.env.FB_clientID || process.env.isTravis,
   clientSecret: config.Facebook.clientSecret || process.env.FB_clientSecret || process.env.isTravis,
   callbackURL: config.Facebook.callbackURL || process.env.FB_callbackURL || process.env.isTravis,
-  profileFields: ['id', 'emails', 'name']
+  profileFields: ['id', 'emails', 'name', 'picture.type(large)']
 }, (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('facebook', profile, done))
 );
 
@@ -148,12 +148,12 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-
       let profileInfo = {
         first: oauthProfile.name.givenName,
         last: oauthProfile.name.familyName,
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
-        email: oauthProfile.emails[0].value
+        email: oauthProfile.emails[0].value,
+        'profile_pic': oauthProfile.photos[0].value
       };
 
       if (profile) {
