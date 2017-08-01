@@ -146,9 +146,9 @@ class DragAndDrop extends React.Component {
     splitter.debtTotal = Number((splitter.total + splitter.tax + splitter.tip).toFixed(2));
 
     this.props.setSplitter(splitter);
-    this.props.setSplitTotal(this.props.total);
-    this.props.setTotalTax(this.props.tax);
-    this.props.setTotalTip(this.props.tip);
+    this.props.setSplitTotal(Number(this.props.total));
+    this.props.setTotalTax(Number(this.props.tax));
+    this.props.setTotalTip(Number(this.props.tip));
   }
 
   splitItem(e) {
