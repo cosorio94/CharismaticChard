@@ -35,8 +35,8 @@ const deconstructDebtorsItemsData = (req, res) => {
   req.debtorItems = req.body.debtors.map(debtor => {
     return debtor.items.map(item => {
       return {
-        'item_name': item.itemName,
-        'price': item.itemPrice
+        'item_name': item.name,
+        'price': item.price
       };
     });
   });
@@ -46,8 +46,8 @@ const deconstructSplitterItems = (req, res) => {
   req.splitter = req.body.splitter;
   req.splitterItems = req.splitter.items.map((item) => {
     return {
-      'item_name': item.itemName,
-      'price': item.itemPrice
+      'item_name': item.name,
+      'price': item.price
     };
   });
 };
@@ -59,4 +59,3 @@ module.exports = (req, res, next) => {
   deconstructSplitterItems(req, res);
   next();
 };
-
