@@ -27,7 +27,10 @@ const fetchSplitterHistoryItem = () => {
   return (dispatch) => {
     axios.get('/api/item-history')
       .then(res => {
-        dispatch({type: 'ITEM-HISTORY', payload: res.data[0].items});
+        var orderedItems = res.data.sort((a, b) => {
+          return new Date(b['updated_at']) - new Date(a['updated_at']);
+        });
+        dispatch({type: 'ITEM-HISTORY', payload: orderedItems});
       })
       .catch(err => {
         console.log(err);

@@ -18,7 +18,7 @@ module.exports = {
   },
 
   itemHistory: (req, res, next) => {
-    return controller.Splits.getUsersItems(req, res)
+    return controller.Splits.getUsersItemsWithSplit(req, res)
       .then(items => {
         res.send(items);
       })
