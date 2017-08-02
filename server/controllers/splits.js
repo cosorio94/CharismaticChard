@@ -107,10 +107,6 @@ const getSplitIds = (userItems) => {
   });
 };
 
-const getItemUser = (item) => {
-
-};
-
 const getItemSplit = (item) => {
   return models.Split.findById(item['split_id'])
     .then(split => {
