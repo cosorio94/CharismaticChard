@@ -109,20 +109,27 @@ const getItemSplit = (item) => {
   return models.Split.findById(item['split_id'])
     .then(split => {
       item.split = split.toJSON();
-      console.log(split);
       return item;
     });
 };
 
 const addSplitToItems = (userItems) => {
-  console.log('hey');
   var items = userItems.at(0).related('items').toJSON();
-  console.log('items: ', items);
   return Promise.map(items, (item) => {
-    return getItemSplit(item);
+    return getItemSplit(item)
+      .then(item => {
+        return getItemSplitter(item);
+      });
   });
 };
 
+const getItemSplitter = (item) => {
+  return models.Profile.findById(item.split.splitter_id)
+    .then(splitter => {
+      item.splitter = splitter.toJSON();
+      return item;
+    });
+};
 
 
 
