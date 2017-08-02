@@ -11,9 +11,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSplitterHistory: (input) => dispatch(
-      fetchSplitterHistory(input)
-    ),
   };
 };
 
@@ -27,7 +24,7 @@ class History extends React.Component {
           <Link className="btn btn-primary" to="/item">Item History</Link>
         </div>
         <div className="container-fluid">
-          { this.props.history.reverse().slice(0, 10).map((data, index) => (
+          { this.props.history.slice(0, 10).map((data, index) => (
             <div className= "split-history" key={index}>
               <div className="row">
                 <label className="col-xs-6">Split Name: </label>
