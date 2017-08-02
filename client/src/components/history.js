@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/lib/Button';
+import { fetchSplitterHistory } from '../actions/historyAction.js';
+import Loading from './loading';
 
 const mapStateToProps = state => {
   return {
@@ -11,12 +13,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchSplitterHistory: () => dispatch(
+      fetchSplitterHistory()
+    )
   };
 };
 
 class History extends React.Component {
+
+  componentWillMount() {
+    this.props.fetchSplitterHistory();
+  }
+
   render() {
-    return (
+    return this.props.history ? (
       <div className="head">
         <h3 className="homeWelcome">Split History</h3>
         <div className="history-button">
@@ -77,6 +87,8 @@ class History extends React.Component {
           } 
         </div>
       </div>
+    ) : (
+      <Loading/>
     );
   }
 }

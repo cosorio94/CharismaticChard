@@ -17,6 +17,8 @@ import HistoryItem from './components/historyItem.js';
 import Footer from './components/footer.js';
 import DragAndDrop from './components/dragAndDrop.js';
 import MainSidebars from './components/mainSideBar.js';
+import { fetchUserNameAndPhone } from './actions/finalActions.js';
+
 
 const mapStateToProps = state => {
   return {
@@ -27,10 +29,18 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchUserNameAndPhone: () => dispatch(
+      fetchUserNameAndPhone()
+    )
   };
 };
 
 class App extends React.Component {
+
+  componentWillMount() {
+    this.props.fetchUserNameAndPhone();
+  }
+
   render() {
     return (
       <Router history={browserHistory}>
@@ -42,7 +52,7 @@ class App extends React.Component {
           </div>
           <Switch>
             <Route exact path="/" component={() => <Home />} />
-            <Route path="/history" render= {() => this.props.history ? <History /> : <Redirect to='/'/> } />
+            <Route path="/history" render= {() => <History />} />
             <Route path="/item" component={() => <HistoryItem />} />
             <Route path="/addImage" component={() => <AddImage />} />
             <Route path="/dragAndDrop" component={() => <DragAndDrop />} />

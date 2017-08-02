@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchSplitterHistoryItem } from '../actions/historyAction.js';
+import Loading from './loading';
+
 
 const mapStateToProps = state => {
   return {
@@ -10,12 +13,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchSplitterHistoryItem: () => dispatch(
+      fetchSplitterHistoryItem()
+    ),
   };
 };
 
 class SplitterHistoryItem extends React.Component {
+
+  componentWillMount() {
+    this.props.fetchSplitterHistoryItem();
+  }
+
   render() {
-    return (
+    return this.props.item ? (
       <div className="head">
         <h3 className="homeWelcome">Item History</h3>
         <div className="history-button">
@@ -46,6 +57,8 @@ class SplitterHistoryItem extends React.Component {
           }  
         </div>
       </div>
+    ) : (
+      <Loading/>
     );
   }
 }

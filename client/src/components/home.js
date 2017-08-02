@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { fetchUserNameAndPhone } from '../actions/finalActions.js';
-import { fetchSplitterHistory, fetchSplitterHistoryItem } from '../actions/historyAction.js';
 
 const mapStateToProps = state => {
   return {
@@ -11,25 +9,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUserNameAndPhone: () => dispatch(
-      fetchUserNameAndPhone()
-    ),
-    fetchSplitterHistory: () => dispatch(
-      fetchSplitterHistory()
-    ),
-    fetchSplitterHistoryItem: () => dispatch(
-      fetchSplitterHistoryItem()
-    ),
-
   };
 };
 
 class Home extends React.Component {
-  componentWillMount() {
-    this.props.fetchUserNameAndPhone();
-    this.props.fetchSplitterHistory();
-    this.props.fetchSplitterHistoryItem();
-  }
 
   render() {
     return (
