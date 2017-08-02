@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import numeral from 'numeral';
-import Button from 'react-bootstrap/lib/Button';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/lib/Button';
 
 const mapStateToProps = state => {
   return {
@@ -17,7 +16,6 @@ const mapDispatchToProps = dispatch => {
     ),
   };
 };
-
 
 class History extends React.Component {
   render() {
@@ -70,7 +68,7 @@ class History extends React.Component {
               </div>
               <div className="row">
                 <label className="col-xs-6">Total: </label>
-                <p className="col-xs-6">{numeral(data.total).format('$0,0.00')}</p>
+                <p className="col-xs-6">{data.total}</p>
               </div>
               <hr className="history-line"/>
             </div>

@@ -1,20 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
 import Modal from 'react-bootstrap/lib/Modal';
-import Form from 'react-bootstrap/lib/Form';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { setFriendsInfo } from '../actions/outputActions.js';
 import { sendStateToServer } from '../actions/finalActions.js';
 import DebtorConfirmation from './debtorConfirmation.js';
 import SplitterConfirmation from './splitterConfirmation.js'
-
-import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
@@ -55,7 +47,7 @@ class Confirmation extends React.Component {
           <SplitterConfirmation />
           <DebtorConfirmation />
           <hr />
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
               <label className="col-xs-6 boldP">Split Name: </label>
               <p className="col-xs-6">{this.props.final.splitName}</p>
@@ -89,6 +81,7 @@ class Confirmation extends React.Component {
           <div>
             <footer>
               <hr className="footerHR"/>
+              <Link className="btn btn-primary" to="/dragAndDrop">back</Link>
               <Button onClick={this.open.bind(this)} bsStyle="primary" bsSize="small">Confirm & Send</Button>
             </footer>
           </div>

@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
 
 const SplitterConfirmation = ({splitter}) => {
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
         <label className="col-xs-6">Name: </label>
         <p className="col-xs-6">{splitter.name}</p>

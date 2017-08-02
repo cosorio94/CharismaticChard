@@ -73,9 +73,9 @@ export class AddFriendsByUser extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="text-center">
         <Button id="add-friends-by-user" bsStyle="primary" bsSize="small" onClick={this.toggle.bind(this)}>
-          Add Friends By Username
+          Username
         </Button>
         <Modal show={this.state.showModal} onHide={this.toggle.bind(this)}>
           <Modal.Header closeButton>

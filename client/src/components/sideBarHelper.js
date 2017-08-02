@@ -1,12 +1,6 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
-// import Sidebar from 'react-sidebar';
-import Nav from 'react-bootstrap/lib/Nav';
 import Modal from 'react-bootstrap/lib/Modal';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-
 
 const mapStateToProps = state => {
   return {
@@ -18,8 +12,6 @@ const mapDispatchToProps = dispatch => {
   return {
   };
 };
-
-
 
 class SidebarHepler extends React.Component {
   constructor(props) {
@@ -40,7 +32,5 @@ class SidebarHepler extends React.Component {
     );
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarHepler); 

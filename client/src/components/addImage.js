@@ -37,7 +37,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 class AddImage extends React.Component {
   constructor(props) {
     super(props);
@@ -160,7 +159,6 @@ class AddImage extends React.Component {
     });
   }
 
-
   imageOnLoad ({ target: img }) {
     this.props.imageDataInfo(img.src.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''));
     this.setState({
@@ -230,18 +228,21 @@ class AddImage extends React.Component {
             <Button onClick={this.selectTaxBox}>Select tax</Button>
             <Button onClick={this.selectTotalBox}>Select total</Button>
           </div>
-          {this.state.selectBox === null ? null : <Rnd
-            default={{
-              x: -150,
-              y: 0,
-              width: 200,
-              height: 50,
-            }}
-            className={this.state.selectBox}
-            onDragStop={this.imagePosition}
-            onResizeStop={this.imagePosition}>
-          </Rnd>}
-
+          {
+            this.state.selectBox === null ? 
+              null : 
+              <Rnd
+                default={{
+                  x: -150,
+                  y: 0,
+                  width: 200,
+                  height: 50,
+                }}
+                className={this.state.selectBox}
+                onDragStop={this.imagePosition}
+                onResizeStop={this.imagePosition}>
+              </Rnd>
+          }
           <div className="uploaded-image">
             <img className="previewImage" src={imagePreviewURL} onLoad={this.imageOnLoad}/>
           </div>
@@ -274,6 +275,7 @@ class AddImage extends React.Component {
           <br></br>
           <footer>
             <hr className="footerHR"/>
+            <Link className="btn btn-primary" to="/">Cancel</Link>
             <Link className="btn btn-primary" to="/input" onClick={this.sendImageDataToServer}>Submit</Link>
           </footer>
         </div>

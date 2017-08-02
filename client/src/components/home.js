@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom';
 import { fetchUserNameAndPhone } from '../actions/finalActions.js';
 import { fetchSplitterHistory, fetchSplitterHistoryItem } from '../actions/historyAction.js';
-
 
 const mapStateToProps = state => {
   return {
@@ -44,10 +42,10 @@ class Home extends React.Component {
           <hr className="homeHR"/>
         </div>
         <div className="text-center">
-          <Link className="homeSplitButton btn" to="/input">Split</Link>
+          <Link className="homeSplitButton btn" to="/addImage">Split Image</Link>
         </div>
         <div className="text-center">
-          <Link className="homeSplitButton btn" to="/addImage">Add Image</Link>
+          <Link className="homeSplitButton btn" to="/input">Split Manual</Link>
         </div>
       </div>
     );
@@ -55,5 +53,3 @@ class Home extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-

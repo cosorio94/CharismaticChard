@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-
 import { LinkContainer } from 'react-router-bootstrap';
 import { setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
 import { setSplitName } from '../actions/finalActions.js';
@@ -94,28 +93,25 @@ class Input extends React.Component {
     var itemList = (this.props.items.length === 0) ? <ItemInputList items={this.state.items}/> : <ItemEditList />;
 
     return (
-      <div className="head">
-        <div className="container-fluid">
-          {itemList}
-          <div className="inputContainer row formItem">
-            <div className="inputItem col-md-4">
-              <Button className="btn btn-sm btn-primary" onClick={this.addItem.bind(this)}>Add Items</Button>
-            </div>
-            <div className="inputItem col-md-4">
-              <Button className="btn btn-sm btn-primary" onClick={this.removeItem.bind(this)}>Remove Item</Button>
-            </div>
-            <footer>
-              <hr className="footerHR"/>
-              <Link className="btn btn-primary" to="/dragAndDrop" onClick={this.handleSubmit.bind(this)}>Submit</Link>
-            </footer>
+      <div className="container">
+        {itemList}
+        <div className="inputContainer row formItem">
+          <div className="inputItem col-xs-6">
+            <Button className="btn btn-sm btn-primary" onClick={this.addItem.bind(this)}>Add Item</Button>
+          </div>
+          <div className="inputItem col-xs-6">
+            <Button className="btn btn-sm btn-primary" onClick={this.removeItem.bind(this)}>Remove Item</Button>
           </div>
         </div>
+        <br />
+        <footer>
+          <hr className="footerHR"/>
+          <Link className="btn btn-primary" to="/">Cancel</Link>
+          <Link className="btn btn-primary" to="/dragAndDrop" onClick={this.handleSubmit.bind(this)}>Submit</Link>
+        </footer>
       </div>
     );
   }
 }
 
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Input);
-

@@ -61,7 +61,7 @@ const DebtorConfirmation = ({debtors}) => {
   var rending = (debtors !== null) ? debtorList : null;
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <hr />
       {rending}
     </div>

@@ -6,5 +6,4 @@ import App from './app.js';
 
 const target = document.getElementById('root');
 
-
 ReactDOM.render(<Provider store={store}><App /></Provider>, target);

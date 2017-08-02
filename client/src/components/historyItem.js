@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import numeral from 'numeral';
-import Button from 'react-bootstrap/lib/Button';
 import { Link } from 'react-router-dom';
-
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +12,6 @@ const mapDispatchToProps = dispatch => {
   return {
   };
 };
-
 
 class SplitterHistoryItem extends React.Component {
   render() {
@@ -47,5 +43,3 @@ class SplitterHistoryItem extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SplitterHistoryItem);
-
-
