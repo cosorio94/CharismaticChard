@@ -1,11 +1,12 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import Nav from 'react-bootstrap/lib/Nav';
+import Modal from 'react-bootstrap/lib/Modal';
+import SidebarHepler from './sideBarHelper.js';
 import { LinkContainer } from 'react-router-bootstrap';
+import { history } from '../actions/historyAction.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { history } from '../actions/historyAction.js';
-import SidebarHepler from './sideBarHelper.js';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 
 const mapStateToProps = state => {
   return {
@@ -40,6 +41,7 @@ class MainSidebars extends React.Component {
     this.toggleModal();    
   }
 
+
   render() {
     return (
       <div className='Sidebar-demo col-xs-12'>
@@ -51,34 +53,33 @@ class MainSidebars extends React.Component {
               <div className="bar3"></div>
             </div>
           </div>
-          <div className="col-xs-6">
+          <div className="col-xs-6 logo-image">
             <Link to="/" >
-              <img src="./assets/splitter-logo.gif" className="homeLogo menuBtn" />
+              <img src="./assets/splitter-logo-white.gif" className="homeLogo menuBtn" />
             </Link>
           </div>
         </div>
         <SidebarHepler  side='left' isVisible={this.state.isVisible} onHide={this.toggleModal}>
-          <div className="nav side-bar"> 
-            <a href='/profile' className="side-bar-list">
-              <div className="side-bar-list">
-                PROFILE
-              </div>
-            </a>-
-            <LinkContainer to="/" className="side-bar-list" onClick={this.toggleModal}>
-              <div className="side-bar-list">
-                HOME
-              </div>
-            </LinkContainer>
-            <LinkContainer to="/history" className="side-bar-list" onClick={this.historyStateChange.bind(this)}>
-              <div className="side-bar-list">
-                HISTORY
-              </div>
-            </LinkContainer>
-            <a href='/login' className="side-bar-list">
-              <div className="side-bar-list">
-                LOG OUT
-              </div>
-            </a>
+          <div className="side-bar"> 
+            <div className="bar-profile side-bar-list text-center">
+              <a href='/profile' className="bar-list-name">
+                Profile
+              </a>
+            </div>
+
+            <div className="bar-home side-bar-list text-center">
+              <Link className="bar-list-name" to="/" onClick={this.toggleModal}>Home</Link>
+            </div>
+
+            <div className="bar-history side-bar-list text-center">
+              <Link className="bar-list-name" to="/history" onClick={this.historyStateChange.bind(this)}>History</Link>
+            </div>
+
+            <div className="bar-logout side-bar-list text-center">
+              <a href='/login' className="bar-list-name">
+                Log out
+              </a>
+            </div>
           </div>
         </SidebarHepler>
       </div>

@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => {
     fetchSplitterHistoryItem: () => dispatch(
       fetchSplitterHistoryItem()
     ),
+
   };
 };
 

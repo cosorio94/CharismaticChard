@@ -10,7 +10,6 @@ import { inputLoading } from '../actions/historyAction.js';
 import ItemInputList from './itemInputList.js';
 import ItemEditList from './itemEditList.js';
 
-
 const mapStateToProps = state => {
   return {
     items: state.input.items,

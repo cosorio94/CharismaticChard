@@ -7,7 +7,6 @@ const history = (toggle) => {
   };
 };
 
-
 const fetchSplitterHistory = () => {
   return (dispatch) => {
     axios.get('/api/split-history')
@@ -32,7 +31,6 @@ const fetchSplitterHistoryItem = () => {
   };
 };
 
-
 const splitterHistory = (input) => {
   return {
     type: 'SPLITTER-HISTORY',
@@ -46,7 +44,6 @@ const splitterItemHistory = (input) => {
     payload: input
   };
 };
-
 
 export {
   history,

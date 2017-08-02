@@ -12,12 +12,14 @@ const sendStateToServer = (split) => {
   };
 };
 
+
 const fetchUserNameAndPhone = () => {
   return (dispatch) => {
     axios.get('/api/profile-info')
       .then(res => {
         dispatch({type: 'SET_SPLITTER_NAME', payload: res.data.display});
         dispatch({type: 'SET_SPLITTER_PHONE', payload: res.data.phone});
+        dispatch({type: 'SET_PROFILEPICTURE', payload: res.data['profile_pic']});
       })
       .catch(err => {
         console.log(err);
@@ -25,12 +27,20 @@ const fetchUserNameAndPhone = () => {
   };
 };
 
+
+const setProfilePicture = (pic) => {
+  return {
+    type: 'SET_PROFILEPICTURE',
+    payload: pic
+  };
+};
+
 const setSplitter = (splitter) => {
   return {
     type: 'SET_SPLITTER',
     payload: splitter,
-  }
-}
+  };
+};
 
 const setSplitTotal = (total) => {
   return {
@@ -131,5 +141,6 @@ export {
   setSplitterDebtTotal,
   setSplitterTotal,
   setSplitterTax,
-  setSplitterTip
+  setSplitterTip,
+  setProfilePicture
 };

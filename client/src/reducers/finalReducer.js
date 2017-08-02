@@ -13,9 +13,13 @@ export default function reducer(state =
       tip: null,
       debtTotal: null,
     },
-    debtors: []
+    debtors: [],
+    picture: null
   }, action) {
   switch (action.type) {
+  case 'SET_PROFILEPICTURE': {
+    return {...state, picture: action.payload};
+  }
   case 'SET_SPLIT_TOTAL': {
     return {...state, splitTotal: action.payload};
   }

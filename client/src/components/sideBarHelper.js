@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    splitter: state.final.splitter
+    splitter: state.final.splitter,
+    picture: state.final.picture
   };
 };
 
@@ -21,12 +22,11 @@ class SidebarHepler extends React.Component {
     return (
       <div>
         <Modal className='Sidebar left' show={ this.props.isVisible } onHide={this.props.onHide} autoFocus keyboard>
+          <img src={this.props.picture} className="sidebar-profile-image" />
           <Modal.Header closeButton>
-            <Modal.Title>  {this.props.splitter.name}</Modal.Title>
+            <Modal.Title> <h3> {this.props.splitter.name} </h3></Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            { this.props.children }
-          </Modal.Body>
+          { this.props.children }
         </Modal>
       </div>
     );
