@@ -19,7 +19,7 @@ import History from './components/history.js';
 import HistoryItem from './components/historyItem.js';
 import Footer from './components/footer.js';
 import DragAndDrop from './components/dragAndDrop.js';
-import ImageResults from './components/imageResults.js';
+// import ImageResults from './components/imageResults.js';
 
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
@@ -57,7 +57,6 @@ class App extends React.Component {
             <Route path="/addImage" component={() => <AddImage />} />
             <Route path="/dragAndDrop" component={() => <DragAndDrop />} />
             <Route path="/input" component={() => <Input />} />
-            <Route path="/imageResults" component={() => <ImageResults />} />
             <Route path="/confirmation" component={() => <Confirmation />} />
           </Switch>
           <Footer /> 

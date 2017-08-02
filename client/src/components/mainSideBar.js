@@ -50,14 +50,14 @@ class MainSidebars extends React.Component {
   render() {
     return (
       <div className='Sidebar-demo'>
-        <Nav>
+        <Nav className='imageAndHamburger'>
           <NavItem onClick={ () => this.updateModal(true)}>
             <div className="bar1"></div>
             <div className="bar2"></div>
             <div className="bar3"></div>
           </NavItem>
           <Link to="/" >
-            <img src="./assets/splitter-logo.gif" className="homeLogo" />
+            <img src="./assets/splitter-logo-white.gif" className="homeLogo" />
           </Link>
         </Nav>
         <SidebarHepler  side='left' isVisible={ this.state.isVisible } onHide={ () => this.updateModal(false)}>

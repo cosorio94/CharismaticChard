@@ -1,24 +1,15 @@
 <% include head.ejs%>
-    <div class="col-sm-6 col-sm-offset-3">
-        <div class="profile-page-logo">
-          <img src="./assets/splitter-logo.png" id="logo2"/>
-        </div>
 
-        <div id="page-content-wrapper">
-          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-        </button>
-          
-        </div>
-        <h2 style="text-align: center; margin-bottom: 30px;font-family: 'Comfortaa';"><b>Update Profile</b></h2>
-         <!-- show any messages that come back with authentication -->
+
+    <div class="container update-profile">
+        <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Comfortaa'; color: white; margin-top: 50px;"><b>Update Profile</b></h2>
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
+    </div>
+    
 
-        <!-- LOGIN FORM -->
+    <div class="col-sm-6 col-sm-offset-3 update-profile-newInfo">
         <form action="/api/update-profile" method="post">
             <div class="form-group">
                 <label>First Name</label>
@@ -32,12 +23,9 @@
                 <label>Phone Number <span class="asterisks">*</span></label>
                 <input type="text" class="form-control" name="phone" value="<%= user.phone %>">
             </div>
-            <button type="submit" class="form-control"  style="background-color: #3FC3D8; margin-top: 30px; color: white; border: 0px;">Update</button>
+
+            <button type="submit" class="form-control"  style="background-color: #3FC3D8; margin-top: 60px; color: white; border: 0px;">Update</button>
         </form>
-
-
-
-
     </div>
 
 <% include foot.ejs%>

@@ -192,16 +192,6 @@ class AddImage extends React.Component {
     }
   }
 
-  // setImageTaxPositionsToRedux () {
-  //   this.props.imageTax(this.state.taxPosition);
- 
-  // }
-
-  // setImageTotalPositionsToRedux () {
-  //   this.props.imageTotal(this.state.totalPosition);
- 
-  // }
-
   sendImageDataToServer () {
     this.props.sendItemImageToServer(this.props.imageData);
   }

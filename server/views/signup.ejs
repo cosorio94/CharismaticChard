@@ -8,42 +8,40 @@
         <!-- show any messages that come back with authentication -->
       
         <div class="logoDiv">
-          <img src="./assets/splitter-logo.png" id="logo-white"/>
+          <img src="./assets/splitter-logo-white.png" id="logo-white"/>
         </div>
         <div class="signin-singup">
-            <a id="signin" style="color: #3FC3D8" href="/login">SIGN IN</a>
-            <a id="signup" style="color: grey" href="/signup">SIGN UP</a>
+            <a id="signin" style="color: white" href="/login">SIGN IN</a>
+            <a id="signup" style="color: #1398AD" href="/signup">SIGN UP</a>
         </div>
         <form id="signup-form" action="/signup" method="post">
            <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
             <div class="form-group">
-                <label>First Name</label>
+                <label class="label-tag">First Name</label>
                 <input type="text" class="form-control" name="first" placeholder="first name">
             </div>
             <div class="form-group">
-                <label>Last Name</label>
+                <label class="label-tag">Last Name</label>
                 <input type="text" class="form-control" name="last" placeholder="last name">
             </div>
             <div class="form-group">
-                <label>Email <span class="asterisks">*</span></label>
+                <label class="label-tag">Email <span class="asterisks">*</span></label>
                 <input type="text" class="form-control" name="email" placeholder="email">
             </div>
             <div class="form-group">
-                <label>Password <span class="asterisks">*</span></label>
+                <label class="label-tag">Password <span class="asterisks">*</span></label>
                 <input type="password" class="form-control" name="password" placeholder="password">
             </div>
             <div class="form-group" >
-                <label>Phone Number <span class="asterisks">*</span></label>
+                <label class="label-tag">Phone Number <span class="asterisks">*</span></label>
                 <input type="text" class="form-control" name="phone" placeholder="phone number" style="margin-bottom: 30px">
             </div>
 
-            <button type="submit" class="form-control" id="login-button">Sign Up</button>
-
-            <!-- <button type="submit" class="btn btn-warning btn-lg">Signup</button> -->
+            <button type="submit" class="form-control" id="login-button" style="border: 2px solid white;">Sign Up</button>
         </form>
-       <hr style="margin-bottom: 10px">
+       <hr style="margin-bottom: 10px; border: 1px solid white;">
             <div class="signin-form">
                 <a class="form-control external-sign-in" id="login-button"  href="/auth/facebook" style="margin-bottom: 20px; background-color: #1398AD;">
                     <img src="./assets/facebook-logo.png" style="width: 5.6%;"/>

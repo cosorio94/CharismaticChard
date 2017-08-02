@@ -11,6 +11,7 @@ import { inputLoading } from '../actions/historyAction.js';
 import ItemInputList from './itemInputList.js';
 import ItemEditList from './itemEditList.js';
 
+
 const mapStateToProps = state => {
   return {
     items: state.input.items,
@@ -113,6 +114,7 @@ class Input extends React.Component {
     );
   }
 }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input);
