@@ -24,7 +24,7 @@ const fetchSplitterHistoryItem = () => {
   return (dispatch) => {
     axios.get('/api/item-history')
       .then(res => {
-        dispatch({type: 'ITEM-HISTORY', payload: res.data[0].items});
+        dispatch({type: 'ITEM-HISTORY', payload: res.data});
       })
       .catch(err => {
         console.log(err);

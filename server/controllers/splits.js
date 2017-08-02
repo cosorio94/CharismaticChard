@@ -26,7 +26,6 @@ module.exports = {
 
   getSplitItems: (id) => {
     return models.Split.forge()
-      // .orderBy('created_at', 'DESC')
       .query(function(qb) {
         qb.orderBy('created_at', 'DESC'); 
       })
@@ -37,13 +36,17 @@ module.exports = {
       });
   },
 
-
-
   getMultipleSplits: (splitIds) => {
     return Promise.map(splitIds, (id) => {
       return module.exports.getSplitItems(id)
         .then(result => {
           return result.at(0).toJSON();
+        })
+        .then(split => {
+          return addSplitterToSplit(split);
+        })
+        .tap(split => {
+          return addDebtorsToSplitItems(split);
         });
     });
   },
@@ -60,12 +63,8 @@ module.exports = {
 
   getUsersItems: (req, res) => {
     // returns an object with the info for all the splits and items that belong to the user
-    // fetchPage for pagination
-    return models.Profile.forge().where({ id: req.user.id }).fetchAll({
-      // page: 1,
-      // pageSize: 20,
-      withRelated: ['splits', 'items']
-    })
+    return models.Profile.forge().where({ id: req.user.id })
+      .fetchAll({ withRelated: ['splits', 'items'] })
       .catch(err => {
         console.log(err);
       });
@@ -83,17 +82,79 @@ module.exports = {
   getUsersParticipatedSplits: (req, res) => {
     return module.exports.getUsersItems(req, res)
       .then(result => {
-        var items = result.at(0).related('items').toJSON();
-        var splitIds = items.map((item, index, splitIds) => {
-          if (!splitIds.includes(item['split_id'])) {
-            return item['split_id'];
-          }
-        });
-        return module.exports.getMultipleSplits(splitIds);
+        return module.exports.getMultipleSplits(getSplitIds(result));
       })
       .catch(err => {
         console.log(err);
       });
+  },
+
+  getUsersItemsWithSplit: (req, res) => {
+    return module.exports.getUsersItems(req, res)
+      .then(userItems => {
+        return addSplitToItems(userItems);
+      });
   }
 
 };
+
+const getSplitIds = (userItems) => {
+  var items = userItems.at(0).related('items').toJSON();
+  return items.map((item, index, splitIds) => {
+    if (!splitIds.includes(item['split_id'])) {
+      return item['split_id'];
+    }
+  });
+};
+
+const getItemSplit = (item) => {
+  return models.Split.findById(item['split_id'])
+    .then(split => {
+      item.split = split.toJSON();
+      return item;
+    });
+};
+
+const addSplitToItems = (userItems) => {
+  var items = userItems.at(0).related('items').toJSON();
+  return Promise.map(items, (item) => {
+    return getItemSplit(item)
+      .then(item => {
+        return getItemSplitter(item);
+      });
+  });
+};
+
+const getItemSplitter = (item) => {
+  return models.Profile.findById(item.split.splitter_id)
+    .then(splitter => {
+      item.splitter = splitter.toJSON();
+      return item;
+    });
+};
+
+const getItemDebtor = (item) => {
+  return models.Profile.findById(item.debtor_id)
+    .then(debtor => {
+      item.debtor = debtor.toJSON();
+      return item;
+    });
+};
+
+const addSplitterToSplit = (split) => {
+  return models.Profile.findById(split.splitter_id)
+    .then(splitter => {
+      split.splitter = splitter;
+      return split;
+    });
+};
+
+const addDebtorsToSplitItems = (split) => {
+  return Promise.map(split.items, item => {
+    return getItemDebtor(item);
+  });
+};
+
+
+
+
