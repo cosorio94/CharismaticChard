@@ -17,6 +17,9 @@ import HistoryItem from './components/historyItem.js';
 import Footer from './components/footer.js';
 import DragAndDrop from './components/dragAndDrop.js';
 import MainSidebars from './components/mainSideBar.js';
+import { fetchUserNameAndPhone } from './actions/finalActions.js';
+import { fetchSplitterHistory, fetchSplitterHistoryItem } from './actions/historyAction.js';
+
 
 const mapStateToProps = state => {
   return {
@@ -27,10 +30,26 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchUserNameAndPhone: () => dispatch(
+      fetchUserNameAndPhone()
+    ),
+    fetchSplitterHistory: () => dispatch(
+      fetchSplitterHistory()
+    ),
+    // fetchSplitterHistoryItem: () => dispatch(
+    //   fetchSplitterHistoryItem()
+    // ),
   };
 };
 
 class App extends React.Component {
+
+  componentWillMount() {
+    this.props.fetchUserNameAndPhone();
+    this.props.fetchSplitterHistory();
+    // this.props.fetchSplitterHistoryItem();
+  }
+
   render() {
     return (
       <Router history={browserHistory}>
