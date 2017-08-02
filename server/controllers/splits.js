@@ -41,6 +41,12 @@ module.exports = {
       return module.exports.getSplitItems(id)
         .then(result => {
           return result.at(0).toJSON();
+        })
+        .then(split => {
+          return addSplitterToSplit(split);
+        })
+        .tap(split => {
+          return addDebtorsToSplitItems(split);
         });
     });
   },
@@ -129,6 +135,28 @@ const getItemSplitter = (item) => {
       item.splitter = splitter.toJSON();
       return item;
     });
+};
+
+const getItemDebtor = (item) => {
+  return models.Profile.findById(item.debtor_id)
+    .then(debtor => {
+      item.debtor = debtor.toJSON();
+      return item;
+    });
+};
+
+const addSplitterToSplit = (split) => {
+  return models.Profile.findById(split.splitter_id)
+    .then(splitter => {
+      split.splitter = splitter;
+      return split;
+    });
+};
+
+const addDebtorsToSplitItems = (split) => {
+  return Promise.map(split.items, item => {
+    return getItemDebtor(item);
+  });
 };
 
 

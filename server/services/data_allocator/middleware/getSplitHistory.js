@@ -7,7 +7,7 @@ module.exports = {
     return controller.Splits.getUsersParticipatedSplits(req, res)
       .then(splits => {
         console.log('results: ', splits);
-        res.send(splits);
+        res.send(splits.slice(0, 10));
       })
       .error(err => {
         res.status(500).send(err);
@@ -20,7 +20,7 @@ module.exports = {
   itemHistory: (req, res, next) => {
     return controller.Splits.getUsersItemsWithSplit(req, res)
       .then(items => {
-        res.send(items);
+        res.send(items.slice(0, 10));
       })
       .error(err => {
         res.status(500).send(err);
