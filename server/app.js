@@ -33,5 +33,9 @@ app.use('/api/data_allocator', dataAllocatorRoutes);
 app.use('/api/image_processor', imageProcessingRoutes);
 app.post('/api/twilio', twilioMiddleware.twilioMiddleware );
 
+app.use(middleware.auth.verify, (req, res) => {
+  res.render('index');
+});
+
 
 module.exports = app;

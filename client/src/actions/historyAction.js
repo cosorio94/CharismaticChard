@@ -12,10 +12,7 @@ const fetchSplitterHistory = () => {
   return (dispatch) => {
     axios.get('/api/split-history')
       .then(res => {
-        var orderedSplits = res.data.sort((a, b) => {
-          return new Date(b['updated_at']) - new Date(a['updated_at']);
-        });
-        dispatch({type: 'SPLITTER-HISTORY', payload: orderedSplits});
+        dispatch({type: 'SPLITTER-HISTORY', payload: res.data});
       })
       .catch(err => {
         console.log(err);
@@ -27,10 +24,7 @@ const fetchSplitterHistoryItem = () => {
   return (dispatch) => {
     axios.get('/api/item-history')
       .then(res => {
-        var orderedItems = res.data.sort((a, b) => {
-          return new Date(b['updated_at']) - new Date(a['updated_at']);
-        });
-        dispatch({type: 'ITEM-HISTORY', payload: orderedItems});
+        dispatch({type: 'ITEM-HISTORY', payload: res.data});
       })
       .catch(err => {
         console.log(err);
