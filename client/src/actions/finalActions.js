@@ -33,13 +33,6 @@ const setProfilePicture = (pic) => {
   };
 };
 
-const setSplitter = (splitter) => {
-  return {
-    type: 'SET_SPLITTER',
-    payload: splitter,
-  };
-};
-
 const setSplitTotal = (total) => {
   return {
     type: 'SET_SPLIT_TOTAL',
@@ -142,7 +135,6 @@ const setDebtor = (item, index) => {
 export {
   sendStateToServer,
   fetchUserNameAndPhone,
-  setSplitter,
   setSplitTotal,
   setTotalTax,
   setTotalTip,

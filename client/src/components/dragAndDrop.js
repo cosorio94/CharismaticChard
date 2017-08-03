@@ -137,25 +137,25 @@ class DragAndDrop extends React.Component {
     items.forEach(item => {
       total += Number(item.price);
     });
-    return total;
+    return Number(total.toFixed(2));
   }
 
   calculateSplitterTotal() {
     var total = this.calculateTotal(this.props.splitterItems);
-    this.props.setSplitterTotal((total).toFixed(2));
+    this.props.setSplitterTotal(total);
     var tax = this.splitTax(total);
     var tip = this.splitTip(total);
-    this.props.setSplitterTax((tax).toFixed(2));
-    this.props.setSplitterTip((tip).toFixed(2));
-    this.props.setSplitterDebtTotal((total + tax + tip).toFixed(2));
+    this.props.setSplitterTax(tax);
+    this.props.setSplitterTip(tip);
+    this.props.setSplitterDebtTotal((Number(total + tax + tip).toFixed(2)));
   }
 
   calculateDebtorTotal(debtor, index) {
     var debtor = {...debtor};
-    debtor.total = this.calculateTotal((debtor.items).toFixed(2));
-    debtor.tax = this.splitTax((debtor.total).toFixed(2));
-    debtor.tip = this.splitTip((debtor.total).toFixed(2));
-    debtor.debtTotal = (debtor.total + debtor.tax + debtor.tip).toFixed(2);
+    debtor.total = this.calculateTotal(debtor.items);
+    debtor.tax = this.splitTax(debtor.total);
+    debtor.tip = this.splitTip(debtor.total);
+    debtor.debtTotal = (Number(debtor.total + debtor.tax + debtor.tip)).toFixed(2);
     this.props.setDebtor(debtor, index);
   }
 
@@ -165,7 +165,8 @@ class DragAndDrop extends React.Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    // e.preventDefault();
     this.calculateSplitterTotal();
     this.calculateDebtorsTotals();
   }
@@ -198,9 +199,9 @@ class DragAndDrop extends React.Component {
                   <hr />
                 </div>
                 <div className="row">
-                  <div className="col-xs-4">{(Number(this.props.totalTax)).toFixed(2)}</div>
-                  <div className="col-xs-4">{(Number(this.props.splitTotal)).toFixed(2)}</div>
-                  <div className="col-xs-4">{(Number(this.props.totalTip)).toFixed(2)}</div>
+                  <div className="col-xs-4">{this.props.totalTax}</div>
+                  <div className="col-xs-4">{this.props.splitTotal}</div>
+                  <div className="col-xs-4">{this.props.totalTip}</div>
                 </div>
               </div>
             </div>

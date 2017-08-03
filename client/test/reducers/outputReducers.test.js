@@ -5,7 +5,6 @@ import reducer from '../../src/reducers/outputReducer.js';
 describe('actions', () => {
   const intialState = {
     checkUser: {},
-    debtors: [],
   };
 
   it('should return the initial state', () => {
@@ -19,7 +18,6 @@ describe('actions', () => {
         {type: 'CHECK_USER', payload: {username: 'test'}}
       )).toEqual({
       checkUser: {username: 'test'},
-      debtors: [],
     });
   });
 });
