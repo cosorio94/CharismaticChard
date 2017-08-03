@@ -4,7 +4,7 @@ import reducer from '../../src/reducers/inputReducer.js';
 
 describe('actions', () => {
   const intialState = {
-    items: [{name: null, price: null}],
+    items: [{name: '', price: ''}],
     isLoading: false
   };
 
