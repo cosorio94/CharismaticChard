@@ -59,7 +59,9 @@ class App extends React.Component {
             <Route path="/input" component={() => <Input />} />
             <Route path="/confirmation" component={() => <Confirmation />} />
           </Switch>
-          <Footer /> 
+          <br/>
+          <br/>
+          <Footer />
         </div>
       </Router>
     );

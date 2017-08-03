@@ -24,7 +24,7 @@ class SidebarHepler extends React.Component {
         <Modal className='Sidebar left' show={ this.props.isVisible } onHide={this.props.onHide} autoFocus keyboard>
           <img src={this.props.picture} className="sidebar-profile-image" />
           <Modal.Header closeButton>
-            <Modal.Title> <h3> {this.props.splitter.name} </h3></Modal.Title>
+            <Modal.Title className="profile-name">{this.props.splitter.name}</Modal.Title>
           </Modal.Header>
           { this.props.children }
         </Modal>

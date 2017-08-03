@@ -41,7 +41,6 @@ class MainSidebars extends React.Component {
     this.toggleModal();    
   }
 
-
   render() {
     return (
       <div className='Sidebar-demo col-xs-12'>

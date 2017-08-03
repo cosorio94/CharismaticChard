@@ -28,7 +28,7 @@ class History extends React.Component {
   render() {
     return this.props.history ? (
       <div className="head">
-        <h3 className="homeWelcome">Split History</h3>
+        <h3 className="split-history-title">Split History</h3>
         <div className="history-button">
           <Link className="btn btn-primary" to="/history" >Split History</Link>
           <Link className="btn btn-primary" to="/item">Item History</Link>

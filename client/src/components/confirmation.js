@@ -1,6 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
+import Form from 'react-bootstrap/lib/Form';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import numeral from 'numeral';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setFriendsInfo } from '../actions/outputActions.js';

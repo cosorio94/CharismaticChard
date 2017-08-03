@@ -149,8 +149,8 @@ class Input extends React.Component {
           </div>
         </div>
         <br />
+        <hr className="footerHR"/>
         <footer>
-          <hr className="footerHR"/>
           <Link className="btn btn-primary" to="/">Cancel</Link>
           <Link className="btn btn-primary" to="/dragAndDrop">Submit</Link>
         </footer>

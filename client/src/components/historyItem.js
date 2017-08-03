@@ -28,7 +28,7 @@ class SplitterHistoryItem extends React.Component {
   render() {
     return this.props.item ? (
       <div className="head">
-        <h3 className="homeWelcome">Item History</h3>
+        <h3 className="split-history-title">Item History</h3>
         <div className="history-button">
           <Link className="btn btn-primary" to="/history" >Split History</Link>
           <Link className="btn btn-primary" to="/item">Item History</Link>
