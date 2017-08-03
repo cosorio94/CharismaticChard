@@ -9,7 +9,7 @@ const phoneUtil = PhoneNumberUtil.getInstance();
 
 const mapStateToProps = state => {
   return {
-    friendsInfo: state.output.friendsInfo
+    debtors: state.output.debtors
   };
 };
 
@@ -92,7 +92,7 @@ export class AddFriends extends React.Component {
     return (
       <div className="text-center">
         <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.toggle.bind(this)}>
-          Add Friends
+          Phone
         </Button>
         <Modal show={this.state.showModal} onHide={this.toggle.bind(this)}>
           <Modal.Header closeButton>

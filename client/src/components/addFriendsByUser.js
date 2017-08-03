@@ -6,7 +6,7 @@ import { addDebtor } from '../actions/outputActions.js';
 
 const mapStateToProps = state => {
   return {
-    friendsInfo: state.output.friendsInfo,
+    debtors: state.output.debtors,
     checkUser: state.output.checkUser,
   };
 };

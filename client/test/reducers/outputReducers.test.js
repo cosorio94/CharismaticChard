@@ -5,35 +5,21 @@ import reducer from '../../src/reducers/outputReducer.js';
 describe('actions', () => {
   const intialState = {
     checkUser: {},
-    debtors: null,
-    friendsInfo: []
+    debtors: [],
   };
 
-  it('should return the ititial state', () => {
+  it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(intialState);
   });
 
-  it('should update debtors', () => {
+  it('should update checkUser state', () => {
     expect(
       reducer(
         intialState,
-        {type: 'SET_DEBTORS', payload: [{debtor: 'test'}]}
+        {type: 'CHECK_USER', payload: {username: 'test'}}
       )).toEqual({
-      checkUser: {},
-      debtors: [{debtor: 'test'}],
-      friendsInfo: []
-    });
-  });
-
-  it('should update friends info array', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_FRIENDSINFO', payload: {debtor: 'test'}}
-      )).toEqual({
-      checkUser: {},
-      debtors: null,
-      friendsInfo: [{debtor: 'test'}]
+      checkUser: {username: 'test'},
+      debtors: [],
     });
   });
 });

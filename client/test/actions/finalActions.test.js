@@ -4,7 +4,7 @@ import * as actions from '../../src/actions/finalActions.js';
 import axios from 'axios';
 
 describe('axios actions', () => {
-  it('should return an anon function', async () => {
+  it('should return an anon function', () => {
     expect(actions.sendStateToServer('data')).toBeInstanceOf(Function);
   });
 
@@ -86,15 +86,6 @@ describe('actions', () => {
     expect(actions.setSplitterItems(items)).toEqual(expectedAction);
   });
 
-  it('should create an action to send debtors', () => {
-    const debtors = [{test: 'test'}];
-    const expectedAction = {
-      type: 'SET_DEBTORS',
-      payload: debtors
-    };
-    expect(actions.setDebtors(debtors)).toEqual(expectedAction);
-  });
-
   it('should create an action to send splitter debt total', () => {
     const debt = 15;
     const expectedAction = {
@@ -122,6 +113,15 @@ describe('actions', () => {
     expect(actions.setSplitterTip(tip)).toEqual(expectedAction);
   });
 
+  it('should create an action to add debtor', () => {
+    const friendList = [{person: 'debt'}];
+    const expectedAction = {
+      type: 'ADD_DEBTOR',
+      payload: friendList
+    };
+    expect(actions.addDebtor(friendList)).toEqual(expectedAction);
+  });
+
   it('should create an action to send splitter', () => {
     const splitter = {test: 'test'};
     const expectedAction = {
@@ -129,6 +129,15 @@ describe('actions', () => {
       payload: splitter
     };
     expect(actions.setSplitter(splitter)).toEqual(expectedAction);
+  });
+
+  it('should create an action to send debtors', () => {
+    const debtors = [{person: 'debt'}];
+    const expectedAction = {
+      type: 'SET_DEBTORS',
+      payload: debtors
+    };
+    expect(actions.setDebtors(debtors)).toEqual(expectedAction);
   });
 
 });

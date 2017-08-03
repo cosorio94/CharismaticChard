@@ -11,7 +11,7 @@ describe('actions', () => {
     splitter: {
       name: '',
       phone: '',
-      items: null,
+      items: [],
       debtTotal: null,
       tax: null,
       tip: null,
@@ -21,7 +21,7 @@ describe('actions', () => {
     picture: null
   };
 
-  it('should return the ititial state', () => {
+  it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(intialState);
   });
 
@@ -39,7 +39,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -65,7 +65,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -91,7 +91,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -117,7 +117,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -143,7 +143,7 @@ describe('actions', () => {
         splitter: {
           name: 'test',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -169,7 +169,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '1234567890',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -207,6 +207,32 @@ describe('actions', () => {
     );
   });
 
+  it('should update debtors', () => {
+    expect(
+      reducer(
+        intialState,
+        {type: 'SET_DEBTORS', payload: [{debtors: 'test'}]}
+      )).toEqual(
+      {
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
+        splitName: null,
+        splitter: {
+          name: '',
+          phone: '',
+          items: [],
+          debtTotal: null,
+          tax: null,
+          tip: null,
+          total: null,
+        },
+        debtors: [{debtors: 'test'}],
+        picture: null
+      }
+    );
+  });
+
   it('should update the splitter total', () => {
     expect(
       reducer(
@@ -221,7 +247,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: 15,
           tax: null,
           tip: null,
@@ -247,7 +273,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: 15,
           tip: null,
@@ -273,13 +299,39 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: 15,
           total: null,
         },
         debtors: [],
+        picture: null
+      }
+    );
+  });
+
+  it('should update the Debtors', () => {
+    expect(
+      reducer(
+        intialState,
+        {type: 'ADD_DEBTOR', payload: {username: 'newguy'}}
+      )).toEqual(
+      {
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
+        splitName: null,
+        splitter: {
+          name: '',
+          phone: '',
+          items: [],
+          debtTotal: null,
+          tax: null,
+          tip: null,
+          total: null,
+        },
+        debtors: [{username: 'newguy'}],
         picture: null
       }
     );
@@ -299,7 +351,7 @@ describe('actions', () => {
         splitter: {
           name: '',
           phone: '',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
@@ -318,13 +370,13 @@ describe('actions', () => {
         {type: 'SET_SPLITTER', payload: {
           name: 'test',
           phone: 'test',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
           total: null,
         }
-        } 
+        }
       )).toEqual(
       {
         splitTotal: null,
@@ -334,7 +386,7 @@ describe('actions', () => {
         splitter: {
           name: 'test',
           phone: 'test',
-          items: null,
+          items: [],
           debtTotal: null,
           tax: null,
           tip: null,
