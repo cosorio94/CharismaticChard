@@ -41,6 +41,11 @@ class MainSidebars extends React.Component {
     this.toggleModal();    
   }
 
+  historyStateChange() {
+    this.props.history(true); 
+    this.updateModal(false);    
+  }
+
   render() {
     return (
       <div className='Sidebar-demo col-xs-12'>
@@ -86,4 +91,4 @@ class MainSidebars extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainSidebars); 
+export default connect(mapStateToProps, mapDispatchToProps)(MainSidebars);

@@ -1,6 +1,7 @@
 export default function reducer(state = 
   {
     items: [{name: null, price: null}],
+    isLoading: false
   }, action) {
   switch (action.type) {
   case 'SET_ITEMS': {
@@ -14,6 +15,9 @@ export default function reducer(state =
   }
   case 'REMOVE_ITEM': {
     return {...state, items: [...state.items.slice(0, -1)]};
+  }
+  case 'TOGGLE_ISLOADING': {
+    return {...state, isLoading: action.payload};
   }
   default: {
     return state;

@@ -5,6 +5,7 @@ import reducer from '../../src/reducers/inputReducer.js';
 describe('actions', () => {
   const intialState = {
     items: [{name: null, price: null}],
+    isLoading: false
   };
 
   it('should return the ititial state', () => {
@@ -20,6 +21,7 @@ describe('actions', () => {
       )).toEqual(
       {
         items: [{name: 'test'}],
+        isLoading: false
       }
     );
   });

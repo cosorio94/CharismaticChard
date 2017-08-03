@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 const sendItemImageToServer = (items) => {
-  return (dispatch) => { 
+  return (dispatch) => {
+    dispatch({type: 'TOGGLE_ISLOADING', payload: true});
     axios.post('/api/analyze-image', items)
       .then(res => {
+        dispatch({type: 'TOGGLE_ISLOADING', payload: false});
         dispatch({type: 'SET_ITEMS', payload: res.data.items});
         dispatch({type: 'SET_TAX', payload: res.data.tax.price});
         dispatch({type: 'SET_TOTAL', payload: res.data.total.price});
@@ -11,6 +13,13 @@ const sendItemImageToServer = (items) => {
       .catch(err => {
         console.log(err);
       });
+  };
+};
+
+const toggleIsLoading = (toggle) => {
+  return {
+    type: 'TOGGLE_ISLOADING',
+    payload: toggle
   };
 };
 
@@ -48,5 +57,6 @@ export {
   setItem,
   addItem,
   removeItem,
-  sendItemImageToServer
+  sendItemImageToServer,
+  toggleIsLoading
 };

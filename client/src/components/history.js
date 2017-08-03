@@ -48,7 +48,7 @@ class History extends React.Component {
                 <label className="col-xs-6">Date: </label>
                 <p className="col-xs-6">{data.created_at.slice(0, 10)}</p>
               </div>
-              <hr />
+              <hr className="split-line"/>
               <label>Items:</label>
               {
                 data.items.map( (item, index) => (
@@ -65,7 +65,7 @@ class History extends React.Component {
                       <label className="col-xs-6">Debtor: </label>
                       <p className="col-xs-6">{item.debtor.display}</p>
                     </div>
-                    <hr />
+                    <hr className="split-line"/>
                   </div>
                 ))
               }
@@ -81,7 +81,6 @@ class History extends React.Component {
                 <label className="col-xs-6">Total: </label>
                 <p className="col-xs-6">{data.total}</p>
               </div>
-              <hr className="history-line"/>
             </div>
           ))
           } 
