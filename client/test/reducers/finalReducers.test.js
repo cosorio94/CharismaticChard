@@ -12,10 +12,10 @@ describe('actions', () => {
       name: '',
       phone: '',
       items: [],
-      debtTotal: null,
+      total: null,
       tax: null,
       tip: null,
-      total: null,
+      debtTotal: null,
     },
     debtors: [],
     picture: null
@@ -263,7 +263,7 @@ describe('actions', () => {
     expect(
       reducer(
         intialState,
-        {type: 'SET_DEBTORS_TAX', payload: 15}
+        {type: 'SET_SPLITTER_TAX', payload: 15}
       )).toEqual(
       {
         splitTotal: null,
@@ -289,7 +289,7 @@ describe('actions', () => {
     expect(
       reducer(
         intialState,
-        {type: 'SET_DEBTORS_TIP', payload: 15}
+        {type: 'SET_SPLITTER_TIP', payload: 15}
       )).toEqual(
       {
         splitTotal: null,
@@ -337,64 +337,4 @@ describe('actions', () => {
     );
   });
 
-  it('should update the splitter tip', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_DEBTORS', payload: [{debtor: 'test'}]}
-      )).toEqual(
-      {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
-        splitter: {
-          name: '',
-          phone: '',
-          items: [],
-          debtTotal: null,
-          tax: null,
-          tip: null,
-          total: null,
-        },
-        debtors: [{debtor: 'test'}],
-        picture: null
-      }
-    );
-  });
-
-  it('should update the splitter', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_SPLITTER', payload: {
-          name: 'test',
-          phone: 'test',
-          items: [],
-          debtTotal: null,
-          tax: null,
-          tip: null,
-          total: null,
-        }
-        }
-      )).toEqual(
-      {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
-        splitter: {
-          name: 'test',
-          phone: 'test',
-          items: [],
-          debtTotal: null,
-          tax: null,
-          tip: null,
-          total: null,
-        },
-        debtors: [],
-        picture: null
-      }
-    );
-  });
 });

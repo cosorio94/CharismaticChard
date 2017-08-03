@@ -62,9 +62,6 @@ export default function reducer(state =
   case 'SET_DEBTOR': {
     return {...state, debtors: state.debtors.slice(0, action.index).concat([action.payload], state.debtors.slice(action.index + 1))};
   }
-  case 'SET_SPLITTER': {
-    return {...state, splitter: action.payload};
-  }
   default: {
     return state;
   }

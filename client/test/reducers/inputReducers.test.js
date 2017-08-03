@@ -4,10 +4,7 @@ import reducer from '../../src/reducers/inputReducer.js';
 
 describe('actions', () => {
   const intialState = {
-    items: [{item: null, price: null}],
-    tax: null, 
-    total: null, 
-    tip: null
+    items: [{name: null, price: null}],
   };
 
   it('should return the ititial state', () => {
@@ -19,58 +16,10 @@ describe('actions', () => {
     expect(
       reducer(
         intialState,
-        {type: 'SET_ITEMS', payload: [{item: 'test'}]}
+        {type: 'SET_ITEMS', payload: [{name: 'test'}]}
       )).toEqual(
       {
-        items: [{item: 'test'}],
-        tax: null, 
-        total: null, 
-        tip: null
-      }
-    );
-  });
-
-  it('should update tax', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_TAX', payload: 15}
-      )).toEqual(
-      {
-        items: [{item: null, price: null}],
-        tax: 15, 
-        total: null, 
-        tip: null
-      }
-    );
-  });
-
-  it('should update total', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_TOTAL', payload: 15}
-      )).toEqual(
-      {
-        items: [{item: null, price: null}],
-        tax: null, 
-        total: 15, 
-        tip: null
-      }
-    );
-  });
-
-  it('should update total', () => {
-    expect(
-      reducer(
-        intialState,
-        {type: 'SET_TIP', payload: 15}
-      )).toEqual(
-      {
-        items: [{item: null, price: null}],
-        tax: null, 
-        total: null, 
-        tip: 15
+        items: [{name: 'test'}],
       }
     );
   });

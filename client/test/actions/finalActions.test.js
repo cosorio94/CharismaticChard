@@ -98,7 +98,7 @@ describe('actions', () => {
   it('should create an action to send splitter tax', () => {
     const tax = 15;
     const expectedAction = {
-      type: 'SET_DEBTORS_TAX',
+      type: 'SET_SPLITTER_TAX',
       payload: tax
     };
     expect(actions.setSplitterTax(tax)).toEqual(expectedAction);
@@ -107,7 +107,7 @@ describe('actions', () => {
   it('should create an action to send splitter tip', () => {
     const tip = 15;
     const expectedAction = {
-      type: 'SET_DEBTORS_TIP',
+      type: 'SET_SPLITTER_TIP',
       payload: tip
     };
     expect(actions.setSplitterTip(tip)).toEqual(expectedAction);
@@ -120,15 +120,6 @@ describe('actions', () => {
       payload: friendList
     };
     expect(actions.addDebtor(friendList)).toEqual(expectedAction);
-  });
-
-  it('should create an action to send splitter', () => {
-    const splitter = {test: 'test'};
-    const expectedAction = {
-      type: 'SET_SPLITTER',
-      payload: splitter
-    };
-    expect(actions.setSplitter(splitter)).toEqual(expectedAction);
   });
 
   it('should create an action to send debtors', () => {
