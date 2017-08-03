@@ -58,15 +58,15 @@ class Confirmation extends React.Component {
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Tax: </label>
-              <p className="col-xs-6">{this.props.final.totalTax}</p>
+              <p className="col-xs-6">{(Number(this.props.final.totalTax)).toFixed(2)}</p>
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Tip: </label>
-              <p className="col-xs-6">{this.props.final.totalTip}</p>
+              <p className="col-xs-6">{(Number(this.props.final.totalTip)).toFixed(2)}</p>
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Final Total: </label>
-              <p className="col-xs-6">{this.props.final.splitTotal}</p>
+              <p className="col-xs-6">{(Number(this.props.final.splitTotal)).toFixed(2)}</p>
             </div>
           </div>
           <div>

@@ -1,4 +1,3 @@
-
 const imageItems = (itemPos) => {
   return {
     type: 'IMAGE-ITEMS',

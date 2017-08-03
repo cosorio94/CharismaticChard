@@ -1,6 +1,5 @@
 export default function reducer(state =
   {
-    debtors: [],
     checkUser: {},
   }, action) {
   switch (action.type) {

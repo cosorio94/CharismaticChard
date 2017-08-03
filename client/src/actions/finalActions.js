@@ -112,14 +112,14 @@ const setSplitterTotal = (debt) => {
 
 const setSplitterTax = (tax) => {
   return {
-    type: 'SET_DEBTORS_TAX',
+    type: 'SET_SPLITTER_TAX',
     payload: tax,
   };
 };
 
 const setSplitterTip = (tip) => {
   return {
-    type: 'SET_DEBTORS_TIP',
+    type: 'SET_SPLITTER_TIP',
     payload: tip,
   };
 };
