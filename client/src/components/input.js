@@ -104,8 +104,19 @@ class Input extends React.Component {
     this.props.removeItem();
   }
 
+  fixItemPrice(item, index) {
+    var itemCopy = {...item};
+    itemCopy.price = Number(itemCopy.price).toFixed(2);
+    this.props.setItem(itemCopy, index);
+  }
+
+  fixItemPricesToTwoDigits() {
+    this.props.items.forEach((item, index) => {
+      this.fixItemPrice(item, index);
+    });
+  }
+
   handleSubmit() {
-    console.log('hey');
     this.props.setTotalTip((Number(this.props.totalTip)).toFixed(2));
     this.props.setTotalTax((Number(this.props.totalTax)).toFixed(2));
     this.props.setSplitTotal((Number(this.props.splitTotal)).toFixed(2));

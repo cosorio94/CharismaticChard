@@ -1,8 +1,8 @@
 export default function reducer(state = 
   {
-    splitTotal: null,
-    totalTax: null,
-    totalTip: null,
+    splitTotal: '',
+    totalTax: '',
+    totalTip: '',
     splitName: null,
     splitter: {
       name: '',
