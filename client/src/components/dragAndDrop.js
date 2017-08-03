@@ -33,7 +33,7 @@ const mapStateToProps = state => {
     tax: state.input.tax,
     total: state.input.total,
     tip: state.input.tip,
-    debtors: state.output.debtors,
+    debtors: state.final.debtors,
     splitterName: state.final.splitter.name,
     splitterNumber: state.final.splitter.phone,
     splitterItems: state.final.splitter.items,
@@ -68,6 +68,9 @@ const mapDispatchToProps = dispatch => {
     ),
     addDebtor: (input) => dispatch(
       addDebtor(input)
+    ),
+    setItems: (input) => dispatch(
+      setItems(input)
     ),
     setDebtorItem: (input) => dispatch(
       setDebtorItem(input)
@@ -117,6 +120,18 @@ class DragAndDrop extends React.Component {
     this.props.addItem(second);
   }
 
+  // handleUnusedItemsChange(items) {
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  handleUnusedItemsUpdate(event) {
+    var items = this.props.items.slice();
+    var item = items.splice(event.oldIndex, 1);
+    items = items.slice(0, event.newIndex).concat(item, items.slice(event.newIndex + 1));
+    this.props.setItems(items);
+  }
+
   render() {
     return (
       <div>
@@ -124,11 +139,13 @@ class DragAndDrop extends React.Component {
           <div className="list-group col-xs-6">
             <div className="row text-center">
               <div className="col-xs-12">
+                <div className="row">
+                  <h4>Items</h4>
+                </div>
                 <SharedGroup 
                   items={this.props.items}
-                  setItems={this.props.setItems}
+                  onUpdate={this.handleUnusedItemsUpdate.bind(this)}
                   splitItem={this.splitItem}
-                  header='Items'
                   className='itemsList'
                 />
               </div>
@@ -152,17 +169,19 @@ class DragAndDrop extends React.Component {
           </div>
           <div className="col-xs-6 text-center">
             <div className="row">
-                <h4>Friends List</h4>
+              <h4>Friends List</h4>
             </div>
             <div className="row text-center friendsList">
               <div className="col-xs-12">
                 <div className="row containerDivPadding">
                   <div className="col-xs-12">
+                    <div className="row">
+                      <h4>{this.props.splitterName}</h4>
+                    </div>
                     <SharedGroup 
                       items={this.props.splitterItems}
                       setItems={this.props.setSplitterItems}
                       splitItem={this.splitItem}
-                      header={this.props.splitterName}
                       className='list-group-item'
                     />
                   </div>
@@ -170,13 +189,19 @@ class DragAndDrop extends React.Component {
               </div>
               {
                 this.props.debtors.map((person, index) => (
-                  <SharedGroup 
-                    items={this.props.debtors[index].items}
-                    setItems={this.props.setDebtorItem}
-                    splitItem={this.splitItem}
-                    header={person.name}
-                    className='itemsList'
-                  />
+                  <div className="row containerDivPadding" key={index}>
+                    <div className="col-xs-12">
+                      <div className="row">
+                        <h4>{person.name}</h4>
+                      </div>
+                      <SharedGroup 
+                        items={this.props.debtors[index].items}
+                        setItems={this.props.setDebtorItem}
+                        splitItem={this.splitItem}
+                        className='itemsList'
+                      />
+                    </div>
+                  </div>
                 ))
               }
             </div>
