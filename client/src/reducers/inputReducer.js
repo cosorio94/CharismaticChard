@@ -1,6 +1,6 @@
 export default function reducer(state = 
   {
-    items: [{name: null, price: null}],
+    items: [{name: '', price: ''}],
     isLoading: false
   }, action) {
   switch (action.type) {

@@ -72,13 +72,13 @@ class Input extends React.Component {
     e.preventDefault();
     var val = e.target.value;
     var index = e.target.id;
-    var obj = this.props.items.slice()[index];
+    var obj = {...this.props.items.slice()[index]};
     if (e.target.type === 'number') {
       obj.price = val;
     } else if (e.target.type === 'text') {
       obj.name = val;
     }
-    this.props.setItem(obj, index);
+    this.props.setItem(obj, Number(index));
   }
 
   handleChangeTax(e) {
@@ -97,7 +97,7 @@ class Input extends React.Component {
   }
 
   addItem() {
-    this.props.addItem({name: null, price: null});
+    this.props.addItem({name: '', price: ''});
   }
 
   removeItem() {
