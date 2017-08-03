@@ -220,7 +220,7 @@ class DragAndDrop extends React.Component {
                     <SharedGroup 
                       items={this.props.splitterItems}
                       onChange={this.handleSplitterItemsChange}
-                      splitItem={this.splitItem}
+                      splitItem={null}
                       className='list-group-item splitterList'
                     />
                   </div>
@@ -236,7 +236,7 @@ class DragAndDrop extends React.Component {
                       <SharedGroup 
                         items={this.props.debtors[index].items}
                         onChange={this.handleDebtorItemsChange}
-                        splitItem={this.splitItem}
+                        splitItem={null}
                         className='list-group-item completedList'
                         debtorIndex={index}
                       />
