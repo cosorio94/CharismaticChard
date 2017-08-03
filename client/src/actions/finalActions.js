@@ -131,9 +131,9 @@ const addDebtor = (debtor) => {
   };
 };
 
-const setDebtorItem = (item, index) => {
+const setDebtor = (item, index) => {
   return {
-    type: 'SET_DEBTOR_ITEM',
+    type: 'SET_DEBTOR',
     payload: item,
     index: index,
   };
@@ -152,7 +152,7 @@ export {
   setSplitterItems,
   setDebtors,
   addDebtor,
-  setDebtorItem,
+  setDebtor,
   setSplitterDebtTotal,
   setSplitterTotal,
   setSplitterTax,

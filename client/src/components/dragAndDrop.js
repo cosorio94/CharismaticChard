@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  setDebtors,
+  setDebtor,
   setSplitter,
   setSplitTotal,
   setTotalTax,
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
     tax: state.input.tax,
     total: state.input.total,
     tip: state.input.tip,
-    debtors: state.output.debtors,
+    debtors: state.final.debtors,
     splitterName: state.final.splitter.name,
     splitterNumber: state.final.splitter.phone,
     splitterItems: state.final.splitter.items,
@@ -69,8 +69,11 @@ const mapDispatchToProps = dispatch => {
     addDebtor: (input) => dispatch(
       addDebtor(input)
     ),
-    setDebtorItem: (input) => dispatch(
-      setDebtorItem(input)
+    setItems: (input) => dispatch(
+      setItems(input)
+    ),
+    setDebtor: (input, index) => dispatch(
+      setDebtor(input, index)
     ),
   };
 };
@@ -79,6 +82,11 @@ class DragAndDrop extends React.Component {
   constructor(props) {
     super(props);
     this.splitItem = this.splitItem.bind(this);
+    this.lists = {
+      itemsList: this.props.items,
+      splitterList: this.props.splitterItems,
+      completedList: this.props.debtors
+    };
   }
 
   splitTax(debtorTotal) {
@@ -117,6 +125,68 @@ class DragAndDrop extends React.Component {
     this.props.addItem(second);
   }
 
+  // handleUnusedItemsChange(event) {
+  //   var className = 'row sortableList itemsList';
+  //   var fromClass = event.from.className.split(' ')[-1];
+  //   var toClass = event.to.className.split(' ')[-1];
+  //   if (event.from.className === event.to.className) {
+  //     this.unusedItemsUpdate(event);
+  //   } else if (event.from.className === className) {
+  //     this.unusedItemsRemove(event);
+  //   } else {
+  //     this.unusedItemsAdd(event);
+  //   }
+  // }
+
+  // unusedItemsUpdate(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   items = items.slice(0, event.newIndex).concat(item, items.slice(event.newIndex));
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  // unusedItemsRemove(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  // unusedItemsAdd(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  getItemInfoFromOrder(order) {
+    return order.map(data => {
+      var splitData = data.split(' ');
+      var price = splitData.pop();
+      return {
+        item: splitData.join(' '),
+        price: price
+      };
+    });
+  }
+
+  handleUnusedItemsChange(order) {
+    this.props.setItems(this.getItemInfoFromOrder(order));
+  }
+
+  handleSplitterItemsChange(order) {
+    this.props.setSplitterItems(this.getItemInfoFromOrder(order));
+  }
+
+  handleDebtorItemsChange(order, debtorIndex) {
+    var debtor = Object.assign({}, this.props.debtors[debtorIndex]);
+    debtor.items = this.getItemInfoFromOrder(order);
+    console.log(debtor);
+    console.log(debtorIndex);
+    this.props.setDebtor(debtor, debtorIndex);
+  }
+
   render() {
     return (
       <div>
@@ -124,11 +194,13 @@ class DragAndDrop extends React.Component {
           <div className="list-group col-xs-6">
             <div className="row text-center">
               <div className="col-xs-12">
+                <div className="row">
+                  <h4>Items</h4>
+                </div>
                 <SharedGroup 
                   items={this.props.items}
-                  setItems={this.props.setItems}
+                  onChange={this.handleUnusedItemsChange.bind(this)}
                   splitItem={this.splitItem}
-                  header='Items'
                   className='itemsList'
                 />
               </div>
@@ -152,31 +224,40 @@ class DragAndDrop extends React.Component {
           </div>
           <div className="col-xs-6 text-center">
             <div className="row">
-                <h4>Friends List</h4>
+              <h4>Friends List</h4>
             </div>
             <div className="row text-center friendsList">
               <div className="col-xs-12">
                 <div className="row containerDivPadding">
                   <div className="col-xs-12">
+                    <div className="row">
+                      <h4>{this.props.splitterName}</h4>
+                    </div>
                     <SharedGroup 
                       items={this.props.splitterItems}
-                      setItems={this.props.setSplitterItems}
+                      onChange={this.handleSplitterItemsChange.bind(this)}
                       splitItem={this.splitItem}
-                      header={this.props.splitterName}
-                      className='list-group-item'
+                      className='list-group-item splitterList'
                     />
                   </div>
                 </div>
               </div>
               {
                 this.props.debtors.map((person, index) => (
-                  <SharedGroup 
-                    items={this.props.debtors[index].items}
-                    setItems={this.props.setDebtorItem}
-                    splitItem={this.splitItem}
-                    header={person.name}
-                    className='itemsList'
-                  />
+                  <div className="row containerDivPadding" key={index}>
+                    <div className="col-xs-12">
+                      <div className="row">
+                        <h4>{person.name}</h4>
+                      </div>
+                      <SharedGroup 
+                        items={this.props.debtors[index].items}
+                        onChange={this.handleDebtorItemsChange.bind(this)}
+                        splitItem={this.splitItem}
+                        className='list-group-item completedList'
+                        debtorIndex={index}
+                      />
+                    </div>
+                  </div>
                 ))
               }
             </div>
