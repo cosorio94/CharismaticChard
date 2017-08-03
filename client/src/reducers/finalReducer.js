@@ -17,7 +17,7 @@ export default function reducer(state =
     picture: null
   }, action) {
   switch (action.type) {
-  case 'SET_PROFILEPICTURE': {
+    case 'SET_PROFILEPICTURE': {
     return {...state, picture: action.payload};
   }
   case 'SET_SPLIT_TOTAL': {
