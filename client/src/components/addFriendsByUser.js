@@ -36,7 +36,6 @@ export class AddFriendsByUser extends React.Component {
     this.saveFriendInfo();
     this.setState({
       username: '',
-      validationState: null
     });
     this.toggle();
   }
@@ -67,7 +66,8 @@ export class AddFriendsByUser extends React.Component {
 
   toggle() {
     this.setState({
-      showModal: !this.state.showModal
+      showModal: !this.state.showModal,
+      validationState: null
     });
   }
 

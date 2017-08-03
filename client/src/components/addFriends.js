@@ -1,14 +1,10 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import Modal from 'react-bootstrap/lib/Modal';
-import Table from 'react-bootstrap/lib/Table';
-import Form from 'react-bootstrap/lib/Form';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import Col from 'react-bootstrap/lib/Col';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import { Button, Modal, Table, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap';
+import AddFriendsByUserButton from './addFriendsByUser.js';
 import { connect } from 'react-redux';
 import { setFriendsInfo } from '../actions/outputActions.js';
+import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
+const phoneUtil = PhoneNumberUtil.getInstance();
 
 const mapStateToProps = state => {
   return {
@@ -30,21 +26,28 @@ export class AddFriends extends React.Component {
     this.state = {
       showModal: false,
       name: null,
-      number: null
+      number: null,
+      validationState: null,
+      isValid: null
     };
   }
 
-  close() {
-    this.setState({ showModal: false });
-    let friendInformation = {
-      friendName: this.state.name,
-      friendNumber: this.state.number
-    };
-    this.props.setFriendsInfo(friendInformation);
+  handleAdd(e) {
+    e.preventDefault();
+    this.saveFriendInfo();
+    this.setState({
+      name: '',
+      number: '',
+      validationState: null
+    });
+    this.toggle();
   }
 
-  open() {
-    this.setState({ showModal: true });
+  handleFailAdd(e) {
+    e.preventDefault();
+    this.setState({
+      validationState: 'error'
+    });
   }
 
   friendName(e) {
@@ -54,43 +57,63 @@ export class AddFriends extends React.Component {
   }
 
   friendNumber(e) {
+    e.target.value = phoneUtil.format(phoneUtil.parse(e.target.value, 'US'), PhoneNumberFormat.NATIONAL);
     this.setState({
-      number: e.target.value
+      number: e.target.value,
+      validationState: null,
+      isValid: phoneUtil.isValidNumber(phoneUtil.parse(e.target.value, 'US'))
+    });
+  }
+
+  saveFriendInfo() {
+    let friendInformation = {
+      friendName: this.state.name,
+      friendNumber: this.state.number
+    };
+    this.props.setFriendsInfo(friendInformation);
+  }
+
+  toggle() {
+    this.setState({
+      showModal: !this.state.showModal,
+      validationState: null
     });
   }
 
   render() {
     return (
       <div className="text-center">
-        <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.open.bind(this)}>
-          Phone
+        <Button id="add-friends" bsStyle="primary" bsSize="small" onClick={this.toggle.bind(this)}>
+          Add Friends
         </Button>
-        <Modal show={this.state.showModal} onHide={this.close.bind(this)} bsSize="small">
+        <Modal show={this.state.showModal} onHide={this.toggle.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Add a friend</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form horizontal>
-              <FormGroup controlId="formInlineName">
+            <Form horizontal onSubmit={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
+              <FormGroup controlId="formName">
                 <Col componentClass={ControlLabel} sm={2}>
                   Name
                 </Col>
                 <Col sm={10}>
-                  <FormControl type="email" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
+                  <FormControl type="text" placeholder="Friend's Name" onChange={this.friendName.bind(this)}/>
                 </Col>
               </FormGroup>
-              <FormGroup controlId="formHorizontalNumber">
+            </Form>
+            <Form horizontal onSubmit={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
+              <FormGroup controlId="formPhoneNumber" validationState={this.state.validationState}>
                 <Col componentClass={ControlLabel} sm={2}>
                   Number
                 </Col>
                 <Col sm={10}>
-                  <FormControl type="email" placeholder="xxx-xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
+                  <FormControl type="text" placeholder="(xxx)xxx-xxxx" onChange={this.friendNumber.bind(this)}/>
                 </Col>
               </FormGroup>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.close.bind(this)}>ADD</Button>
+            <Button bsStyle="primary" onClick={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>ADD</Button>
           </Modal.Footer>
         </Modal>
       </div>
