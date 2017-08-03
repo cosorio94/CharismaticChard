@@ -1,7 +1,7 @@
 import React from 'react';
 import Sortable from 'react-sortablejs';
 
-const SharedGroup = ({items, setItems, splitItem, className, onRemove, onUpdate, onAdd}) => (
+const SharedGroup = ({items, onChange, splitItem, className, debtorIndex}) => (
   <Sortable 
     className = {"row sortableList " + className}
     options={{
@@ -9,28 +9,21 @@ const SharedGroup = ({items, setItems, splitItem, className, onRemove, onUpdate,
       pull: true,
       put: true
     }}
-    // onChange={(order, sortable, event) => {
-    //   console.log(order);
-    //   console.log(sortable);
-    //   console.log(event);
-    //   console.log('old:', event.oldIndex);
-    //   console.log('new:', event.newIndex);
-    //   console.log('from: ', event.from);
-    //   setItems(order)
-    // }}
-    onRemove={(order, sortable, event) => {
-      onRemove(event);
+    onChange={(order, sortable, event) => {
+      // console.log(order);
+      // console.log(sortable);
+      console.log(event);
+      console.log('old:', event.oldIndex);
+      console.log('new:', event.newIndex);
+      console.log('from: ', event.from.className);
+      console.log('to: ', event.to.className);
+      onChange(order, debtorIndex);
     }}
-    onUpdate={(order, sortable, event) => {
-      onUpdate(event);
-    }}
-    onAdd={(order, sortable, event) => {
-      onAdd(event);
-    }}
+
   >
     {
       items.map((item, index) => (
-        <div className="list-group-item" data-id={index} key={index}>
+        <div className="list-group-item" data-id={item.item + ' ' + item.price} key={index}>
           {item.item} ${item.price}
           <button className="splitBtn btn" id={index} onClick={splitItem}>
             Split

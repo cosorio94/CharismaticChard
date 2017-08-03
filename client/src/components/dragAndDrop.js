@@ -72,8 +72,8 @@ const mapDispatchToProps = dispatch => {
     setItems: (input) => dispatch(
       setItems(input)
     ),
-    setDebtorItem: (input) => dispatch(
-      setDebtorItem(input)
+    setDebtor: (input) => dispatch(
+      setDebtor(input)
     ),
   };
 };
@@ -82,6 +82,11 @@ class DragAndDrop extends React.Component {
   constructor(props) {
     super(props);
     this.splitItem = this.splitItem.bind(this);
+    this.lists = {
+      itemsList: this.props.items,
+      splitterList: this.props.splitterItems,
+      completedList: this.props.debtors
+    };
   }
 
   splitTax(debtorTotal) {
@@ -120,16 +125,64 @@ class DragAndDrop extends React.Component {
     this.props.addItem(second);
   }
 
-  // handleUnusedItemsChange(items) {
+  // handleUnusedItemsChange(event) {
+  //   var className = 'row sortableList itemsList';
+  //   var fromClass = event.from.className.split(' ')[-1];
+  //   var toClass = event.to.className.split(' ')[-1];
+  //   if (event.from.className === event.to.className) {
+  //     this.unusedItemsUpdate(event);
+  //   } else if (event.from.className === className) {
+  //     this.unusedItemsRemove(event);
+  //   } else {
+  //     this.unusedItemsAdd(event);
+  //   }
+  // }
+
+  // unusedItemsUpdate(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   items = items.slice(0, event.newIndex).concat(item, items.slice(event.newIndex));
   //   console.log(items);
   //   this.props.setItems(items);
   // }
 
-  handleUnusedItemsUpdate(event) {
-    var items = this.props.items.slice();
-    var item = items.splice(event.oldIndex, 1);
-    items = items.slice(0, event.newIndex).concat(item, items.slice(event.newIndex + 1));
-    this.props.setItems(items);
+  // unusedItemsRemove(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  // unusedItemsAdd(event) {
+  //   var items = this.props.items.slice();
+  //   var item = items.splice(event.oldIndex, 1);
+  //   console.log(items);
+  //   this.props.setItems(items);
+  // }
+
+  getItemInfoFromOrder(order) {
+    return order.map(data => {
+      var splitData = data.split(' ');
+      var price = splitData.pop();
+      return {
+        item: splitData.join(' '),
+        price: price
+      };
+    });
+  }
+
+  handleUnusedItemsChange(order) {
+    this.props.setItems(this.getItemInfoFromOrder(order));
+  }
+
+  handleSplitterItemsChange(order) {
+    this.props.setSplitterItems(this.getItemInfoFromOrder(order));
+  }
+
+  handleDebtorItemsChange(order, debtorIndex) {
+    var debtor = {...this.props.debtors[debtorIndex]};
+    debtor.item = this.getItemInfoFromOrder(order);
+    this.props.setDebtor(debtor);
   }
 
   render() {
@@ -144,7 +197,7 @@ class DragAndDrop extends React.Component {
                 </div>
                 <SharedGroup 
                   items={this.props.items}
-                  onUpdate={this.handleUnusedItemsUpdate.bind(this)}
+                  onChange={this.handleUnusedItemsChange.bind(this)}
                   splitItem={this.splitItem}
                   className='itemsList'
                 />
@@ -180,9 +233,9 @@ class DragAndDrop extends React.Component {
                     </div>
                     <SharedGroup 
                       items={this.props.splitterItems}
-                      setItems={this.props.setSplitterItems}
+                      onChange={this.handleSplitterItemsChange.bind(this)}
                       splitItem={this.splitItem}
-                      className='list-group-item'
+                      className='list-group-item splitterList'
                     />
                   </div>
                 </div>
@@ -198,7 +251,8 @@ class DragAndDrop extends React.Component {
                         items={this.props.debtors[index].items}
                         setItems={this.props.setDebtorItem}
                         splitItem={this.splitItem}
-                        className='itemsList'
+                        className='list-group-item completedList'
+                        debtorIndex={index}
                       />
                     </div>
                   </div>
