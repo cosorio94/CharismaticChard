@@ -14,11 +14,32 @@ const sendItemImageToServer = (items) => {
   };
 };
 
-
-const setItems = (item) => {
+const setItems = (items) => {
   return {
     type: 'SET_ITEMS',
+    payload: items,
+  };
+};
+
+const setItem = (item, index) => {
+  return {
+    type: 'SET_ITEM',
     payload: item,
+    index: index,
+  };
+};
+
+const addItem = (item) => {
+  return {
+    type: 'ADD_ITEM',
+    payload: item,
+  };
+};
+
+const removeItem = () => {
+  return {
+    type: 'REMOVE_ITEM',
+    payload: undefined,
   };
 };
 
@@ -45,6 +66,9 @@ const setTip = (tip) => {
 
 export {
   setItems,
+  setItem,
+  addItem,
+  removeItem,
   setTax,
   setTotal,
   setTip,

@@ -4,7 +4,7 @@ import reducer from '../../src/reducers/inputReducer.js';
 
 describe('actions', () => {
   const intialState = {
-    items: [],
+    items: [{item: undefined, price: undefined}],
     tax: null, 
     total: null, 
     tip: null
@@ -37,7 +37,7 @@ describe('actions', () => {
         {type: 'SET_TAX', payload: 15}
       )).toEqual(
       {
-        items: [],
+        items: [{item: undefined, price: undefined}],
         tax: 15, 
         total: null, 
         tip: null
@@ -52,7 +52,7 @@ describe('actions', () => {
         {type: 'SET_TOTAL', payload: 15}
       )).toEqual(
       {
-        items: [],
+        items: [{item: undefined, price: undefined}],
         tax: null, 
         total: 15, 
         tip: null
@@ -67,7 +67,7 @@ describe('actions', () => {
         {type: 'SET_TIP', payload: 15}
       )).toEqual(
       {
-        items: [],
+        items: [{item: undefined, price: undefined}],
         tax: null, 
         total: null, 
         tip: 15

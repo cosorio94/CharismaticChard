@@ -10,6 +10,15 @@ import {
   setTotalTax,
   setTotalTip,
 } from '../actions/finalActions.js';
+import { 
+  addItem,
+  removeItem,
+  setItem,
+  setTax,
+  setTotal,
+  setTip,
+  setSplitName
+} from '../actions/inputActions.js';
 import AddFriends from './addFriends.js';
 import AddFriendsByUserButton from './addFriendsByUser.js';
 
@@ -41,6 +50,12 @@ const mapDispatchToProps = dispatch => {
     ),
     setTotalTip: (input) => dispatch(
       setTotalTip(input)
+    ),
+    setItem: (input, index) => dispatch(
+      setItem(input, index)
+    ),
+    addItem: (input) => dispatch(
+      addItem(input)
     ),
   };
 };
@@ -152,20 +167,16 @@ class DragAndDrop extends React.Component {
 
   splitItem(e) {
     e.preventDefault();
-    var target = $(e.target);
-    var div = $(target.parent()[0]);
-    var split = div.attr('id').split(' ');
-    
-    var newId1 = ('(1/2)' + split[0] + ' ' + ((Number(split[1]) / 2).toFixed(2)));
-    var newName1 = ('half ' + split[0] + ' $' + ((Number(split[1]) / 2).toFixed(2)));
-    div.clone().attr('id', newId1).text(newName1).appendTo('.itemsList');
+    var index = e.target.id;
+    var first = this.props.items.slice()[index];
 
-    var newId2 = ('(2/2)' + split[0] + ' ' + ((Number(split[1]) / 2).toFixed(2)));
-    var newName2 = ('half ' + split[0] + ' $' + ((Number(split[1]) / 2).toFixed(2)));
-    div.clone().attr('id', newId2).text(newName2).appendTo('.itemsList');
+    first.price = (Number(first.price) / 2).toString();
+    var second = {...first};
+    second.item = '(2/2) ' + first.item;
+    first.item = '(1/2) ' + first.item;
 
-    div.remove();
-    this.makeSortable();
+    this.props.setItem(first, index);
+    this.props.addItem(second);
   }
 
   render() {
@@ -180,10 +191,10 @@ class DragAndDrop extends React.Component {
                 </div>
                 <div className="row sortableList itemsList">
                   {
-                    this.props.items.map((item) => (
-                      <div className="list-group-item" key={item.id} id={item.item + ' ' + item.price}>
+                    this.props.items.map((item, index) => (
+                      <div className="list-group-item" key={index}>
                         {item.item} ${item.price}
-                        <button className="splitBtn btn" onClick={this.splitItem}>
+                        <button className="splitBtn btn" id={index} onClick={this.splitItem}>
                           Split
                         </button>
                       </div>

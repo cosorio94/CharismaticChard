@@ -12,7 +12,6 @@ const sendStateToServer = (split) => {
   };
 };
 
-
 const fetchUserNameAndPhone = () => {
   return (dispatch) => {
     axios.get('/api/profile-info')
@@ -26,7 +25,6 @@ const fetchUserNameAndPhone = () => {
       });
   };
 };
-
 
 const setProfilePicture = (pic) => {
   return {

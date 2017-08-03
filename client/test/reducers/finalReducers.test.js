@@ -4,9 +4,9 @@ import reducer from '../../src/reducers/finalReducer.js';
 
 describe('actions', () => {
   const intialState = {
-    splitTotal: 0,
-    totalTax: 0,
-    totalTip: 0,
+    splitTotal: null,
+    totalTax: null,
+    totalTip: null,
     splitName: null,
     splitter: {
       name: '',
@@ -33,8 +33,8 @@ describe('actions', () => {
       )).toEqual(
       {
         splitTotal: 15,
-        totalTax: 0,
-        totalTip: 0,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -58,9 +58,9 @@ describe('actions', () => {
         {type: 'SET_TOTAL_TAX', payload: 15}
       )).toEqual(
       {
-        splitTotal: 0,
+        splitTotal: null,
         totalTax: 15,
-        totalTip: 0,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -84,8 +84,8 @@ describe('actions', () => {
         {type: 'SET_TOTAL_TIP', payload: 15}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
+        splitTotal: null,
+        totalTax: null,
         totalTip: 15,
         splitName: null,
         splitter: {
@@ -110,9 +110,9 @@ describe('actions', () => {
         {type: 'SET_SPLIT_NAME', payload: 'test'}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: 'test',
         splitter: {
           name: '',
@@ -136,9 +136,9 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_NAME', payload: 'test'}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: 'test',
@@ -162,9 +162,9 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_PHONE', payload: '1234567890'}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -188,9 +188,9 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_ITEMS', payload: [{test: 'item'}]}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -214,9 +214,9 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_DEBTTOTAL', payload: 15}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -240,9 +240,9 @@ describe('actions', () => {
         {type: 'SET_DEBTORS_TAX', payload: 15}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -266,9 +266,9 @@ describe('actions', () => {
         {type: 'SET_DEBTORS_TIP', payload: 15}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -292,9 +292,9 @@ describe('actions', () => {
         {type: 'SET_DEBTORS', payload: [{debtor: 'test'}]}
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: '',
@@ -327,9 +327,9 @@ describe('actions', () => {
         } 
       )).toEqual(
       {
-        splitTotal: 0,
-        totalTax: 0,
-        totalTip: 0,
+        splitTotal: null,
+        totalTax: null,
+        totalTip: null,
         splitName: null,
         splitter: {
           name: 'test',

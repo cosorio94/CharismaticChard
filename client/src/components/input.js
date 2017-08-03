@@ -1,14 +1,18 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import { connect } from 'react-redux';
-import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import { setItems, setTax, setTotal, setTip } from '../actions/inputActions.js';
-import { setSplitName } from '../actions/finalActions.js';
 import { inputLoading } from '../actions/historyAction.js';
-import ItemInputList from './itemInputList.js';
-import ItemEditList from './itemEditList.js';
+import { 
+  addItem,
+  removeItem,
+  setItem,
+  setTax,
+  setTotal,
+  setTip,
+  setSplitName
+} from '../actions/inputActions.js';
 
 const mapStateToProps = state => {
   return {
@@ -21,8 +25,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setItems: (input) => dispatch(
-      setItems(input)
+    addItem: (input) => dispatch(
+      addItem(input)
+    ),
+    removeItem: () => dispatch(
+      removeItem()
+    ),
+    setItem: (input, index) => dispatch(
+      setItem(input, index)
     ),
     setTax: (input) => dispatch(
       setTax(input)
@@ -42,58 +52,94 @@ const mapDispatchToProps = dispatch => {
 class Input extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: 1,
-    };
+    this.handleChangeDyna = this.handleChangeDyna.bind(this);
+    this.handleChangeTax = this.handleChangeTax.bind(this);
+    this.handleChangeTotal = this.handleChangeTotal.bind(this);
+    this.handleChangeTip = this.handleChangeTip.bind(this);
+  }
+
+  handleChangeName(e) {
+    e.preventDefault();
+    this.props.setSplitName(e.target.value);
+  }
+
+  handleChangeDyna(e) {
+    e.preventDefault();
+    var val = e.target.value;
+    var index = e.target.id;
+    var obj = this.props.items.slice()[index];
+    if (e.target.type === 'number') {
+      obj.price = val;
+    } else if (e.target.type === 'text') {
+      obj.item = val;
+    }
+    this.props.setItem(obj, index);
+  }
+
+  handleChangeTax(e) {
+    e.preventDefault();
+    this.props.setTax(Number(e.target.value));
+  }
+
+  handleChangeTotal(e) {
+    e.preventDefault();
+    this.props.setTotal(Number(e.target.value));
+  }
+
+  handleChangeTip(e) {
+    e.preventDefault();
+    this.props.setTip(Number(e.target.value));
   }
 
   addItem() {
-    this.setState({
-      items: this.state.items + 1
-    });
+    this.props.addItem({item: undefined, price: undefined});
   }
 
   removeItem() {
-    this.setState({
-      items: this.state.items - 1
-    });
-  }
-
-  handleSubmit() {
-    var p = this.props;
-    var $items = $('.items').find('input');
-    var items = [];
-    var pair = {};
-    $items.each((index, elem) => {
-      var keys = Object.keys(pair).length;
-      if (keys === 0) {
-        pair.item = $(elem).val();
-        $(elem).val('');
-      } else if (keys === 1) {
-        pair.id = index;
-        pair.price = $(elem).val();
-        items.push(pair);
-        $(elem).val('');
-        pair = {};
-      }
-    });
-    p.setSplitName($('.name').val());
-    $('.name').val('');
-    p.setItems(items);
-    p.setTax($('.tax').val());
-    $('.tax').val('');
-    p.setTotal($('.total').val());
-    $('.total').val('');
-    p.setTip($('.tip').val());
-    $('.tip').val('');
+    this.props.removeItem();
   }
 
   render() {
-    var itemList = (this.props.items.length === 0) ? <ItemInputList items={this.state.items}/> : <ItemEditList />;
-
     return (
       <div className="container">
-        {itemList}
+        <div>
+          <div className="inputContainer row formItem">
+            <div className="inputItem col-xs-12">
+              <label className="inputItemBit">Split Name</label>
+              <input type="text" className="inputItemBit name form-control" placeholder="Name..." required/>
+            </div>
+          </div>
+          <div className="items">
+            {
+              this.props.items.map((item, index) => (
+                <div key={index} className="inputContainer row formItem">
+                  <div className="inputItem col-xs-6">
+                    <label className="inputItemBit">Item</label>
+                    <input type="text" className="inputItemBit form-control" id={index} placeholder="Item..." value={item.item} onChange={this.handleChangeDyna} required/>
+                  </div>
+                  <div className="inputItem col-xs-6">
+                    <label className="inputItemBit">Price</label>
+                    <input type="number" className="inputItemBit form-control" id={index} placeholder="Price..." value={item.price} onChange={this.handleChangeDyna} required/>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <div className="inputContainer row formItem">
+            <div className="inputItem col-xs-12">
+              <label className="inputItemBit">Tax</label>
+              <input type="number" className="inputItemBit tax form-control" placeholder="Tax..." value={this.props.tax} onChange={this.handleChangeTax} required/>
+            </div>
+            <div className="inputItem col-xs-12">
+              <label className="inputItemBit">Total</label>
+              <input type="number" className="inputItemBit total form-control" placeholder="Total..." value={this.props.total} onChange={this.handleChangeTotal} required/>
+            </div>
+            <div className="inputItem col-xs-12">
+              <label className="inputItemBit">Tip</label>
+              <input type="number" className="inputItemBit tip form-control" placeholder="Tip..." value={this.props.tip} onChange={this.handleChangeTip} required/>
+            </div>
+          </div>
+        </div>
         <div className="inputContainer row formItem">
           <div className="inputItem col-xs-6">
             <Button className="btn btn-sm btn-primary" onClick={this.addItem.bind(this)}>Add Item</Button>
@@ -106,7 +152,7 @@ class Input extends React.Component {
         <footer>
           <hr className="footerHR"/>
           <Link className="btn btn-primary" to="/">Cancel</Link>
-          <Link className="btn btn-primary" to="/dragAndDrop" onClick={this.handleSubmit.bind(this)}>Submit</Link>
+          <Link className="btn btn-primary" to="/dragAndDrop">Submit</Link>
         </footer>
       </div>
     );
