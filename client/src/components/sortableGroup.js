@@ -10,13 +10,6 @@ const SharedGroup = ({items, onChange, splitItem, className, debtorIndex}) => (
       put: true
     }}
     onChange={(order, sortable, event) => {
-      // console.log(order);
-      // console.log(sortable);
-      console.log(event);
-      console.log('old:', event.oldIndex);
-      console.log('new:', event.newIndex);
-      console.log('from: ', event.from.className);
-      console.log('to: ', event.to.className);
       onChange(order, debtorIndex);
     }}
 

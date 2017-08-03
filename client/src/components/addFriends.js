@@ -3,7 +3,7 @@ import { Button, Modal, Table, Form, FormGroup, FormControl, Col, ControlLabel }
 import AddFriendsByUserButton from './addFriendsByUser.js';
 import { connect } from 'react-redux';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
-import { addDebtor } from '../actions/outputActions.js';
+import { addDebtor } from '../actions/finalActions.js';
 
 const phoneUtil = PhoneNumberUtil.getInstance();
 

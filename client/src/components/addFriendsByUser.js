@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, Table, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { checkUserAction } from '../actions/outputActions.js';
-import { addDebtor } from '../actions/outputActions.js';
+import { addDebtor } from '../actions/finalActions.js';
 
 const mapStateToProps = state => {
   return {

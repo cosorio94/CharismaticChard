@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  setDebtors,
+  setDebtor,
   setSplitter,
   setSplitTotal,
   setTotalTax,
@@ -72,8 +72,8 @@ const mapDispatchToProps = dispatch => {
     setItems: (input) => dispatch(
       setItems(input)
     ),
-    setDebtor: (input) => dispatch(
-      setDebtor(input)
+    setDebtor: (input, index) => dispatch(
+      setDebtor(input, index)
     ),
   };
 };
@@ -180,9 +180,11 @@ class DragAndDrop extends React.Component {
   }
 
   handleDebtorItemsChange(order, debtorIndex) {
-    var debtor = {...this.props.debtors[debtorIndex]};
-    debtor.item = this.getItemInfoFromOrder(order);
-    this.props.setDebtor(debtor);
+    var debtor = Object.assign({}, this.props.debtors[debtorIndex]);
+    debtor.items = this.getItemInfoFromOrder(order);
+    console.log(debtor);
+    console.log(debtorIndex);
+    this.props.setDebtor(debtor, debtorIndex);
   }
 
   render() {
@@ -249,7 +251,7 @@ class DragAndDrop extends React.Component {
                       </div>
                       <SharedGroup 
                         items={this.props.debtors[index].items}
-                        setItems={this.props.setDebtorItem}
+                        onChange={this.handleDebtorItemsChange.bind(this)}
                         splitItem={this.splitItem}
                         className='list-group-item completedList'
                         debtorIndex={index}
