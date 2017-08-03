@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { setFriendsInfo } from '../actions/outputActions.js';
 import { sendStateToServer } from '../actions/finalActions.js';
 import DebtorConfirmation from './debtorConfirmation.js';
-import SplitterConfirmation from './splitterConfirmation.js'
+import SplitterConfirmation from './splitterConfirmation.js';
 
 const mapStateToProps = state => {
   return {
@@ -58,15 +58,15 @@ class Confirmation extends React.Component {
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Tax: </label>
-              <p className="col-xs-6">{(Number(this.props.final.totalTax)).toFixed(2)}</p>
+              <p className="col-xs-6">{this.props.final.totalTax}</p>
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Tip: </label>
-              <p className="col-xs-6">{(Number(this.props.final.totalTip)).toFixed(2)}</p>
+              <p className="col-xs-6">{this.props.final.totalTip}</p>
             </div>
             <div className="row">
               <label className="col-xs-6 boldP">Final Total: </label>
-              <p className="col-xs-6">{(Number(this.props.final.splitTotal)).toFixed(2)}</p>
+              <p className="col-xs-6">{this.props.final.splitTotal}</p>
             </div>
           </div>
           <div>

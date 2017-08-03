@@ -58,6 +58,7 @@ class Input extends React.Component {
     this.handleChangeTax = this.handleChangeTax.bind(this);
     this.handleChangeTotal = this.handleChangeTotal.bind(this);
     this.handleChangeTip = this.handleChangeTip.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeName(e) {
@@ -99,6 +100,13 @@ class Input extends React.Component {
 
   removeItem() {
     this.props.removeItem();
+  }
+
+  handleSubmit() {
+    console.log('hey');
+    this.props.setTotalTip((Number(this.props.totalTip)).toFixed(2));
+    this.props.setTotalTax((Number(this.props.totalTax)).toFixed(2));
+    this.props.setSplitTotal((Number(this.props.splitTotal)).toFixed(2));
   }
 
   render() {
@@ -154,7 +162,7 @@ class Input extends React.Component {
         <hr className="footerHR"/>
         <footer>
           <Link className="btn btn-primary" to="/">Cancel</Link>
-          <Link className="btn btn-primary" to="/dragAndDrop">Submit</Link>
+          <Link className="btn btn-primary" to="/dragAndDrop" onClick={this.handleSubmit}>Submit</Link>
         </footer>
       </div>
     );
