@@ -2,8 +2,9 @@ import React from 'react';
 import { Button, Modal, Table, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap';
 import AddFriendsByUserButton from './addFriendsByUser.js';
 import { connect } from 'react-redux';
-import { setFriendsInfo } from '../actions/outputActions.js';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
+import { addDebtor } from '../actions/outputActions.js';
+
 const phoneUtil = PhoneNumberUtil.getInstance();
 
 const mapStateToProps = state => {
@@ -14,8 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setFriendsInfo: (input) => dispatch(
-      setFriendsInfo(input)
+    addDebtor: (input) => dispatch(
+      addDebtor(input)
     ),
   };
 };
@@ -66,11 +67,18 @@ export class AddFriends extends React.Component {
   }
 
   saveFriendInfo() {
-    let friendInformation = {
-      friendName: this.state.name,
-      friendNumber: this.state.number
+    let debtor = {
+      name: this.state.name,
+      phone: this.state.number,
+      email: null,
+      email: null,
+      total: null,
+      tax: null,
+      tip: null,
+      debtTotal: null,
+      items: [],
     };
-    this.props.setFriendsInfo(friendInformation);
+    this.props.addDebtor(debtor);
   }
 
   toggle() {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Modal, Table, Form, FormGroup, FormControl, Col, ControlLabel } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setFriendsInfo, checkUserAction } from '../actions/outputActions.js';
+import { checkUserAction } from '../actions/outputActions.js';
+import { addDebtor } from '../actions/outputActions.js';
 
 const mapStateToProps = state => {
   return {
@@ -15,8 +16,8 @@ const mapDispatchToProps = dispatch => {
     checkUserAction: (input) => dispatch(
       checkUserAction(input)
     ),
-    setFriendsInfo: (input) => dispatch(
-      setFriendsInfo(input)
+    addDebtor: (input) => dispatch(
+      addDebtor(input)
     )
   };
 };
@@ -56,12 +57,17 @@ export class AddFriendsByUser extends React.Component {
   }
 
   saveFriendInfo() {
-    let friendInformation = {
-      friendName: this.props.checkUser.display,
-      friendNumber: this.props.checkUser.phone,
-      friendEmail: this.props.checkUser.email
+    let debtor = {
+      name: this.props.checkUser.display,
+      phone: this.props.checkUser.phone,
+      email: this.props.checkUser.email,
+      total: null,
+      tax: null,
+      tip: null,
+      debtTotal: null,
+      items: [],
     };
-    this.props.setFriendsInfo(friendInformation);
+    this.props.addDebtor(debtor);
   }
 
   toggle() {

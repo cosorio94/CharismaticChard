@@ -7,7 +7,7 @@ export default function reducer(state =
     splitter: {
       name: '',
       phone: '',
-      items: null,
+      items: [],
       total: null,
       tax: null,
       tip: null,
@@ -55,6 +55,12 @@ export default function reducer(state =
   }
   case 'SET_DEBTORS': {
     return {...state, debtors: action.payload};
+  }
+  case 'ADD_DEBTOR': {
+    return {...state, debtors: [...state.debtors].concat([action.payload])};
+  }
+  case 'SET_DEBTOR_ITEM': {
+    return {...state, debtors: [...state.debtors.slice(0, action.index)].concat([action.payload], [...state.debtors.slice(action.index + 1)])};
   }
   case 'SET_SPLITTER': {
     return {...state, splitter: action.payload};

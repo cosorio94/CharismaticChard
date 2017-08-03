@@ -124,6 +124,21 @@ const setSplitterTip = (tip) => {
   };
 };
 
+const addDebtor = (debtor) => {
+  return {
+    type: 'ADD_DEBTOR',
+    payload: debtor,
+  };
+};
+
+const setDebtorItem = (item, index) => {
+  return {
+    type: 'SET_DEBTOR_ITEM',
+    payload: item,
+    index: index,
+  };
+};
+
 export {
   sendStateToServer,
   fetchUserNameAndPhone,
@@ -136,6 +151,8 @@ export {
   setSplitterPhone,
   setSplitterItems,
   setDebtors,
+  addDebtor,
+  setDebtorItem,
   setSplitterDebtTotal,
   setSplitterTotal,
   setSplitterTax,
