@@ -25,11 +25,12 @@ export class AddFriends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
-      name: null,
+      isValidNumber: false,
+      name: '',
       number: null,
-      validationState: null,
-      isValid: null
+      showModal: false,
+      validationStateName: null,
+      validationStateNumber: null
     };
   }
 
@@ -37,23 +38,33 @@ export class AddFriends extends React.Component {
     e.preventDefault();
     this.saveFriendInfo();
     this.setState({
+      isValidNumber: false,
       name: '',
-      number: '',
-      validationState: null
+      number: null,
+      validationStateName: null,
+      validationStateNumber: null
     });
     this.toggle();
   }
 
   handleFailAdd(e) {
     e.preventDefault();
-    this.setState({
-      validationState: 'error'
-    });
+    if (!this.state.name.length || !this.state.name.match(/^[a-z0-9]+$/i)) {
+      this.setState({
+        validationStateName: 'error'
+      });
+    }
+    if (!this.state.isValidNumber) {
+      this.setState({
+        validationStateNumber: 'error'
+      });
+    }
   }
 
   friendName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
+      validationStateName: null
     });
   }
 
@@ -61,8 +72,8 @@ export class AddFriends extends React.Component {
     e.target.value = phoneUtil.format(phoneUtil.parse(e.target.value, 'US'), PhoneNumberFormat.NATIONAL);
     this.setState({
       number: e.target.value,
-      validationState: null,
-      isValid: phoneUtil.isValidNumber(phoneUtil.parse(e.target.value, 'US'))
+      validationStateNumber: null,
+      isValidNumber: phoneUtil.isValidNumber(phoneUtil.parse(e.target.value, 'US')),
     });
   }
 
@@ -99,8 +110,8 @@ export class AddFriends extends React.Component {
             <Modal.Title>Add a friend</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form horizontal onSubmit={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
-              <FormGroup controlId="formName">
+            <Form horizontal onSubmit={(this.state.name.length || this.state.name.match(/^[a-z0-9]+$/i)) && this.state.isValidNumber ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
+              <FormGroup controlId="formName" validationState={this.state.validationStateName}>
                 <Col componentClass={ControlLabel} sm={2}>
                   Name
                 </Col>
@@ -109,8 +120,8 @@ export class AddFriends extends React.Component {
                 </Col>
               </FormGroup>
             </Form>
-            <Form horizontal onSubmit={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
-              <FormGroup controlId="formPhoneNumber" validationState={this.state.validationState}>
+            <Form horizontal onSubmit={(this.state.name.length || this.state.name.match(/^[a-z0-9]+$/i)) && this.state.isValidNumber ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>
+              <FormGroup controlId="formPhoneNumber" validationState={this.state.validationStateNumber}>
                 <Col componentClass={ControlLabel} sm={2}>
                   Number
                 </Col>
@@ -121,7 +132,7 @@ export class AddFriends extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.state.isValid ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>ADD</Button>
+            <Button bsStyle="primary" onClick={(this.state.name.length || this.state.name.match(/^[a-z0-9]+$/i)) && this.state.isValidNumber ? this.handleAdd.bind(this) : this.handleFailAdd.bind(this)}>ADD</Button>
           </Modal.Footer>
         </Modal>
       </div>
