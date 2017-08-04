@@ -29,7 +29,7 @@ const deconstructLine = (line) => {
   if (match === null || match[4] === undefined) {
     match = line.text.match(itemExpWithTextAfterPrice);
   }
-  if (match[4] === undefined) {
+  if (match === null || match[4] === undefined) {
     var price = line.text.match(priceExp);
     console.log('price: ', price);
     match[4] = !!price ? price[1] : undefined;
@@ -38,9 +38,12 @@ const deconstructLine = (line) => {
   return match !== null ? {
     quantity: !match[1] ? match[2] : '1',
     // 'pre-item': match[0],
-    item: !match[1] ? match[3] : match[1] + match[2] + match[3],
+    name: !match[1] ? match[3] : match[1] + match[2] + match[3],
     price: match[4]
-  } : null;
+  } : {
+    name: '',
+    price: ''
+  };
 };
 
 const deconstructTaxOrTotal = (line, regExp) => {
@@ -48,7 +51,7 @@ const deconstructTaxOrTotal = (line, regExp) => {
   return match !== null ? {
     price: match[1],
     quantity: '',
-    item: ''
+    name: ''
   } : null;
 };
 
