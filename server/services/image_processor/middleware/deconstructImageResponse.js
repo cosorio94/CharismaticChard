@@ -9,6 +9,7 @@ const vision = require('@google-cloud/vision')({
     private_key_id: process.env.CloudVision_private_key_id,
     private_key: process.env.CloudVision_private_key,
     client_id: process.env.CloudVision_client_id,
+    client_email: process.env.CloudVision_client_email,
     auth_uri: process.env.CloudVision_auth_uri,
     token_uri: process.env.CloudVision_token_uri,
     auth_provider_x509_cert_url: process.env.CloudVision_auth_provider_x509_cert_url,
