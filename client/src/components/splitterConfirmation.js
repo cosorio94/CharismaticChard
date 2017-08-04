@@ -33,26 +33,26 @@ const SplitterConfirmation = ({splitter}) => {
             </div>
             <div className="row">
               <label className="col-xs-6">Price: </label>
-              <p className="col-xs-6">{item.price}</p>
+              <p className="col-xs-6">${item.price}</p>
             </div>
           </div>
         ))
       }
       <div className="row">
         <label className="col-xs-6">Items Total: </label>
-        <p className="col-xs-6">{splitter.total}</p>
+        <p className="col-xs-6">${splitter.total}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Tax: </label>
-        <p className="col-xs-6">{splitter.tax}</p>
+        <p className="col-xs-6">${splitter.tax}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Tip: </label>
-        <p className="col-xs-6">{splitter.tip}</p>
+        <p className="col-xs-6">${splitter.tip}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Final Total: </label>
-        <p className="col-xs-6">{splitter.debtTotal}</p>
+        <p className="col-xs-6">${splitter.debtTotal}</p>
       </div>
       <hr/>
     </div>

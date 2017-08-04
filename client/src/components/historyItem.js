@@ -50,7 +50,7 @@ class SplitterHistoryItem extends React.Component {
               </div>
               <div className="row">
                 <label className="col-xs-6">Price: </label>
-                <p className="col-xs-6">{data.price}</p>
+                <p className="col-xs-6">${data.price}</p>
               </div>
             </div>
           ))

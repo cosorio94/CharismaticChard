@@ -59,7 +59,7 @@ class History extends React.Component {
                     </div>
                     <div className="row">
                       <label className="col-xs-6">Price: </label>
-                      <p className="col-xs-6">{item.price}</p>
+                      <p className="col-xs-6">${item.price}</p>
                     </div>
                     <div className="row">
                       <label className="col-xs-6">Debtor: </label>
@@ -71,15 +71,15 @@ class History extends React.Component {
               }
               <div className="row">
                 <label className="col-xs-6">Tax: </label>
-                <p className="col-xs-6">{data.tax}</p>
+                <p className="col-xs-6">${data.tax}</p>
               </div>
               <div className="row">
                 <label className="col-xs-6">Tip: </label>
-                <p className="col-xs-6">{data.tip}</p>
+                <p className="col-xs-6">${data.tip}</p>
               </div>
               <div className="row">
                 <label className="col-xs-6">Total: </label>
-                <p className="col-xs-6">{data.total}</p>
+                <p className="col-xs-6">${data.total}</p>
               </div>
             </div>
           ))

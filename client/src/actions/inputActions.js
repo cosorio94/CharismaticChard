@@ -8,8 +8,7 @@ const sendItemImageToServer = (items) => {
         console.log(res.data);
         dispatch({type: 'TOGGLE_ISLOADING', payload: false});
         dispatch({type: 'SET_ITEMS', payload: res.data.items});
-        dispatch({type: 'SET_TOTAL_TAX', payload: res.data.tax.price});
-        dispatch({type: 'SET_SPLIT_TOTAL', payload: res.data.total.price});
+        dispatch({type: 'SET_TAX', payload: res.data.tax.price});
       })
       .catch(err => {
         console.log(err);

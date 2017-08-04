@@ -243,7 +243,6 @@ class AddImage extends React.Component {
           <div className="select-divBox text-center">
             <Button onClick={this.selectItemBox}>Select Items</Button>
             <Button onClick={this.selectTaxBox}>Select tax</Button>
-            <Button onClick={this.selectTotalBox}>Select total</Button>
           </div>
           {
             this.state.selectBox === null ? 

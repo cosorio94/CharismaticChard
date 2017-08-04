@@ -33,26 +33,26 @@ const DebtorConfirmation = ({debtors}) => {
             </div>
             <div className="row">
               <label className="col-xs-6">Price: </label>
-              <p className="col-xs-6">{item.price}</p>
+              <p className="col-xs-6">${item.price}</p>
             </div>
           </div>
         ))
       }
       <div className="row">
         <label className="col-xs-6">Items Total: </label>
-        <p className="col-xs-6">{debtor.total}</p>
+        <p className="col-xs-6">${debtor.total}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Tax: </label>
-        <p className="col-xs-6">{debtor.tax}</p>
+        <p className="col-xs-6">${debtor.tax}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Tip: </label>
-        <p className="col-xs-6">{debtor.tip}</p>
+        <p className="col-xs-6">${debtor.tip}</p>
       </div>
       <div className="row">
         <label className="col-xs-6">Final Total: </label>
-        <p className="col-xs-6">{debtor.debtTotal}</p>
+        <p className="col-xs-6">${debtor.debtTotal}</p>
       </div>
       <hr />
     </div>

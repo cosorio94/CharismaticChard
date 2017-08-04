@@ -58,9 +58,12 @@ class Input extends React.Component {
     super(props);
     this.handleChangeDyna = this.handleChangeDyna.bind(this);
     this.handleChangeTax = this.handleChangeTax.bind(this);
-    this.handleChangeTotal = this.handleChangeTotal.bind(this);
     this.handleChangeTip = this.handleChangeTip.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.props.setSplitTotal(this.calculateTotal());
   }
 
   handleChangeName(e) {
@@ -84,11 +87,6 @@ class Input extends React.Component {
   handleChangeTax(e) {
     e.preventDefault();
     this.props.setTotalTax(e.target.value);
-  }
-
-  handleChangeTotal(e) {
-    e.preventDefault();
-    this.props.setSplitTotal(e.target.value);
   }
 
   handleChangeTip(e) {
@@ -116,10 +114,20 @@ class Input extends React.Component {
     });
   }
 
+  calculateTotal() {
+    var total = 0;
+    this.props.items.forEach((item, index) => {
+      total += Number(item.price);
+    });
+    total += Number(this.props.totalTax);
+    total += Number(this.props.totalTip);
+    return total;
+  }
+
   handleSubmit() {
     this.props.setTotalTip((Number(this.props.totalTip)).toFixed(2));
     this.props.setTotalTax((Number(this.props.totalTax)).toFixed(2));
-    this.props.setSplitTotal((Number(this.props.splitTotal)).toFixed(2));
+    this.props.setSplitTotal((Number(this.calculateTotal())).toFixed(2));
   }
 
   render() {
@@ -154,12 +162,12 @@ class Input extends React.Component {
               <input type="number" className="inputItemBit tax form-control" placeholder="Tax..." value={this.props.totalTax} onChange={this.handleChangeTax} required/>
             </div>
             <div className="inputItem col-xs-12">
-              <label className="inputItemBit">Total</label>
-              <input type="number" className="inputItemBit total form-control" placeholder="Total..." value={this.props.splitTotal} onChange={this.handleChangeTotal} required/>
-            </div>
-            <div className="inputItem col-xs-12">
               <label className="inputItemBit">Tip</label>
               <input type="number" className="inputItemBit tip form-control" placeholder="Tip..." value={this.props.totalTip} onChange={this.handleChangeTip} required/>
+            </div>
+            <div className="inputItem col-xs-12">
+              <label className="inputItemBit">Total</label>
+              <input type="number" className="inputItemBit total form-control" placeholder="Total..." value={this.props.splitTotal} disabled/>
             </div>
           </div>
         </div>

@@ -198,9 +198,9 @@ class DragAndDrop extends React.Component {
                   <hr />
                 </div>
                 <div className="row">
-                  <div className="col-xs-4">{this.props.totalTax}</div>
-                  <div className="col-xs-4">{this.props.splitTotal}</div>
-                  <div className="col-xs-4">{this.props.totalTip}</div>
+                  <div className="col-xs-4">${this.props.totalTax}</div>
+                  <div className="col-xs-4">${this.props.splitTotal}</div>
+                  <div className="col-xs-4">${this.props.totalTip}</div>
                 </div>
               </div>
             </div>
