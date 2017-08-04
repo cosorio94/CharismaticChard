@@ -84,12 +84,12 @@ class DragAndDrop extends React.Component {
     var index = e.target.id;
     var first = this.props.items.slice()[index];
 
-    first.price = (Number(first.price) / 2).toString();
+    first.price = (Number(first.price) / 2).toFixed(2);
     var second = {...first};
     second.name = '(2/2) ' + first.name;
     first.name = '(1/2) ' + first.name;
 
-    this.props.setItem(first, index);
+    this.props.setItem(first, Number(index));
     this.props.addItem(second);
   }
 
@@ -166,7 +166,6 @@ class DragAndDrop extends React.Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
     this.calculateSplitterTotal();
     this.calculateDebtorsTotals();
   }

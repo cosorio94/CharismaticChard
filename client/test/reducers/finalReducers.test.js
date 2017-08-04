@@ -4,10 +4,10 @@ import reducer from '../../src/reducers/finalReducer.js';
 
 describe('actions', () => {
   const intialState = {
-    splitTotal: null,
-    totalTax: null,
-    totalTip: null,
-    splitName: null,
+    splitTotal: '',
+    totalTax: '',
+    totalTip: '',
+    splitName: '',
     splitter: {
       name: '',
       phone: '',
@@ -33,9 +33,9 @@ describe('actions', () => {
       )).toEqual(
       {
         splitTotal: 15,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -58,10 +58,10 @@ describe('actions', () => {
         {type: 'SET_TOTAL_TAX', payload: 15}
       )).toEqual(
       {
-        splitTotal: null,
+        splitTotal: '',
         totalTax: 15,
-        totalTip: null,
-        splitName: null,
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -84,10 +84,10 @@ describe('actions', () => {
         {type: 'SET_TOTAL_TIP', payload: 15}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
+        splitTotal: '',
+        totalTax: '',
         totalTip: 15,
-        splitName: null,
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -110,9 +110,9 @@ describe('actions', () => {
         {type: 'SET_SPLIT_NAME', payload: 'test'}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
         splitName: 'test',
         splitter: {
           name: '',
@@ -136,10 +136,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_NAME', payload: 'test'}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: 'test',
           phone: '',
@@ -162,10 +162,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_PHONE', payload: '1234567890'}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '1234567890',
@@ -188,10 +188,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_ITEMS', payload: [{test: 'item'}]}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -214,10 +214,10 @@ describe('actions', () => {
         {type: 'SET_DEBTORS', payload: [{debtors: 'test'}]}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -240,10 +240,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_DEBTTOTAL', payload: 15}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -266,10 +266,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_TAX', payload: 15}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -292,10 +292,10 @@ describe('actions', () => {
         {type: 'SET_SPLITTER_TIP', payload: 15}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',
@@ -318,10 +318,10 @@ describe('actions', () => {
         {type: 'ADD_DEBTOR', payload: {username: 'newguy'}}
       )).toEqual(
       {
-        splitTotal: null,
-        totalTax: null,
-        totalTip: null,
-        splitName: null,
+        splitTotal: '',
+        totalTax: '',
+        totalTip: '',
+        splitName: '',
         splitter: {
           name: '',
           phone: '',

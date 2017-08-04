@@ -72,13 +72,13 @@ class Input extends React.Component {
     e.preventDefault();
     var val = e.target.value;
     var index = e.target.id;
-    var obj = this.props.items.slice()[index];
+    var obj = {...this.props.items.slice()[index]};
     if (e.target.type === 'number') {
       obj.price = val;
     } else if (e.target.type === 'text') {
       obj.name = val;
     }
-    this.props.setItem(obj, index);
+    this.props.setItem(obj, Number(index));
   }
 
   handleChangeTax(e) {
@@ -97,15 +97,26 @@ class Input extends React.Component {
   }
 
   addItem() {
-    this.props.addItem({name: null, price: null});
+    this.props.addItem({name: '', price: ''});
   }
 
   removeItem() {
     this.props.removeItem();
   }
 
+  fixItemPrice(item, index) {
+    var itemCopy = {...item};
+    itemCopy.price = Number(itemCopy.price).toFixed(2);
+    this.props.setItem(itemCopy, index);
+  }
+
+  fixItemPricesToTwoDigits() {
+    this.props.items.forEach((item, index) => {
+      this.fixItemPrice(item, index);
+    });
+  }
+
   handleSubmit() {
-    console.log('hey');
     this.props.setTotalTip((Number(this.props.totalTip)).toFixed(2));
     this.props.setTotalTax((Number(this.props.totalTax)).toFixed(2));
     this.props.setSplitTotal((Number(this.props.splitTotal)).toFixed(2));
