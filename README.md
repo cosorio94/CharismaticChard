@@ -1,17 +1,19 @@
-# Project Name
+![logo](public/assets/splitter-logo.gif)
 
-The project description
+A bill splitting and payment requesting application.
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- [Joseph Kwon](https://github.com/JKwon823)
+- [Carlos Osorio](https://github.com/cosorio94)
+- [Minji Lee](https://github.com/minjilee8816)
+- [Kai Mashima](https://github.com/kai-mashima)
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project plan [here](https://docs.google.com/document/d/13KKGWZLLw55PLkTyyidUwnM2V4Dp7jF7q7JhMmanzcY/edit?usp=sharing)
+
+View the project presentation slides [here](http://imgur.com/a/b2pWy)
 
 ## Contributing
 
@@ -34,7 +36,22 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 - Node 6.9.x
 - Redis 3.2.x
 - Postgresql 9.6.x
-- etc
+- Axios 0.16.2
+- Bluebird 3.5.0
+- Bookshelf 0.10.3
+- Express 4.15.2
+- Jquery 3.2.1
+- Knex 0.12.9
+- React 15.4.2
+- Redux 3.7.2
+- Twilio 3.5.0
+- Webpack 3.3.0
+- React-sortablejs 1.3.4
+- React-bootstrap 0.31.1
+- React-router-dom 4.1.1
+- React-side-bar 0.3.5
+- Redux-devtools-extension 2.13.2
+- Redux-promise-middleware 4.3.0
 
 ## Development
 
@@ -102,5 +119,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
-
