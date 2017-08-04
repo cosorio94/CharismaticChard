@@ -5,10 +5,11 @@ const sendItemImageToServer = (items) => {
     dispatch({type: 'TOGGLE_ISLOADING', payload: true});
     axios.post('/api/analyze-image', items)
       .then(res => {
+        console.log(res.data);
         dispatch({type: 'TOGGLE_ISLOADING', payload: false});
         dispatch({type: 'SET_ITEMS', payload: res.data.items});
-        dispatch({type: 'SET_TAX', payload: res.data.tax.price});
-        dispatch({type: 'SET_TOTAL', payload: res.data.total.price});
+        dispatch({type: 'SET_TOTAL_TAX', payload: res.data.tax.price});
+        dispatch({type: 'SET_SPLIT_TOTAL', payload: res.data.total.price});
       })
       .catch(err => {
         console.log(err);
