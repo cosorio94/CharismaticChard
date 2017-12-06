@@ -2,8 +2,6 @@
 
 A bill splitting and payment requesting application.
 
-Watch a video of the app in action through [here](bit.ly/2wac4He)
-
 ## Team
 
 - [Joseph Kwon](https://github.com/JKwon823)
@@ -12,6 +10,7 @@ Watch a video of the app in action through [here](bit.ly/2wac4He)
 - [Kai Mashima](https://github.com/kai-mashima)
 
 ## Roadmap
+Watch the app in action through [here](bit.ly/2wac4He)
 
 View the project plan [here](https://docs.google.com/document/d/13KKGWZLLw55PLkTyyidUwnM2V4Dp7jF7q7JhMmanzcY/edit?usp=sharing)
 
