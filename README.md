@@ -2,6 +2,8 @@
 
 A bill splitting and payment requesting application.
 
+Watch a video of the app in action through [here](bit.ly/2wac4He)
+
 ## Team
 
 - [Joseph Kwon](https://github.com/JKwon823)
@@ -21,15 +23,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 # Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
