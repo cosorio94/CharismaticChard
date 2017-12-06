@@ -10,7 +10,7 @@ A bill splitting and payment requesting application.
 - [Kai Mashima](https://github.com/kai-mashima)
 
 ## Roadmap
-Watch the app in action through [here](bit.ly/2wac4He)
+Watch the app in action through [here](https://bit.ly/2wac4He)
 
 View the project plan [here](https://docs.google.com/document/d/13KKGWZLLw55PLkTyyidUwnM2V4Dp7jF7q7JhMmanzcY/edit?usp=sharing)
 
